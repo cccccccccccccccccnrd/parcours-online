@@ -5,7 +5,7 @@ export const state = () => ({
 
 export const actions = {
   init (context) {
-    const url = window.location.hostname === 'localhost' ? 'ws://localhost:2627' : 'wss://cnrd.computer/gallery-ws'
+    const url = window.location.hostname === 'localhost' ? 'ws://localhost:2627' : 'wss://parcours.cnrd.computer/ws'
     context.commit('setSocket', new WebSocket(url))
     context.commit('setId', `WOW${ Date.now() }`)
   },
