@@ -4,11 +4,11 @@ const WebSocket = require('ws')
 
 const app = express()
 
-app.get('/api/connected', (req, res) => {
+app.get('/connected', (req, res) => {
   res.json({ connected: wss.clients.size})
 })
 
-app.listen(2626, () => console.log('http://localhost:2626'))
+app.listen(2628, () => console.log('http://localhost:2628'))
 
 const wss = new WebSocket.Server({ port: 2627 })
 
