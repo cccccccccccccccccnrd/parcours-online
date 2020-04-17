@@ -7,7 +7,7 @@
       :y="cursor.payload.y"
       :platform="cursor.payload.platform"
     />
-    <button @click="check">Check</button>
+    <!-- <button @click="check">Check</button> -->
     <chat/>
   </div>
 </template>
