@@ -73,6 +73,16 @@ export default {
 </script>
 
 <style>
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: black;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;

@@ -27,14 +27,14 @@ export default {
   computed: {
     rectangles() {
       const app = this
-      const count = app.random(10, 20)
+      const count = app.random(10, 15)
 
       return Array.from(Array(count).keys()).map(() => {
         return {
-          width: app.random(50, 400),
-          height: app.random(50, 400),
-          top: app.random(10, 1000),
-          left: app.random(10, 3000)
+          width: app.random(200, 700),
+          height: app.random(200, 700),
+          top: app.random(10, 2000),
+          left: app.random(10, 5000)
         }
       })
     }

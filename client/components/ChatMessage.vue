@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  props: ['isLast', 'name', 'content', 'timestamp'],
+  props: ['isLast', 'name', 'content', 'timestamp', 'mode'],
   data () {
     return {}
   },
@@ -21,7 +21,7 @@ export default {
   computed: {
     formatedTimestamp() {
       const date = new Date(this.timestamp)
-      return `${ date.getHours() }:${ date.getMinutes() }`
+      return `${ ('0' + date.getHours()).slice(-2) }:${ ('0' + date.getMinutes()).slice(-2) }`
     }
   }
 }
@@ -42,7 +42,7 @@ export default {
 
 .animation-in {
   animation-name: in;
-  animation-duration: 300ms;
+  animation-duration: 500ms;
   animation-iteration-count: 1;
 }
 

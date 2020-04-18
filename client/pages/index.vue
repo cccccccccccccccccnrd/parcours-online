@@ -7,7 +7,6 @@
       :y="cursor.payload.y"
       :platform="cursor.payload.platform"
     />
-    <!-- <button @click="check">Check</button> -->
     <chat />
     <no-ssr>
       <rectangles/>
@@ -36,11 +35,7 @@ export default {
       cursors: 'cursors/all'
     })
   },
-  methods: {
-    check () {
-      console.log(this.cursors)
-    }
-  }
+  methods: {}
 }
 </script>
 
