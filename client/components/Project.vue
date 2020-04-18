@@ -1,6 +1,6 @@
 <template>
   <div
-    class="rectangle"
+    class="project"
     :style="`width: ${ width }px; height: ${ height }px; top: ${ top }px; left: ${ left }px;`"
   ></div>
 </template>
@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style scoped>
-.rectangle {
+.project {
   position: absolute;
   border: 1px solid black;
 }
