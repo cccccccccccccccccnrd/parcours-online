@@ -1,12 +1,13 @@
 <template>
-  <div class="chat-message" :class="{ 'animation-in': isLast }">
+  <div
+    class="chat-message"
+    :class="{ 'animation-in': isLast }"
+  >
     <div>
       <p>{{ name }}</p>
       <p>{{ formatedTimestamp }}</p>
     </div>
-    <div>
-      {{ content }}
-    </div>
+    <div>{{ content }}</div>
   </div>
 </template>
 
@@ -16,9 +17,7 @@ export default {
   data () {
     return {}
   },
-  mounted () {
-    console.log(this.isLast)
-  },
+  mounted () {},
   computed: {
     formatedTimestamp() {
       const date = new Date(this.timestamp)
@@ -43,7 +42,7 @@ export default {
 
 .animation-in {
   animation-name: in;
-  animation-duration: 400ms;
+  animation-duration: 300ms;
   animation-iteration-count: 1;
 }
 
@@ -70,8 +69,4 @@ export default {
 .chat-message div:first-of-type {
   font-size: 0.65em;
 }
-
-/* .chat-message div:last-of-type {
-  font-size: 2em;
-} */
 </style>

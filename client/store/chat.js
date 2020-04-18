@@ -13,7 +13,6 @@ export const state = () => ({
 export const actions = {
   init (context) {
     const name = localStorage.getItem('parcours-online-name')
-    console.log(name)
 
     if (name) {
       context.commit('setUsername', name)

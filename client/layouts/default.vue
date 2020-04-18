@@ -87,4 +87,8 @@ html {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
 }
+
+body {
+  overflow:hidden;
+}
 </style>

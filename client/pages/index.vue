@@ -8,19 +8,24 @@
       :platform="cursor.payload.platform"
     />
     <!-- <button @click="check">Check</button> -->
-    <chat/>
+    <chat />
+    <no-ssr>
+      <rectangles/>
+    </no-ssr>
   </div>
 </template>
 
 <script>
 import Cursorr from '~/components/Cursorr.vue'
 import Chat from '~/components/Chat.vue'
+import Rectangles from '~/components/Rectangles.vue'
 import { mapGetters } from 'vuex'
 
 export default {
   components: {
     Cursorr,
-    Chat
+    Chat,
+    Rectangles
   },
   data () {
     return {}

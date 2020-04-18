@@ -3,7 +3,7 @@
     <div>
       <chat-message
         v-for="(msg, index) in filteredMessages"
-        :key="`${ msg.id }-${msg.payload.timestamp}`"
+        :key="`${ msg.id }-${ msg.payload.timestamp }`"
         :name="msg.payload.name"
         :content="msg.payload.content"
         :timestamp="msg.payload.timestamp"
@@ -73,6 +73,10 @@ export default {
       }
     },
     sendMessage () {
+      if (this.message.trim() === '') {
+        return
+      }
+
       if (!this.username) {
         this.setChatUsername(this.message)
         this.message = ''
@@ -95,11 +99,13 @@ export default {
 
 <style scoped>
 .chat {
-  position: absolute;
+  position: fixed;
   bottom: 1em;
   right: 1em;
   width: 100%;
+  height: initial;
   max-width: 33vw;
+  z-index: 99;
 }
 
 .chat div:last-of-type {

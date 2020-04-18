@@ -13,6 +13,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "dragscroll": "0.0.8",
     "express": "^4.15.3",
     "nuxt": "^1.0.0",
     "ws": "^7.2.3"
