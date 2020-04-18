@@ -20,7 +20,7 @@ export default {
     left: 0;
     width: 1em;
     height: 1em;
-    z-index: 10;
+    z-index: 9;
   }
 
   .cursor.mac {

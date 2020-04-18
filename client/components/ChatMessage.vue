@@ -1,7 +1,7 @@
 <template>
   <div
     class="chat-message"
-    :class="{ 'animation-in': isLast }"
+    :class="{ 'animation-in': isLast, 'cool': mode === 'cool' }"
   >
     <div>
       <p>{{ name }}</p>
@@ -40,6 +40,16 @@ export default {
   }
 }
 
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.025);
+  }
+}
+
 .animation-in {
   animation-name: in;
   animation-duration: 500ms;
@@ -59,6 +69,14 @@ export default {
   cursor: crosshair;
   filter: invert(100);
   z-index: 9;
+}
+
+.chat-message.cool {
+  background: linear-gradient(to right, orange , yellow, green, cyan, blue, violet);
+  animation-name: pulse;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 .chat-message div {

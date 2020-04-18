@@ -7,6 +7,7 @@
         :name="msg.payload.name"
         :content="msg.payload.content"
         :timestamp="msg.payload.timestamp"
+        :mode="msg.payload.mode"
         :isLast="index === filteredMessages.length - 1"
       />
     </div>
@@ -66,12 +67,6 @@ export default {
     removeUsername () {
       this.removeChatUsername()
     },
-    setUsername () {
-      if (!this.username) {
-        this.setChatUsername(this.message)
-        this.message = ''
-      }
-    },
     sendMessage () {
       if (this.message.trim() === '') {
         return
@@ -86,7 +81,19 @@ export default {
       const payload = {
         name: this.username,
         content: this.message,
-        timestamp: Date.now()
+        timestamp: Date.now(),
+        mode: null
+      }
+
+      if (this.message.startsWith('/')) {
+        const split = this.message.split(' ')
+        const command = split[0]
+        split.shift()
+
+        if (command === '/cool') {
+          payload.mode = 'cool'
+          payload.content = split.join(' ')
+        }
       }
 
       this.insertChatMessage({ id: this.id, payload: payload })
@@ -105,7 +112,7 @@ export default {
   width: 100%;
   height: initial;
   max-width: 33vw;
-  z-index: 99;
+  z-index: 10;
 }
 
 .chat div:last-of-type {
