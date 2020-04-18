@@ -27,16 +27,18 @@ export default {
           app.removeCursor(msg.id)
           break
         case 'chat-message':
-          console.log('wow')
           app.insertChatMessage(msg)
           break
       }
     })
 
     document.addEventListener('mousemove', (event) => {
+      const top = event.srcElement.id === 'rectangles' ? event.srcElement.scrollTop : event.srcElement.parentNode.scrollTop
+      const left = event.srcElement.id === 'rectangles' ? event.srcElement.scrollLeft : event.srcElement.parentNode.scrollLeft
+
       const payload = {
-        x: event.pageX,
-        y: event.pageY,
+        x: event.pageX + left,
+        y: event.pageY + top,
         platform: app.platform()
       }
 

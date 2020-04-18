@@ -1,5 +1,5 @@
 <template>
-<div class="rectangles dragscroll">
+<div class="rectangles dragscroll" id="rectangles">
     <rectangle
       v-for="(rectangle, index) in rectangles"
       :key="`rect-${ index }`"
