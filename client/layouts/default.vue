@@ -89,13 +89,19 @@ export default {
   background: black;
 }
 
+@font-face {
+  font-family: 'FavoritTrialStd-Regular';
+  src: url('/fonts/FavoritTrialStd-Regular.woff') format('woff');
+  font-display: swap;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
 }
 
 html {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: 'FavoritTrialStd-Regular', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
