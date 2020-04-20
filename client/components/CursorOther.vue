@@ -1,32 +1,25 @@
 <template>
-<div>
-  <div
-    class="cursor"
-    :class="`${ platform }`"
-    :style="`left: ${ x }px; top: ${ y }px`"
-  ></div>
-  <div
-      class="chat-messages"
-      :style="`left: ${ x + 20 }px; top: ${ y + 20 }px`"
-    >
-      <chat-message
-        v-for="msg in filteredMessages"
-        :key="`${ msg.id }-${ msg.payload.timestamp }`"
-        :content="msg.payload.content"
-        :mode="msg.payload.mode"
-        class="animation-out"
-      />
-    </div>
-</div>
+  <div>
+    <div
+      class="cursor"
+      :class="`${ platform }`"
+      :style="`left: ${ x }px; top: ${ y }px`"
+    ></div>
+    <cursor-chat-messages
+      :id="id"
+      :x="x"
+      :y="y"
+    />
+  </div>
 </template>
 
 <script>
-import ChatMessage from '~/components/ChatMessage.vue'
+import CursorChatMessages from '~/components/CursorChatMessages.vue'
 import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   components: {
-    ChatMessage
+    CursorChatMessages
   },
   props: ['id', 'x', 'y', 'platform'],
   mounted () {},
@@ -35,7 +28,7 @@ export default {
       messages: 'chat/all',
     }),
     filteredMessages () {
-      return this.messages.filter((message) => this.id === message.id).reverse()
+      return this.messages.filter((message) => message.id === this.id).reverse()
     },
   }
 }

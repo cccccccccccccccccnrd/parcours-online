@@ -1,47 +1,53 @@
 <template>
   <div>
-    <chat />
+    <!-- <chat /> -->
+    <chat-input />
     <no-ssr>
-    <div class="projects dragscroll" id="projects">
-      <cursorr
-        v-for="cursor in cursors"
-        :key="cursor.id"
-        :id="cursor.id"
-        :x="cursor.payload.x"
-        :y="cursor.payload.y"
-        :platform="cursor.payload.platform"
-      />
-      <project
-        v-for="(proj, index) in projects"
-        :key="`proj-${ index }`"
-        :width="proj.width"
-        :height="proj.height"
-        :top="proj.top"
-        :left="proj.left"
-      />
-    </div>
+      <div>
+        <cursor-own />
+        <div class="projects dragscroll" id="projects">
+          <cursor-other
+            v-for="cursor in cursors"
+            :key="cursor.id"
+            :id="cursor.id"
+            :x="cursor.payload.x"
+            :y="cursor.payload.y"
+            :platform="cursor.payload.platform"
+          />
+          <project
+            v-for="(proj, index) in projects"
+            :key="`proj-${ index }`"
+            :width="proj.width"
+            :height="proj.height"
+            :top="proj.top"
+            :left="proj.left"
+          />
+        </div>
+      </div>
     </no-ssr>
   </div>
 </template>
 
 <script>
-import Cursorr from '~/components/Cursorr.vue'
+import CursorOwn from '~/components/CursorOwn.vue'
+import CursorOther from '~/components/CursorOther.vue'
+import ChatInput from '~/components/ChatInput.vue'
 import Chat from '~/components/Chat.vue'
 import Project from '~/components/Project.vue'
 import { mapGetters } from 'vuex'
 
 export default {
   components: {
-    Cursorr,
+    CursorOwn,
+    CursorOther,
     Chat,
+    ChatInput,
     Project
   },
   data () {
     return {}
   },
-  mounted () {
-    console.log(this.cursors)
-  },
+  mounted () {},
   computed: {
     ...mapGetters({
       cursors: 'cursors/all'

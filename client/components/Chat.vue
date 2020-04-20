@@ -52,7 +52,7 @@ export default {
       username: 'chat/username'
     }),
     filteredMessages () {
-      return this.messages.filter((message) => message.id === this.id).slice(Math.max(this.messages.length - 7, 1))
+      return this.messages.slice(Math.max(this.messages.length - 7, 1))
     },
     placeholder () {
       return this.username ? `U write as ${ this.username }` : 'What is your name?'
@@ -61,6 +61,7 @@ export default {
   methods: {
     ...mapMutations({
       insertChatMessage: 'chat/insert',
+      removeChatMessage: 'chat/remove',
       setChatUsername: 'chat/setUsername',
       removeChatUsername: 'chat/removeUsername'
     }),
@@ -98,6 +99,10 @@ export default {
       }
 
       this.insertChatMessage({ id: this.id, payload: payload })
+      setTimeout(() => {
+        this.removeChatMessage()
+      }, 15 * 1000)
+
       this.$store.dispatch('socket/send', ['chat-message', payload])
       this.message = ''
     }
