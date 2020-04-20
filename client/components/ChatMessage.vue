@@ -1,13 +1,13 @@
 <template>
   <div
     class="chat-message"
-    :class="{ 'animation-in': isLast, 'cool': mode === 'cool' }"
+    :class="{ 'animation-in': isLast, 'cool': mode === 'cool', 'cursor': !name }"
   >
-    <div>
+    <div v-if="name" class="info">
       <p>{{ name }}</p>
       <p>{{ formatedTimestamp }}</p>
     </div>
-    <div>{{ content }}</div>
+    <div class="content">{{ content }}</div>
   </div>
 </template>
 
@@ -57,6 +57,7 @@ export default {
 }
 
 .chat-message {
+  position: relative;
   width: 100%;
   margin: -0.5em 0 0 0;
   padding: 0.6em 1.4em;
@@ -69,6 +70,13 @@ export default {
   cursor: crosshair;
   filter: invert(100);
   z-index: 9;
+}
+
+.chat-message.cursor {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.5em 0.75em;
 }
 
 .chat-message.cool {
@@ -84,7 +92,7 @@ export default {
   justify-content: space-between;
 }
 
-.chat-message div:first-of-type {
+.chat-message .info {
   font-size: 0.65em;
 }
 </style>

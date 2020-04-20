@@ -28,6 +28,9 @@ export default {
           break
         case 'chat-message':
           app.insertChatMessage(msg)
+          setTimeout(() => {
+            app.removeChatMessage()
+          }, 15 * 1000)
           break
       }
     })
@@ -55,7 +58,8 @@ export default {
     ...mapMutations({
       updateCursor: 'cursors/update',
       removeCursor: 'cursors/remove',
-      insertChatMessage: 'chat/insert'
+      insertChatMessage: 'chat/insert',
+      removeChatMessage: 'chat/remove'
     }),
     platform () {
       if (navigator.platform) {

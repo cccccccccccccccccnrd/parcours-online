@@ -1,12 +1,5 @@
 export const state = () => ({
-  messages: [{
-    id: 'WOW1',
-    payload: {
-      content: 'Hi, how are you?',
-      name: 'Computer',
-      timestamp: 1587134971445
-    }
-  }],
+  messages: [],
   name: ''
 })
 
@@ -24,6 +17,9 @@ export const mutations = {
   insert(state, msg) {
     state.messages.push(msg)
   },
+  remove(state) {
+    state.messages.shift()
+  },
   setUsername(state, name) {
     localStorage.setItem('parcours-online-name', name)
     state.name = name
@@ -40,5 +36,8 @@ export const getters = {
   },
   username(state) {
     return state.name
+  },
+  messages: (state) => (id) => {
+    return state.messages.filter((message) => id === message.id)
   }
 }

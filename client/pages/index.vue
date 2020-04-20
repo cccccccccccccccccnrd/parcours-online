@@ -6,6 +6,7 @@
       <cursorr
         v-for="cursor in cursors"
         :key="cursor.id"
+        :id="cursor.id"
         :x="cursor.payload.x"
         :y="cursor.payload.y"
         :platform="cursor.payload.platform"
@@ -39,7 +40,7 @@ export default {
     return {}
   },
   mounted () {
-    console.log(this.projects)
+    console.log(this.cursors)
   },
   computed: {
     ...mapGetters({

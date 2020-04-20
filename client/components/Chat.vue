@@ -52,7 +52,7 @@ export default {
       username: 'chat/username'
     }),
     filteredMessages () {
-      return this.messages.slice(Math.max(this.messages.length - 7, 1))
+      return this.messages.filter((message) => message.id === this.id).slice(Math.max(this.messages.length - 7, 1))
     },
     placeholder () {
       return this.username ? `U write as ${ this.username }` : 'What is your name?'
@@ -89,10 +89,11 @@ export default {
         const split = this.message.split(' ')
         const command = split[0]
         split.shift()
+        const content = split.join(' ')
 
         if (command === '/cool') {
           payload.mode = 'cool'
-          payload.content = split.join(' ')
+          payload.content = content
         }
       }
 
