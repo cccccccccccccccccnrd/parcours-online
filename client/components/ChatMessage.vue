@@ -60,7 +60,7 @@ export default {
   position: relative;
   width: 100%;
   margin: -0.5em 0 0 0;
-  padding: 0.6em 1.4em;
+  padding: 0.6em 1.4em 0em 1.4em;
   background: white;
   border-radius: 100px;
   box-shadow: 0em -0.25em 0.5em rgba(0, 0, 0, 0.2);
@@ -76,7 +76,7 @@ export default {
   display: flex;
   align-items: center;
   width: fit-content;
-  padding: 0.5em 0.75em;
+  padding: 0.5em 0.75em 0.3em 0.75em;
 }
 
 .chat-message.cool {

@@ -79,8 +79,9 @@ textarea {
   left: 0;
   width: 100%;
   padding: 0.2em;
-  font-family: 'FavoritTrialStd-Regular', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: 'ManifontGrotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 10em;
+  /* text-align: center; */
   color: black;
   background: transparent;
   border: 0;
