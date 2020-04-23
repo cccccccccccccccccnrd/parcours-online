@@ -5,7 +5,7 @@
     <no-ssr>
       <div>
         <cursor-own />
-        <div class="projects dragscroll" id="projects">
+        <div class="artworks dragscroll">
           <cursor-other
             v-for="cursor in cursors"
             :key="cursor.id"
@@ -14,13 +14,12 @@
             :y="cursor.payload.y"
             :platform="cursor.payload.platform"
           />
-          <project
-            v-for="(proj, index) in projects"
-            :key="`proj-${ index }`"
-            :width="proj.width"
-            :height="proj.height"
-            :top="proj.top"
-            :left="proj.left"
+          <artwork
+            v-for="(artwork, index) in artworks"
+            :key="`artwork-${ index }`"
+            :top="artwork.top"
+            :left="artwork.left"
+            :url="artwork.url"
           />
         </div>
       </div>
@@ -33,7 +32,7 @@ import CursorOwn from '~/components/CursorOwn.vue'
 import CursorOther from '~/components/CursorOther.vue'
 import ChatInput from '~/components/ChatInput.vue'
 import Chat from '~/components/Chat.vue'
-import Project from '~/components/Project.vue'
+import Artwork from '~/components/Artwork.vue'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -42,26 +41,29 @@ export default {
     CursorOther,
     Chat,
     ChatInput,
-    Project
+    Artwork
   },
   data () {
-    return {}
+    return {
+      urls: [
+        'artworks/try-me.png',
+        'artworks/Type-design-master.png',
+        'artworks/unknown-favorite.mp4',
+      ]
+    }
   },
   mounted () {},
   computed: {
     ...mapGetters({
       cursors: 'cursors/all'
     }),
-    projects() {
+    artworks() {
       const app = this
-      const count = app.random(10, 15)
-
-      return Array.from(Array(count).keys()).map(() => {
+      return this.urls.map((url) => {
         return {
-          width: app.random(200, 700),
-          height: app.random(200, 700),
           top: app.random(10, 2000),
-          left: app.random(10, 5000)
+          left: app.random(10, 5000),
+          url: url
         }
       })
     }
@@ -75,7 +77,7 @@ export default {
 </script>
 
 <style>
-.projects {
+.artworks {
   position: relative;
   width: 100vw;
   height: 100vh;
