@@ -1,10 +1,12 @@
 const path = require('path')
 const express = require('express')
+const cors = require('cors')
 const helmet = require('helmet')
 const WebSocket = require('ws')
 
 const app = express()
 
+app.use(cors())
 app.use(helmet())
 
 app.get('/connected', (req, res) => {
