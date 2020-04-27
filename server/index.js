@@ -1,8 +1,11 @@
 const path = require('path')
 const express = require('express')
+const helmet = require('helmet')
 const WebSocket = require('ws')
 
 const app = express()
+
+app.use(helmet())
 
 app.get('/connected', (req, res) => {
   res.json({ connected: wss.clients.size})

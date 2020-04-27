@@ -2,6 +2,7 @@
   <div>
     <!-- <chat /> -->
     <chat-input />
+    <current-visitors />
     <no-ssr>
       <div>
         <cursor-own />
@@ -33,6 +34,7 @@ import CursorOther from '~/components/CursorOther.vue'
 import ChatInput from '~/components/ChatInput.vue'
 import Chat from '~/components/Chat.vue'
 import Artwork from '~/components/Artwork.vue'
+import CurrentVisitors from '~/components/CurrentVisitors.vue'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -41,7 +43,8 @@ export default {
     CursorOther,
     Chat,
     ChatInput,
-    Artwork
+    Artwork,
+    CurrentVisitors
   },
   data () {
     return {
