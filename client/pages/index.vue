@@ -49,9 +49,15 @@ export default {
   data () {
     return {
       urls: [
-        'artworks/try-me.png',
-        'artworks/Type-design-master.png',
-        'artworks/unknown-favorite.mp4',
+        'artworks/600x400.png',
+        'artworks/400x600.png',
+        'artworks/500x500.png',
+        'artworks/800x300.png',
+        'artworks/300x800.png',
+        'artworks/300x400.png',
+        'artworks/400x300.png',
+        'artworks/200x180.png',
+        'artworks/180x200.png',
       ]
     }
   },
