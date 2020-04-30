@@ -48,17 +48,43 @@ export default {
   },
   data () {
     return {
-      urls: [
-        'artworks/600x400.png',
-        'artworks/400x600.png',
-        'artworks/500x500.png',
-        'artworks/800x300.png',
-        'artworks/300x800.png',
-        'artworks/300x400.png',
-        'artworks/400x300.png',
-        'artworks/200x180.png',
-        'artworks/180x200.png',
-      ]
+      artworks: [{
+        top: 100,
+        left: 100,
+        url: 'artworks/600x400.png'
+      }, {
+        top: 80,
+        left: 900,
+        url: 'artworks/400x600.png'
+      }, {
+        top: 210,
+        left: 1500,
+        url: 'artworks/500x500.png'
+      }, {
+        top: 100,
+        left: 2200,
+        url: 'artworks/800x300.png'
+      }, {
+        top: 600,
+        left: 150,
+        url: 'artworks/300x400.png'
+      }, {
+        top: 900,
+        left: 800,
+        url: 'artworks/400x300.png'
+      }, {
+        top: 1000,
+        left: 1700,
+        url: 'artworks/600x400.png'
+      }, {
+        top: 700,
+        left: 2500,
+        url: 'artworks/200x180.png'
+      }, {
+        top: 1200,
+        left: 500,
+        url: 'artworks/180x200.png'
+      }]
     }
   },
   mounted () {},
@@ -66,7 +92,7 @@ export default {
     ...mapGetters({
       cursors: 'cursors/all'
     }),
-    artworks() {
+    /* artworks() {
       const app = this
       return this.urls.map((url) => {
         return {
@@ -75,7 +101,7 @@ export default {
           url: url
         }
       })
-    }
+    } */
   },
   methods: {
     random(min, max) {
