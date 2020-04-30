@@ -5,17 +5,22 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   data () {
-    return {
-      count: 0
-    }
+    return {}
   },
   async mounted () {
-    const response = await fetch('https://parcours.kisd.de/api/connected')
-    const json = await response.json()
-    console.log(json)
-    this.count = json.connected
+    console.log(this.count)
+  },
+  computed: {
+    ...mapGetters({
+      cursors: 'cursors/all'
+    }),
+    count () {
+      return this.cursors.length + 1
+    }
   }
 }
 </script>
