@@ -21,16 +21,7 @@ export default {
   components: {
     CursorChatMessages
   },
-  props: ['id', 'x', 'y', 'platform'],
-  mounted () {},
-  computed: {
-    ...mapGetters({
-      messages: 'chat/all',
-    }),
-    filteredMessages () {
-      return this.messages.filter((message) => message.id === this.id).reverse()
-    },
-  }
+  props: ['id', 'x', 'y', 'platform']
 }
 </script>
 

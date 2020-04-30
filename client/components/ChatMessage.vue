@@ -59,7 +59,7 @@ export default {
 .chat-message {
   position: relative;
   width: 100%;
-  margin: -0.5em 0 0 0;
+  /* margin: 0 0 -0.5em 0; */
   padding: 0.6em 1.4em 0em 1.4em;
   background: white;
   border-radius: 100px;
