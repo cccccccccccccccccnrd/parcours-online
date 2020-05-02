@@ -4,6 +4,19 @@ const cors = require('cors')
 const helmet = require('helmet')
 const WebSocket = require('ws')
 
+const db = require('./db.js')
+
+const state = {
+  projects: null
+}
+
+async function init () {
+  await db.init()
+  state.projects = await db.getProjects()
+}
+
+init()
+
 const app = express()
 
 app.use(cors())
@@ -11,6 +24,10 @@ app.use(helmet())
 
 app.get('/connected', (req, res) => {
   res.json({ connected: wss.clients.size})
+})
+
+app.get('/projects', (req, res) => {
+  res.json(state.projects)
 })
 
 app.listen(2628, () => console.log('http://localhost:2628'))

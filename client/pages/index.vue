@@ -2,6 +2,7 @@
   <div>
     <!-- <chat /> -->
     <chat-input />
+    <the-pop-up v-if="isPopUpOpen"/>
     <current-visitors />
     <no-ssr>
       <div>
@@ -20,7 +21,7 @@
             :key="`artwork-${ index }`"
             :top="artwork.top"
             :left="artwork.left"
-            :url="artwork.url"
+            :project="artwork.project"
           />
         </div>
       </div>
@@ -35,7 +36,9 @@ import ChatInput from '~/components/ChatInput.vue'
 import Chat from '~/components/Chat.vue'
 import Artwork from '~/components/Artwork.vue'
 import CurrentVisitors from '~/components/CurrentVisitors.vue'
+import ThePopUp from '~/components/ThePopUp.vue'
 import { mapGetters } from 'vuex'
+import axios from 'axios'
 
 export default {
   components: {
@@ -44,7 +47,8 @@ export default {
     Chat,
     ChatInput,
     Artwork,
-    CurrentVisitors
+    CurrentVisitors,
+    ThePopUp
   },
   data () {
     return {
@@ -61,18 +65,29 @@ export default {
       ]
     }
   },
-  mounted () {},
+  async asyncData() {
+    const url = 'http://localhost:2628/projects' || 'https://parcours.kisd.de/api/projects'
+    const response = await axios.get(url)
+
+    return {
+      projects: response.data
+    }
+  },
+  mounted () {
+    console.log(this.projects)
+  },
   computed: {
     ...mapGetters({
-      cursors: 'cursors/all'
+      cursors: 'cursors/all',
+      isPopUpOpen: 'ui/isPopUpOpen'
     }),
     artworks() {
       const app = this
-      return this.urls.map((url) => {
+      return this.projects.map((project) => {
         return {
           top: app.random(10, 2000),
           left: app.random(10, 5000),
-          url: url
+          project: project
         }
       })
     }

@@ -1,14 +1,16 @@
 <template>
-  <div
-    class="chat-message"
-    :class="{ 'animation-in': isLast, 'cool': mode === 'cool', 'cursor': !name }"
-  >
-    <div v-if="name" class="info">
+<div class="chat-message">
+  <div v-if="name" class="info">
       <p>{{ name }}</p>
       <p>{{ formatedTimestamp }}</p>
     </div>
+  <div
+    class="message"
+    :class="{ 'animation-in': isLast, 'cool': mode === 'cool', 'cursor': !name }"
+  >
     <div class="content">{{ content }}</div>
   </div>
+</div>
 </template>
 
 <script>
@@ -56,30 +58,25 @@ export default {
   animation-iteration-count: 1;
 }
 
-.chat-message {
+.message {
   position: relative;
   width: 100%;
-  /* margin: 0 0 -0.5em 0; */
-  padding: 0.6em 1.4em 0em 1.4em;
+  padding: 0.8em 1.5em 0.5em 1.5em;
+  font-size: 1.2em;
   background: white;
   border-radius: 100px;
-  box-shadow: 0em -0.25em 0.5em rgba(0, 0, 0, 0.2);
+  box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2);
 }
 
-.chat-message:hover {
-  cursor: crosshair;
-  filter: invert(100);
-  z-index: 9;
-}
-
-.chat-message.cursor {
+.message.cursor {
   display: flex;
   align-items: center;
   width: fit-content;
   padding: 0.5em 0.75em 0.3em 0.75em;
+  font-size: 1em;
 }
 
-.chat-message.cool {
+.message.cool {
   background: linear-gradient(to right, orange , yellow, green, cyan, blue, violet);
   animation-name: pulse;
   animation-duration: 1000ms;
@@ -87,12 +84,15 @@ export default {
   animation-direction: alternate;
 }
 
-.chat-message div {
+.message div {
   display: flex;
   justify-content: space-between;
 }
 
-.chat-message .info {
-  font-size: 0.65em;
+.info {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1.5em 0.5em 1.5em;
+  font-size: 0.85em;
 }
 </style>

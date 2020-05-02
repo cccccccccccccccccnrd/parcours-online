@@ -1,7 +1,8 @@
 <template>
-  <div class="chat">
-    <div>
+  <div class="pop-up-chat">
+    <div class="messages">
       <chat-message
+        class="chat-message"
         v-for="(msg, index) in filteredMessages"
         :key="`${ msg.id }-${ msg.payload.timestamp }`"
         :name="msg.payload.name"
@@ -11,7 +12,7 @@
         :isLast="index === filteredMessages.length - 1"
       />
     </div>
-    <div>
+    <div class="input">
       <div
         v-if="this.username"
         @click="removeUsername"
@@ -52,7 +53,7 @@ export default {
       username: 'chat/username'
     }),
     filteredMessages () {
-      return this.messages.slice(Math.max(this.messages.length - 7, 1))
+      return this.messages.slice(Math.max(this.messages.length - 7, 0))
     },
     placeholder () {
       return this.username ? `U write as ${ this.username }` : 'What is your name?'
@@ -111,34 +112,48 @@ export default {
 </script>
 
 <style scoped>
-.chat div:last-of-type {
-  position: relative;
+.pop-up-chat {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
 }
 
-.chat div:last-of-type .close {
+.messages {
+  height: 100%;
+}
+
+.input {
+  position: relative;
+  width: 100%;
+  align-self: baseline;
+}
+
+.input .close {
   position: absolute;
   right: 0;
-  margin: 2.6em 1.4em 0 0;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.5);
   line-height: 1;
   cursor: pointer;
 }
 
 textarea {
   width: 100%;
-  margin: 2em 0 0 0;
-  padding: 0.6em 1.4em;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 16px;
-  color: white;
-  background: black;
+  padding: 0;
+  font-family: 'ManifontGrotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1em;
   border: 0;
-  border-radius: 100px;
   resize: none;
 }
 
 textarea:focus {
   outline: 0;
-  /* box-shadow: 0em -0.25em 0.5em rgba(0, 0, 0, 0.2); */
+}
+
+.chat-message {
+  margin: 0 0 1em 0;
+}
+
+.chat-message:last-of-type {
+  margin: 0;
 }
 </style>

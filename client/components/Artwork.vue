@@ -1,16 +1,21 @@
 <template>
   <div
     class="artwork"
+    @click="togglePopUp(project)"
     :style="`top: ${ top }px; left: ${ left }px;`"
   >
-    <img v-if="type === 'image'" :src="url">
-    <video v-if="type === 'video'" :src="url" autoplay loop muted></video>
+    <!-- <img v-if="type === 'image'" :src="url">
+    <video v-if="type === 'video'" :src="url" autoplay loop muted></video> -->
+    <img src="artworks/600x400.png">
+    <p>{{ project.title }} {{ project.id }}</p>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
-  props: ['top', 'left', 'url'],
+  props: ['top', 'left', 'project'],
   data () {
     return {}
   },
@@ -19,6 +24,11 @@ export default {
     type() {
       return this.url.endsWith('.mp4') ? 'video' : 'image'
     }
+  },
+  methods: {
+    ...mapMutations({
+      togglePopUp: 'ui/togglePopUp'
+    })
   }
 }
 </script>
@@ -26,5 +36,6 @@ export default {
 <style scoped>
 .artwork {
   position: absolute;
+  cursor: pointer;
 }
 </style>

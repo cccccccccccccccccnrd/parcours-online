@@ -8,7 +8,7 @@
 
 <script>
 import CursorChatMessages from '~/components/CursorChatMessages.vue'
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {

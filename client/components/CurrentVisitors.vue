@@ -11,9 +11,7 @@ export default {
   data () {
     return {}
   },
-  async mounted () {
-    console.log(this.count)
-  },
+  async mounted () {},
   computed: {
     ...mapGetters({
       cursors: 'cursors/all'

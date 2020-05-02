@@ -114,4 +114,8 @@ html {
 body {
   overflow:hidden;
 }
+
+p {
+  line-height: 1;
+}
 </style>
