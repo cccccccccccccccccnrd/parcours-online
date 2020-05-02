@@ -20,7 +20,7 @@ export const mutations = {
   remove(state) {
     const found = state.messages.find((m) => m.payload.location === 'global')
 
-    if (found >= 0) {
+    if (found) {
       const index = state.messages.indexOf(found)
       state.messages.splice(index, 1)
     }
