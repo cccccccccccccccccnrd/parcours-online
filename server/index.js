@@ -23,7 +23,7 @@ app.use(cors())
 app.use(helmet())
 
 app.get('/connected', (req, res) => {
-  res.json({ connected: wss.clients.size})
+  res.json({ connected: wss.clients.size })
 })
 
 app.get('/projects', (req, res) => {

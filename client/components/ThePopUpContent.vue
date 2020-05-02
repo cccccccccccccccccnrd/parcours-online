@@ -52,15 +52,17 @@ export default {
     Arrow
   },
   data () {
-    return {
-      viewers: 5
-    }
+    return {}
   },
   mounted () {},
   computed: {
     ...mapGetters({
       project: 'ui/project',
+      cursors: 'cursors/all'
     }),
+    viewers () {
+      return this.cursors.filter((c) => c.payload.location === this.project.id).length
+    }
   }
 }
 </script>

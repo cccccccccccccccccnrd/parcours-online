@@ -15,7 +15,7 @@
         class="arrow"
       />
       <x
-        @click.native="togglePopUp"
+        @click.native="closeProject"
         class="close"
       />
       <the-pop-up-content />
@@ -44,9 +44,9 @@ export default {
   },
   mounted () {},
   methods: {
-    ...mapMutations({
-      togglePopUp: 'ui/togglePopUp',
-    }),
+    closeProject () {
+      this.$store.dispatch('ui/closeProject')
+    },
     toggleChat () {
       this.chatOpen = !this.chatOpen
     }

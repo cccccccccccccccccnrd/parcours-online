@@ -42,7 +42,8 @@ export default {
       const payload = {
         x: event.pageX + left,
         y: event.pageY + top,
-        platform: app.platform()
+        platform: app.platform(),
+        location: app.location
       }
 
       this.$store.dispatch('socket/send', ['move', payload])
@@ -51,7 +52,8 @@ export default {
   computed: {
     ...mapGetters({
       socket: 'socket/socket',
-      id: 'socket/id'
+      id: 'socket/id',
+      location: 'ui/location'
     })
   },
   methods: {

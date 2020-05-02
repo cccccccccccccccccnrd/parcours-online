@@ -1,41 +1,69 @@
 <template>
   <div
     class="artwork"
-    @click="togglePopUp(project)"
+    @click="openProject(project)"
     :style="`top: ${ top }px; left: ${ left }px;`"
   >
+    <badge
+      :number="viewers"
+      class="badge"
+    />
     <!-- <img v-if="type === 'image'" :src="url">
     <video v-if="type === 'video'" :src="url" autoplay loop muted></video> -->
     <img src="artworks/600x400.png">
-    <p>{{ project.id }}</p>
+    <p class="id">{{ project.id }}</p>
   </div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import Badge from '~/components/Badge.vue'
+import { mapGetters } from 'vuex'
 
 export default {
+  components: {
+    Badge
+  },
   props: ['top', 'left', 'project'],
   data () {
     return {}
   },
   mounted () {},
   computed: {
+    ...mapGetters({
+      cursors: 'cursors/all'
+    }),
     type() {
       return this.url.endsWith('.mp4') ? 'video' : 'image'
+    },
+    viewers () {
+      return this.cursors.filter((c) => c.payload.location === this.project.id).length
     }
   },
   methods: {
-    ...mapMutations({
-      togglePopUp: 'ui/togglePopUp'
-    })
+    openProject (project) {
+      this.$store.dispatch('ui/openProject', project)
+    }
   }
 }
 </script>
 
 <style scoped>
 .artwork {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   cursor: pointer;
+}
+
+.badge {
+  position: absolute;
+  top: -0.75em;
+  right: -0.75em;
+}
+
+.id {
+  position: absolute;
+  color: white;
 }
 </style>
