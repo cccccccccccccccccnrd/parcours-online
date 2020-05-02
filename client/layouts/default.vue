@@ -28,9 +28,11 @@ export default {
           break
         case 'chat-message':
           app.insertChatMessage(msg)
-          setTimeout(() => {
-            app.removeChatMessage()
-          }, 15 * 1000)
+          if (msg.payload.location === 'global') {
+            setTimeout(() => {
+              app.removeChatMessage()
+            }, 15 * 1000)
+          }
           break
       }
     })

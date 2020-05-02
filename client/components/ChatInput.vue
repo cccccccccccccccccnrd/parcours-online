@@ -45,6 +45,7 @@ export default {
         name: this.username,
         content: this.message,
         timestamp: Date.now(),
+        location: 'global',
         mode: null
       }
 

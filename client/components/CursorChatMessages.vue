@@ -28,7 +28,7 @@ export default {
       messages: 'chat/all',
     }),
     filteredMessages () {
-      return this.messages.filter((message) => message.id === this.id).reverse()
+      return this.messages.filter((message) => message.id === this.id && message.payload.location === 'global').reverse()
     },
   }
 }

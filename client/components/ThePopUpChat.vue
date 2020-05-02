@@ -3,13 +3,13 @@
     <div class="messages">
       <chat-message
         class="chat-message"
-        v-for="(msg, index) in filteredMessages"
+        v-for="msg in filteredMessages"
         :key="`${ msg.id }-${ msg.payload.timestamp }`"
+        :self="msg.id === id"
         :name="msg.payload.name"
         :content="msg.payload.content"
         :timestamp="msg.payload.timestamp"
         :mode="msg.payload.mode"
-        :isLast="index === filteredMessages.length - 1"
       />
     </div>
     <div class="input">
@@ -50,10 +50,11 @@ export default {
       socket: 'socket/socket',
       id: 'socket/id',
       messages: 'chat/all',
-      username: 'chat/username'
+      username: 'chat/username',
+      location: 'ui/location'
     }),
     filteredMessages () {
-      return this.messages.slice(Math.max(this.messages.length - 7, 0))
+      return this.messages.filter((message) => message.payload.location === this.location)
     },
     placeholder () {
       return this.username ? `U write as ${ this.username }` : 'What is your name?'
@@ -84,6 +85,7 @@ export default {
         name: this.username,
         content: this.message,
         timestamp: Date.now(),
+        location: this.location,
         mode: null
       }
 
@@ -100,9 +102,6 @@ export default {
       }
 
       this.insertChatMessage({ id: this.id, payload: payload })
-      setTimeout(() => {
-        this.removeChatMessage()
-      }, 15 * 1000)
 
       this.$store.dispatch('socket/send', ['chat-message', payload])
       this.message = ''

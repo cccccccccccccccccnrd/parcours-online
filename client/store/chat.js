@@ -18,7 +18,12 @@ export const mutations = {
     state.messages.push(msg)
   },
   remove(state) {
-    state.messages.shift()
+    const found = state.messages.find((m) => m.payload.location === 'global')
+
+    if (found >= 0) {
+      const index = state.messages.indexOf(found)
+      state.messages.splice(index, 1)
+    }
   },
   setUsername(state, name) {
     localStorage.setItem('parcours-online-name', name)

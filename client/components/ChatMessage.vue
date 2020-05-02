@@ -1,12 +1,15 @@
 <template>
-<div class="chat-message">
+<div
+  class="chat-message"
+  :class="{ 'self' : self || !name }"
+>
   <div v-if="name" class="info">
       <p>{{ name }}</p>
       <p>{{ formatedTimestamp }}</p>
     </div>
   <div
     class="message"
-    :class="{ 'animation-in': isLast, 'cool': mode === 'cool', 'cursor': !name }"
+    :class="{ 'cool': mode === 'cool', 'cursor': !name }"
   >
     <div class="content">{{ content }}</div>
   </div>
@@ -15,13 +18,13 @@
 
 <script>
 export default {
-  props: ['isLast', 'name', 'content', 'timestamp', 'mode'],
+  props: ['self', 'name', 'content', 'timestamp', 'mode'],
   data () {
     return {}
   },
   mounted () {},
   computed: {
-    formatedTimestamp() {
+    formatedTimestamp () {
       const date = new Date(this.timestamp)
       return `${ ('0' + date.getHours()).slice(-2) }:${ ('0' + date.getMinutes()).slice(-2) }`
     }
@@ -58,14 +61,24 @@ export default {
   animation-iteration-count: 1;
 }
 
+.chat-message.self .message {
+  color: black;
+  background: white;
+  box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2);
+}
+
+.chat-message.self .info {
+  flex-flow: row-reverse nowrap;
+}
+
 .message {
   position: relative;
   width: 100%;
   padding: 0.8em 1.5em 0.5em 1.5em;
   font-size: 1.2em;
-  background: white;
+  color: white;
+  background: black;
   border-radius: 100px;
-  box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2);
 }
 
 .message.cursor {
