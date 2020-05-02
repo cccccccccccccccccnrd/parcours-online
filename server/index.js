@@ -26,7 +26,8 @@ app.get('/connected', (req, res) => {
   res.json({ connected: wss.clients.size })
 })
 
-app.get('/projects', (req, res) => {
+app.get('/projects', async (req, res) => {
+  state.projects = await db.getProjects()
   res.json(state.projects)
 })
 
