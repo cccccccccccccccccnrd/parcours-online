@@ -39,7 +39,7 @@ function getValues(graduate) {
       const row = res.data.values.flat()
 
       resolve({
-        id: graduate.id,
+        id: `${ graduate.name.toLowerCase().split(' ').join('-') }-${ graduate.id }`,
         title: row[0],
         sub: row[1],
         type: row[2],

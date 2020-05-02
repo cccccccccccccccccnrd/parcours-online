@@ -52,7 +52,7 @@ export default {
   },
   data () {
     return {
-      artworks: [{
+      /* artworks: [{
         top: 100,
         left: 100,
         url: 'artworks/600x400.png'
@@ -88,7 +88,7 @@ export default {
         top: 1200,
         left: 500,
         url: 'artworks/180x200.png'
-      }]
+      }] */
     }
   },
   async asyncData() {
@@ -107,7 +107,7 @@ export default {
       cursors: 'cursors/all',
       isPopUpOpen: 'ui/isPopUpOpen'
     }),
-    /* artworks() {
+    artworks() {
       const app = this
       return this.projects.map((project) => {
         return {
@@ -116,7 +116,7 @@ export default {
           project: project
         }
       })
-    } */
+    }
   },
   methods: {
     random(min, max) {

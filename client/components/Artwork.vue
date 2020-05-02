@@ -7,7 +7,7 @@
     <!-- <img v-if="type === 'image'" :src="url">
     <video v-if="type === 'video'" :src="url" autoplay loop muted></video> -->
     <img src="artworks/600x400.png">
-    <p>{{ project.title }} {{ project.id }}</p>
+    <p>{{ project.id }}</p>
   </div>
 </template>
 
