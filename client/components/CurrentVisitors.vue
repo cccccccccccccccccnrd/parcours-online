@@ -26,8 +26,8 @@ export default {
 <style scoped>
 .current-visitors {
   position: absolute;
-  bottom: 1em;
-  right: 1em;
+  bottom: 0;
+  right: 0;
   font-size: 5em;
 }
 </style>
