@@ -61,7 +61,7 @@ export default {
       cursors: 'cursors/all'
     }),
     viewers () {
-      return this.cursors.filter((c) => c.payload.location === this.project.id).length
+      return this.cursors.filter((c) => c.payload.location === this.project.id).length + 1
     }
   }
 }
