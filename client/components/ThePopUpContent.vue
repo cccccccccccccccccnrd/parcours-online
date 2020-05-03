@@ -10,7 +10,7 @@
         :number="viewers"
         class="badge"
       />
-      <small>Currently online</small>
+      <small>Currently viewing</small>
     </div>
   </header>
   <main>

@@ -26,7 +26,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .arrow {
     cursor: pointer;
     z-index: 99;
@@ -34,8 +34,9 @@ export default {
 
   svg {
     display: block;
-    width: auto;
+    width: 100%;
     height: 100%;
+    max-width: 4em;
     max-height: 1.5em;
   }
 
