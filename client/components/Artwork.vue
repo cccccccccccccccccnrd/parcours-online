@@ -30,13 +30,15 @@ export default {
   mounted () {},
   computed: {
     ...mapGetters({
-      cursors: 'cursors/all'
+      cursors: 'cursors/all',
+      location: 'ui/location'
     }),
-    type() {
+    type () {
       return this.url.endsWith('.mp4') ? 'video' : 'image'
     },
     viewers () {
-      return this.cursors.filter((c) => c.payload.location === this.project.id).length
+      const length = this.cursors.filter((c) => c.payload.location === this.project.id).length
+      return this.location === this.project.id ? length + 1 : length
     }
   },
   methods: {

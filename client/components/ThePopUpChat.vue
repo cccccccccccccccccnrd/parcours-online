@@ -56,7 +56,6 @@ export default {
       project: 'ui/project'
     }),
     filteredMessages () {
-      this.scroll()
       return this.messages.filter((message) => message.payload.location === this.location)
     },
     placeholder () {
