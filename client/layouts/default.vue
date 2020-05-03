@@ -38,14 +38,12 @@ export default {
     })
 
     document.addEventListener('mousemove', (event) => {
-      if (this.location !== 'global') return
-
       const top = event.srcElement.id === 'projects' ? event.srcElement.scrollTop : event.srcElement.parentNode.scrollTop
       const left = event.srcElement.id === 'projects' ? event.srcElement.scrollLeft : event.srcElement.parentNode.scrollLeft
 
       const payload = {
-        x: event.pageX + left,
-        y: event.pageY + top,
+        x: this.location === 'global' ? event.pageX + left : 'static',
+        y: this.location === 'global' ? event.pageY + top : 'static',
         platform: app.platform(),
         location: app.location
       }

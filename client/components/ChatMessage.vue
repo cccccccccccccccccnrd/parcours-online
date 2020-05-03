@@ -78,7 +78,7 @@ export default {
   font-size: 1.2em;
   color: white;
   background: black;
-  border-radius: 100px;
+  border-radius: 1.5em;
 }
 
 .message.cursor {

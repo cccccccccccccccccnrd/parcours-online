@@ -1,6 +1,6 @@
 <template>
   <div class="pop-up-chat">
-    <div class="messages">
+    <div class="messages" ref="popUpChatMessages">
       <chat-message
         class="chat-message"
         v-for="msg in filteredMessages"
@@ -44,6 +44,7 @@ export default {
   },
   mounted () {
     this.$store.dispatch('chat/init')
+    this.scroll()
   },
   computed: {
     ...mapGetters({
@@ -71,7 +72,7 @@ export default {
     removeUsername () {
       this.removeChatUsername()
     },
-    sendMessage () {
+    async sendMessage () {
       if (this.message.trim() === '') {
         return
       }
@@ -103,9 +104,13 @@ export default {
         }
       }
 
-      this.insertChatMessage({ id: this.id, payload: payload })
+      await this.insertChatMessage({ id: this.id, payload: payload })
       this.$store.dispatch('socket/send', ['chat-message', payload])
       this.message = ''
+      this.scroll()
+    },
+    scroll () {
+      this.$refs.popUpChatMessages.scrollTop = this.$refs.popUpChatMessages.scrollHeight
     }
   }
 }
