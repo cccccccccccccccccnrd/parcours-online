@@ -120,17 +120,23 @@ export default {
 
 .messages {
   height: 100%;
+  padding: 2em;
+  overflow-y: scroll;
 }
 
 .input {
+  display: flex;
+  align-items: center;
   position: relative;
   width: 100%;
+  /* min-height: 5em; */
+  padding: 2em;
   align-self: baseline;
 }
 
 .input .close {
   position: absolute;
-  right: 0;
+  right: 2em;
   color: rgba(0, 0, 0, 0.5);
   line-height: 1;
   cursor: pointer;
