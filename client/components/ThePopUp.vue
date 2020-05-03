@@ -70,7 +70,6 @@ export default {
 .chat {
   width: 100%;
   max-width: 500px;
-  padding: 2em;
   background: white;
   box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
 }
