@@ -44,7 +44,17 @@ function broadcast(ws, data) {
 }
 
 wss.on('connection', (ws) => {
-  ws.on('message', (data) => {
+  ws.on('message', async (data) => {
+    const msg = JSON.parse(data)
+
+    switch (msg.type) {
+      case 'chat-message':
+        if (msg.payload.location !== 'global') {
+          db.storeMessage(msg.payload.graduate, msg)
+        }
+        break
+    }
+
     broadcast(ws, data)
   })
 })

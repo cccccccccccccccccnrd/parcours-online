@@ -22,7 +22,7 @@ function init () {
         })
         state.auth = oAuth2Client
         console.log('Db authenticated')
-        resolve('Db authenticated')
+        return resolve('Db authenticated')
       })
     })
   })
@@ -33,32 +33,38 @@ function getValues(graduate) {
     const sheets = google.sheets({ version: 'v4', auth: state.auth })
     return sheets.spreadsheets.values.get({
       spreadsheetId: state.spreadsheet,
-      range: `\'${ graduate.name }\'!B1:B7`,
+      range: `\'${ graduate.name }\'!B1:B20`,
     }, (err, res) => {
-      if (err) return reject('The API returned an error')
-      const row = res.data.values.flat()
+      if (err) return reject('Error while getting values')
+      if (res.data.values) {
+        const column = res.data.values.flat()
 
-      resolve({
-        id: `${ graduate.name.toLowerCase().split(' ').join('-') }-${ graduate.id }`,
-        title: row[0],
-        sub: row[1],
-        type: row[2],
-        supervision: row[3],
-        expertise: row[4],
-        tags: row[5],
-        content: row[6]
-      })
+        return resolve({
+          id: `${ graduate.name.toLowerCase().split(' ').join('-') }-${ graduate.id }`,
+          graduate: graduate.name,
+          title: column[0],
+          sub: column[1],
+          type: column[2],
+          supervision: column[3],
+          expertise: column[4],
+          tags: column[5],
+          content: column[6],
+          chat: column[7] ? JSON.parse(column[7]) : []
+        })
+      } else {
+        return reject('Error while getting values')
+      }  
     })
   })
 }
 
-async function getGraduates () {
+function getGraduates () {
   return new Promise((resolve, reject) => {
     const sheets = google.sheets({ version: 'v4', auth: state.auth })
     return sheets.spreadsheets.get({
       spreadsheetId: state.spreadsheet,
     }, (err, res) => {
-      if (err) return reject('The API returned an error')
+      if (err) return reject('Error while getting graduates')
       const graduates = res.data.sheets.map((sheet) => {
         return {
           id: sheet.properties.sheetId,
@@ -78,5 +84,42 @@ async function getProjects () {
   }))
 }
 
+function getMessages (name) {
+  return new Promise((resolve, reject) => {
+    const sheets = google.sheets({ version: 'v4', auth: state.auth })
+    return sheets.spreadsheets.values.get({
+      spreadsheetId: state.spreadsheet,
+      range: `\'${ name }\'!B20`,
+    }, (err, res) => {
+      if (err) return reject('Error while getting values')
+      if (res.data.values) {
+        const column = res.data.values.flat()
+        resolve(JSON.parse(column[0]))
+      } else {
+        resolve([])
+      }
+    })
+  })
+}
+
+async function storeMessage (name, message) {
+  const messages = await getMessages(name)
+  messages.push(message)
+
+  return new Promise((resolve, reject) => {
+    const sheets = google.sheets({ version: 'v4', auth: state.auth })
+    return sheets.spreadsheets.values.update({
+      spreadsheetId: state.spreadsheet,
+      range: `\'${ name }\'!B20`,
+      valueInputOption: 'RAW',
+      resource: { values: [[JSON.stringify(messages)]] },
+    }, (err, res) => {
+      if (err) return reject('Error while storing message', error)
+      return resolve('Stored message')
+    })
+  })
+}
+
 exports.init = init
 exports.getProjects = getProjects
+exports.storeMessage = storeMessage

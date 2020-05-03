@@ -2,7 +2,7 @@ const fs = require('fs')
 const readline = require('readline')
 const { google } = require('googleapis')
 
-const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
+const SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 const TOKEN_PATH = 'token.json'
 
 fs.readFile('credentials.json', (err, content) => {

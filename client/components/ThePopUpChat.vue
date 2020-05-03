@@ -51,7 +51,8 @@ export default {
       id: 'socket/id',
       messages: 'chat/all',
       username: 'chat/username',
-      location: 'ui/location'
+      location: 'ui/location',
+      project: 'ui/project'
     }),
     filteredMessages () {
       return this.messages.filter((message) => message.payload.location === this.location)
@@ -86,6 +87,7 @@ export default {
         content: this.message,
         timestamp: Date.now(),
         location: this.location,
+        graduate: this.project.graduate,
         mode: null
       }
 
@@ -102,7 +104,6 @@ export default {
       }
 
       this.insertChatMessage({ id: this.id, payload: payload })
-
       this.$store.dispatch('socket/send', ['chat-message', payload])
       this.message = ''
     }

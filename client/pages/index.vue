@@ -37,7 +37,7 @@ import Chat from '~/components/Chat.vue'
 import Artwork from '~/components/Artwork.vue'
 import CurrentVisitors from '~/components/CurrentVisitors.vue'
 import ThePopUp from '~/components/ThePopUp.vue'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import axios from 'axios'
 
 export default {
@@ -101,6 +101,9 @@ export default {
   },
   mounted () {
     console.log(this.projects)
+    this.projects.forEach((project) => {
+      project.chat.forEach((message) => this.insertChatMessage(message))
+    })
   },
   computed: {
     ...mapGetters({
@@ -119,6 +122,9 @@ export default {
     }
   },
   methods: {
+    ...mapMutations({
+      insertChatMessage: 'chat/insert'
+    }),
     random(min, max) {
       return Math.floor(Math.random() * (max - min + 1) + min)
     }
