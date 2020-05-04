@@ -64,7 +64,7 @@ export default {
   width: 100vw;
   height: 100vh;
   z-index: 10;
-  background: rgba(0, 0, 0, 0.1);
+  /* background: rgba(0, 0, 0, 0.2); */
 }
 
 .chat {

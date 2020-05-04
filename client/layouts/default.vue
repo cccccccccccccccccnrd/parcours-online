@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="parcours">
     <nuxt/>
   </div>
 </template>
@@ -116,7 +116,7 @@ html {
 }
 
 body {
-  overflow:hidden;
+  overflow: hidden;
 }
 
 p {

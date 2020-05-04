@@ -26,7 +26,7 @@ export default {
   computed: {
     formatedTimestamp () {
       const date = new Date(this.timestamp)
-      return `${ ('0' + date.getHours()).slice(-2) }:${ ('0' + date.getMinutes()).slice(-2) }`
+      return `${ date.getDate() }.${ date.getMonth() + 1 } ${ date.getHours() }:${ ('0' + date.getMinutes()).slice(-2) }`
     }
   }
 }
@@ -90,7 +90,7 @@ export default {
 }
 
 .message.cool {
-  background: linear-gradient(to right, orange , yellow, green, cyan, blue, violet);
+  background: linear-gradient(to left, orange , yellow, green, cyan, blue, violet);
   animation-name: pulse;
   animation-duration: 1000ms;
   animation-iteration-count: infinite;

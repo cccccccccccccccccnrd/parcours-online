@@ -7,7 +7,10 @@
     <no-ssr>
       <div>
         <cursor-own v-if="!isPopUpOpen"/>
-        <div class="artworks dragscroll">
+        <div
+          class="artworks dragscroll"
+          :class="{ blur: isPopUpOpen }"
+        >
           <cursor-other
             v-for="cursor in cursors"
             :key="cursor.id"
@@ -114,8 +117,8 @@ export default {
       const app = this
       return this.projects.map((project) => {
         return {
-          top: app.random(10, 2000),
-          left: app.random(10, 5000),
+          top: app.random(10, 1000),
+          left: app.random(10, 1000),
           project: project
         }
       })
@@ -132,7 +135,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .artworks {
   position: relative;
   width: 100vw;
@@ -146,5 +149,9 @@ export default {
 
 .dragscroll:active {
   cursor: grabbing;
+}
+
+.blur {
+  filter: blur(5px);
 }
 </style>

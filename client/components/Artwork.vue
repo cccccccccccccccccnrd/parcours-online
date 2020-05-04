@@ -68,7 +68,6 @@ img {
   /* transform: translateY(-4em); */
   top: -0.7em;
   right: -0.7em;
-  z-index: 5;
 }
 
 .title {
