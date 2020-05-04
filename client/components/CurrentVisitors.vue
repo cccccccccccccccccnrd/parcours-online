@@ -1,7 +1,7 @@
 <template>
   <div
     class="current-visitors"
-  >{{ count }}</div>
+  >Currently online: {{ count }}</div>
 </template>
 
 <script>
@@ -26,8 +26,13 @@ export default {
 <style scoped>
 .current-visitors {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  font-size: 5em;
+  bottom: 1em;
+  right: 1em;
+  padding: 0.5em 1em;
+  font-size: 0.8em;
+  border-radius: 100px;
+  color: white;
+  background: black;
+  z-index: 10;
 }
 </style>
