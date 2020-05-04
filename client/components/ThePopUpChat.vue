@@ -19,6 +19,7 @@
         class="close"
       />
       <textarea
+        ref="popUpChatInput"
         v-on:keydown.enter.prevent="sendMessage"
         v-model="message"
         name="Chat Textarea"
@@ -46,6 +47,7 @@ export default {
   },
   mounted () {
     this.$store.dispatch('chat/init')
+    this.$refs.popUpChatInput.focus()
     this.scroll()
   },
   computed: {

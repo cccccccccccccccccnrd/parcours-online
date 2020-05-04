@@ -11,7 +11,7 @@
     <!-- <img v-if="type === 'image'" :src="url">
     <video v-if="type === 'video'" :src="url" autoplay loop muted></video> -->
     <img :src="project.thumbnail">
-    <p class="id">{{ project.id }}</p>
+    <p class="title">{{ project.title }}</p>
   </div>
 </template>
 
@@ -60,16 +60,21 @@ export default {
 
 img {
   max-height: 30em;
+  box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2);
 }
 
 .badge {
   position: absolute;
-  top: -0.75em;
-  right: -0.75em;
+  /* transform: translateY(-4em); */
+  top: -0.7em;
+  right: -0.7em;
+  z-index: 5;
 }
 
-.id {
+.title {
   position: absolute;
   color: white;
+  font-size: 3em;
+  text-align: center;
 }
 </style>

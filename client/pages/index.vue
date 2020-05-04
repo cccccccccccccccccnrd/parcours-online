@@ -1,9 +1,9 @@
 <template>
   <div>
     <!-- <chat /> -->
-    <chat-input />
+    <chat-input/>
     <the-pop-up v-if="isPopUpOpen"/>
-    <current-visitors />
+    <current-visitors/>
     <no-ssr>
       <div>
         <cursor-own v-if="!isPopUpOpen"/>
