@@ -36,9 +36,8 @@ function getValues(graduate) {
       range: `\'${ graduate.name }\'!B1:B20`,
     }, (err, res) => {
       if (err) return reject('Error while getting values')
-      if (res.data.values) {
+      try {
         const column = res.data.values.flat()
-
         return resolve({
           id: `${ graduate.name.toLowerCase().split(' ').join('-') }-${ graduate.id }`,
           graduate: graduate.name,
@@ -49,9 +48,10 @@ function getValues(graduate) {
           expertise: column[4],
           tags: column[5],
           content: column[6],
-          chat: column[7] ? JSON.parse(column[7]) : []
+          thumbnail: column[7],
+          chat: column[8] ? JSON.parse(column[8]) : []
         })
-      } else {
+      } catch(error) {
         return reject('Error while getting values')
       }  
     })

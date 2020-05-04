@@ -6,7 +6,7 @@
     <current-visitors />
     <no-ssr>
       <div>
-        <cursor-own />
+        <cursor-own v-if="!isPopUpOpen"/>
         <div class="artworks dragscroll">
           <cursor-other
             v-for="cursor in cursors"

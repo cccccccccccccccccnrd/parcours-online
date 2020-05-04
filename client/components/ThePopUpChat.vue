@@ -13,11 +13,11 @@
       />
     </div>
     <div class="input">
-      <div
+      <x
         v-if="this.username"
-        @click="removeUsername"
+        @click.native="removeUsername"
         class="close"
-      >x</div>
+      />
       <textarea
         v-on:keydown.enter.prevent="sendMessage"
         v-model="message"
@@ -31,11 +31,13 @@
 
 <script>
 import ChatMessage from '~/components/ChatMessage.vue'
+import X from '~/components/X.vue'
 import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   components: {
-    ChatMessage
+    ChatMessage,
+    X
   },
   data () {
     return {
@@ -71,6 +73,7 @@ export default {
     }),
     removeUsername () {
       this.removeChatUsername()
+      this.message = ''
     },
     async sendMessage () {
       if (this.message.trim() === '') {
@@ -166,5 +169,9 @@ textarea:focus {
 
 .chat-message:last-of-type {
   margin: 0;
+}
+
+.close {
+  transform: scale(0.5);
 }
 </style>

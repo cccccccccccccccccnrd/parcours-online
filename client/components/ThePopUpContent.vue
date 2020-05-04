@@ -36,6 +36,9 @@
       <br />
       <small>Tags</small>
       <p>{{ project.tags }}</p>
+      <br />
+      <br />
+      <img :src="project.thumbnail">
     </aside>
   </main>
   </div>
@@ -83,6 +86,11 @@ header {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+}
+
+img {
+  max-width: 100%;
+  box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2);
 }
 
 .arrow {

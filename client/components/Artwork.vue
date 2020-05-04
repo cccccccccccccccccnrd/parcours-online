@@ -10,7 +10,7 @@
     />
     <!-- <img v-if="type === 'image'" :src="url">
     <video v-if="type === 'video'" :src="url" autoplay loop muted></video> -->
-    <img src="artworks/600x400.png">
+    <img :src="project.thumbnail">
     <p class="id">{{ project.id }}</p>
   </div>
 </template>
@@ -56,6 +56,10 @@ export default {
   align-items: center;
   position: absolute;
   cursor: pointer;
+}
+
+img {
+  max-height: 30em;
 }
 
 .badge {
