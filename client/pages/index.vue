@@ -117,8 +117,8 @@ export default {
       const app = this
       return this.projects.map((project) => {
         return {
-          top: app.random(10, 1000),
-          left: app.random(10, 1000),
+          top: app.random(10, 2000),
+          left: app.random(10, 2000),
           project: project
         }
       })
