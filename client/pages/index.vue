@@ -3,6 +3,9 @@
     <!-- <chat /> -->
     <chat-input/>
     <the-pop-up v-if="isPopUpOpen"/>
+    <the-map
+      :artworks="artworks"
+    />
     <current-visitors/>
     <no-ssr>
       <div>
@@ -40,6 +43,7 @@ import Chat from '~/components/Chat.vue'
 import Artwork from '~/components/Artwork.vue'
 import CurrentVisitors from '~/components/CurrentVisitors.vue'
 import ThePopUp from '~/components/ThePopUp.vue'
+import TheMap from '~/components/TheMap.vue'
 import { mapGetters, mapMutations } from 'vuex'
 import axios from 'axios'
 
@@ -51,7 +55,8 @@ export default {
     ChatInput,
     Artwork,
     CurrentVisitors,
-    ThePopUp
+    ThePopUp,
+    TheMap
   },
   data () {
     return {
