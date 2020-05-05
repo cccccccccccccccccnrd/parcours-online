@@ -1,13 +1,21 @@
 <template>
   <div
     class="current-visitors"
-  >Currently online: {{ count }}</div>
+  >
+    <tooltip
+      :content="`Currently online: ${ count }`"
+    />
+  </div>
 </template>
 
 <script>
+import Tooltip from '~/components/Tooltip.vue'
 import { mapGetters } from 'vuex'
 
 export default {
+  components: {
+    Tooltip
+  },
   data () {
     return {}
   },
@@ -28,11 +36,6 @@ export default {
   position: absolute;
   bottom: 1em;
   right: 1em;
-  padding: 0.5em 1em;
-  font-size: 0.8em;
-  border-radius: 100px;
-  color: white;
-  background: black;
   z-index: 10;
 }
 </style>

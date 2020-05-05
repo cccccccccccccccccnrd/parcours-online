@@ -3,6 +3,11 @@
     class="map"
     :style="`width: ${ width / scale + 20 }px; height: ${ width / scale + 20 }px;`"
   >
+    <tooltip
+      class="info"
+      v-if="current"
+      :content="current.title"
+    />
     <div
       class="viewer"
       :style="`width: ${ viewerWidth / scale }px; height: ${ viewerHeight / scale }px; top: ${ scroll[1] / scale }px; left: ${ scroll[0] / scale }px;`"
@@ -14,19 +19,29 @@
       :key="`map-artwork-${ index }`"
       :style="`top: ${ artwork.top / scale }px; left: ${ artwork.left / scale }px;`"
     >
-      <div class="square"></div>
+      <div
+        class="square"
+        @mouseover="current = artwork.project"
+        @mouseleave="current = null"
+      ></div>
     </div>
   </div>
 </template>
 
 <script>
+import Tooltip from '~/components/Tooltip.vue'
+
 export default {
+  components: {
+    Tooltip
+  },
   props: ['artworks', 'width', 'scroll'],
   data () {
     return {
       scale: 10,
       viewerWidth: 0,
-      viewerHeight: 0
+      viewerHeight: 0,
+      current: null
     }
   },
   mounted () {
@@ -58,11 +73,22 @@ export default {
     border-radius: 100px;
   }
 
+  .square:hover {
+    cursor: crosshair;
+  }
+
   .viewer {
     position: absolute;
     width: 5em;
     height: 4em;
     border-radius: 1em;
     border: 1px dotted black;
+  }
+
+  .info {
+    margin: -2em 0 0 0;
+    width: fit-content;
+    float: right;
+    z-index: 10;
   }
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div
     class="chat-messages"
+    v-if="filteredMessages.length > 0"
     :style="`left: ${ x + 20 }px; top: ${ y + 20 }px`"
   >
     <chat-message
