@@ -24,7 +24,7 @@ export default {
   props: ['artworks', 'width', 'scroll'],
   data () {
     return {
-      scale: 8,
+      scale: 10,
       viewerWidth: 0,
       viewerHeight: 0
     }
