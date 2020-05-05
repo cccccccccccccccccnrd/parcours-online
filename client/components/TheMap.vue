@@ -1,11 +1,18 @@
 <template>
-  <div class="map">
+  <div
+    class="map"
+    :style="`width: ${ width / scale + 20 }px; height: ${ width / scale + 20 }px;`"
+  >
     <div
+      class="viewer"
+      :style="`width: ${ viewerWidth / scale }px; height: ${ viewerHeight / scale }px; top: ${ scroll[1] / scale }px; left: ${ scroll[0] / scale }px;`"
+    >
+    </div>
+    <div
+      class="artwork"
       v-for="(artwork, index) in artworks"
       :key="`map-artwork-${ index }`"
-      :style="`position: absolute; top: ${ artwork.top / scale }px; left: ${ artwork.left / scale }px;`"
-      :top="artwork.top / 10"
-      :left="artwork.left / 10"
+      :style="`top: ${ artwork.top / scale }px; left: ${ artwork.left / scale }px;`"
     >
       <div class="square"></div>
     </div>
@@ -14,13 +21,19 @@
 
 <script>
 export default {
-  props: ['artworks'],
+  props: ['artworks', 'width', 'scroll'],
   data () {
     return {
-      scale: 7
+      scale: 8,
+      viewerWidth: 0,
+      viewerHeight: 0
     }
   },
-  mounted () {},
+  mounted () {
+    this.viewerWidth = document.body.clientWidth
+    this.viewerHeight = document.body.clientHeight
+    console.log(this.viewerWidth, this.viewerHeight)
+  },
   computed: {}
 }
 </script>
@@ -30,16 +43,27 @@ export default {
     position: absolute;
     bottom: 3em;
     right: 1em;
-    width: 20em;
-    height: 20em;
-    background: white;
-    box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2);
+    /* background: white; */
+    /* box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2); */
     z-index: 10;
   }
 
+  .artwork {
+    position: absolute;
+  }
+
   .square {
-    width: 2em;
-    height: 2em;
+    width: 0.5em;
+    height: 0.5em;
     background: black;
+    border-radius: 100px;
+  }
+
+  .viewer {
+    position: absolute;
+    width: 5em;
+    height: 4em;
+    border-radius: 1em;
+    border: 1px dotted black;
   }
 </style>
