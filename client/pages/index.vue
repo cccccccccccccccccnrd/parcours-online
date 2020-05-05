@@ -91,10 +91,11 @@ export default {
         app.scrollLeft = app.$refs.artworks.scrollLeft
       })
     })
-    console.log(this.projects)
+
     this.projects.forEach((project) => {
       project.chat.forEach((message) => this.insertChatMessage(message))
     })
+    console.log(this.projects)
   },
   computed: {
     ...mapGetters({

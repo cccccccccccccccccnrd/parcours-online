@@ -32,7 +32,6 @@ export default {
   mounted () {
     this.viewerWidth = document.body.clientWidth
     this.viewerHeight = document.body.clientHeight
-    console.log(this.viewerWidth, this.viewerHeight)
   },
   computed: {}
 }
