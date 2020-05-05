@@ -45,8 +45,15 @@ export default {
     }
   },
   mounted () {
+    const app = this
+
     this.viewerWidth = document.body.clientWidth
     this.viewerHeight = document.body.clientHeight
+
+    window.addEventListener('resize', (event) => {
+      app.viewerWidth = document.body.clientWidth
+      app.viewerHeight = document.body.clientHeight
+    })
   },
   computed: {}
 }
