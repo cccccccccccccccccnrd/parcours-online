@@ -1,6 +1,7 @@
 export const state = () => ({
   messages: [],
-  name: ''
+  name: '',
+  status: null
 })
 
 export const actions = {
@@ -32,7 +33,10 @@ export const mutations = {
   removeUsername(state) {
     localStorage.removeItem('parcours-online-name')
     state.name = ''
-  }
+  },
+  setStatus(state, status) {
+    state.status = status
+  },
 }
 
 export const getters = {
@@ -44,5 +48,8 @@ export const getters = {
   },
   messages: (state) => (id) => {
     return state.messages.filter((message) => id === message.id)
-  }
+  },
+  status(state) {
+    return state.status
+  },
 }

@@ -56,6 +56,7 @@ export default {
       id: 'socket/id',
       messages: 'chat/all',
       username: 'chat/username',
+      status: 'chat/status',
       location: 'ui/location',
       project: 'ui/project'
     }),
@@ -63,7 +64,15 @@ export default {
       return this.messages.filter((message) => message.payload.location === this.location)
     },
     placeholder () {
-      return this.username ? `U write as ${ this.username }` : 'What is your name?'
+      if (this.status === 'error') {
+        return 'Wrong secret'
+      } else if (this.status === this.project.id) {
+        return `U r logged in as ${ this.project.graduate }`
+      } else if (this.username) {
+        return `U write as ${ this.username }`
+      } else {
+        return 'What is your name?'
+      }
     }
   },
   methods: {
@@ -103,13 +112,29 @@ export default {
         split.shift()
         const content = split.join(' ')
 
-        if (command === '/cool') {
-          payload.mode = 'cool'
-          payload.content = content
+        switch(command) {
+          case '/cool':
+            payload.mode = 'cool'
+            payload.content = content
+            break
+          case '/login':
+            payload.mode = 'login'
+            payload.content = content
+            this.$store.dispatch('socket/send', ['chat-message', payload])
+            return this.message = ''
+            break
         }
       }
 
-      await this.insertChatMessage({ id: this.id, payload: payload })
+      if (this.status === this.project.id) {
+        payload.amIloggedIn = true
+        payload.mode = 'logged-in'
+        payload.name = this.project.graduate
+        await this.insertChatMessage({ id: this.id, payload: payload })
+      } else {
+        await this.insertChatMessage({ id: this.id, payload: payload })
+      }
+
       this.$store.dispatch('socket/send', ['chat-message', payload])
       this.message = ''
       this.scroll()

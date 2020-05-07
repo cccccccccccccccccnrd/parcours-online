@@ -34,6 +34,15 @@ export default {
             }, 15 * 1000)
           }
           break
+        case 'login-success':
+          app.setChatStatus(msg.payload.location)
+          break
+        case 'login-error':
+          app.setChatStatus('error')
+          setTimeout(() => {
+              app.setChatStatus(null)
+            }, 3 * 1000)
+          break
       }
     })
 
@@ -63,7 +72,8 @@ export default {
       updateCursor: 'cursors/update',
       removeCursor: 'cursors/remove',
       insertChatMessage: 'chat/insert',
-      removeChatMessage: 'chat/remove'
+      removeChatMessage: 'chat/remove',
+      setChatStatus: 'chat/setStatus'
     }),
     platform () {
       if (navigator.platform) {

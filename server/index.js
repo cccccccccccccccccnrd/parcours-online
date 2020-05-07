@@ -7,7 +7,8 @@ const WebSocket = require('ws')
 const db = require('./db.js')
 
 const state = {
-  projects: null
+  projects: null,
+  logins: {}
 }
 
 async function init () {
@@ -35,12 +36,39 @@ app.listen(2628, () => console.log('http://localhost:2628'))
 
 const wss = new WebSocket.Server({ port: 2627 })
 
-function broadcast(ws, data) {
+function broadcast (ws, data) {
   wss.clients.forEach((client) => {
     if (client !== ws && client.readyState === WebSocket.OPEN) {
       client.send(data)
     }
   })
+}
+
+function logout (id) {
+  if (id in state.logins) {
+    console.log(`${ id } logged out of ${ state.logins[id] }`)
+    delete state.logins[id]
+  }
+}
+
+async function login (ws, msg) {
+  const check = await db.checkSecret(msg.payload.graduate, msg.payload.content)
+
+  const reply = {
+    payload: {
+      location: msg.payload.location
+    }
+  }
+
+  if (check) {
+    state.logins[msg.id] = msg.payload.location
+    console.log(`${ msg.id } logged in ${ state.logins[msg.id] }`)
+    reply.type = 'login-success'
+  } else {
+    reply.type = 'login-error'
+  }
+
+  ws.send(JSON.stringify(reply))
 }
 
 wss.on('connection', (ws) => {
@@ -49,8 +77,24 @@ wss.on('connection', (ws) => {
 
     switch (msg.type) {
       case 'chat-message':
-        if (msg.payload.location !== 'global') {
+        if (msg.payload.mode === 'login') {
+          return login(ws, msg)
+        } else if (msg.payload.location !== 'global') {
           db.storeMessage(msg.payload.graduate, msg)
+        }
+        
+        if (msg.payload.amIloggedIn) {
+          if (msg.id in state.logins) {
+            if (state.logins[msg.id] === msg.payload.location) {
+              msg.payload.mode = 'logged-in'
+              /* Handle multiple modes, maybe own key for login? */
+              return broadcast(ws, JSON.stringify(msg))
+            }
+          }
+        }
+      case 'close':
+        if (msg.id in state.logins) {
+          logout(msg.id)
         }
         break
     }

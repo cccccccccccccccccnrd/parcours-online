@@ -17,6 +17,7 @@ export const actions = {
     }
 
     if (context.getters.socket) {
+      /* Handle not connected state */
       context.getters.socket.send(JSON.stringify(msg))
     } else {
       console.log('socket not found on store state, re-mount the component?')

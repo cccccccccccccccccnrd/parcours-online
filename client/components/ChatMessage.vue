@@ -1,7 +1,6 @@
 <template>
 <div
   class="chat-message"
-  :class="{ 'self' : self || !name }"
 >
   <div v-if="name" class="info">
       <p>{{ name }}</p>
@@ -9,7 +8,7 @@
     </div>
   <div
     class="message"
-    :class="{ 'cool': mode === 'cool', 'cursor': !name }"
+    :class="{ 'cool': mode === 'cool', 'logged-in': mode === 'logged-in', 'cursor': !name }"
   >
     <div class="content">{{ content }}</div>
   </div>
@@ -61,24 +60,19 @@ export default {
   animation-iteration-count: 1;
 }
 
-.chat-message.self .message {
-  color: black;
-  background: white;
-  box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2);
-}
-
-.chat-message.self .info {
+/* .chat-message.self .info {
   flex-flow: row-reverse nowrap;
-}
+} */
 
 .message {
   position: relative;
   width: 100%;
   padding: 0.8em 1.5em 0.5em 1.5em;
   font-size: 1.2em;
-  color: white;
-  background: black;
+  color: black;
+  background: white;
   border-radius: 1.5em;
+  box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2);
 }
 
 .message.cursor {
@@ -95,6 +89,12 @@ export default {
   animation-duration: 1000ms;
   animation-iteration-count: infinite;
   animation-direction: alternate;
+}
+
+.message.logged-in {
+  color: white;
+  background: black;
+  box-shadow: none;
 }
 
 .message div {

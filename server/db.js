@@ -120,6 +120,29 @@ async function storeMessage (name, message) {
   })
 }
 
+function checkSecret(name, content) {
+  return new Promise((resolve, reject) => {
+    const sheets = google.sheets({ version: 'v4', auth: state.auth })
+    return sheets.spreadsheets.values.get({
+      spreadsheetId: state.spreadsheet,
+      range: `\'${ name }\'!B21`,
+    }, (err, res) => {
+      if (err) return reject('Error while checking secret')
+      try {
+        const column = res.data.values.flat()
+        if (column[0] && content === column[0]) {
+          return resolve(true)
+        } else {
+          return resolve(false)
+        }
+      } catch(error) {
+        return reject('Error while checking secret')
+      }  
+    })
+  })
+}
+
 exports.init = init
 exports.getProjects = getProjects
 exports.storeMessage = storeMessage
+exports.checkSecret = checkSecret
