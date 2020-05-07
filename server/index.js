@@ -86,8 +86,8 @@ wss.on('connection', (ws) => {
         if (msg.payload.amIloggedIn) {
           if (msg.id in state.logins) {
             if (state.logins[msg.id] === msg.payload.location) {
-              msg.payload.mode = 'logged-in'
-              /* Handle multiple modes, maybe own key for login? */
+              delete msg.payload.amIloggedIn
+              msg.payload.loggedIn = true
               return broadcast(ws, JSON.stringify(msg))
             }
           }

@@ -8,7 +8,7 @@
     </div>
   <div
     class="message"
-    :class="{ 'cool': mode === 'cool', 'logged-in': mode === 'logged-in', 'cursor': !name }"
+    :class="{ 'logged-in': loggedIn, 'cool': mode === 'cool', 'cursor': !name }"
   >
     <div class="content">{{ content }}</div>
   </div>
@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  props: ['self', 'name', 'content', 'timestamp', 'mode'],
+  props: ['self', 'name', 'content', 'timestamp', 'mode', 'loggedIn'],
   data () {
     return {}
   },
@@ -83,18 +83,18 @@ export default {
   font-size: 1em;
 }
 
+.message.logged-in {
+  color: white;
+  background: black;
+  box-shadow: none;
+}
+
 .message.cool {
   background: linear-gradient(to left, orange , yellow, green, cyan, blue, violet);
   animation-name: pulse;
   animation-duration: 1000ms;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-}
-
-.message.logged-in {
-  color: white;
-  background: black;
-  box-shadow: none;
 }
 
 .message div {

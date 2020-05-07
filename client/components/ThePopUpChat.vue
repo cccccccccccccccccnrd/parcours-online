@@ -10,11 +10,12 @@
         :content="msg.payload.content"
         :timestamp="msg.payload.timestamp"
         :mode="msg.payload.mode"
+        :loggedIn="msg.payload.loggedIn"
       />
     </div>
     <div class="input">
       <x
-        v-if="this.username"
+        v-if="this.username && status !== project.id"
         @click.native="removeUsername"
         class="close"
       />
@@ -128,14 +129,15 @@ export default {
 
       if (this.status === this.project.id) {
         payload.amIloggedIn = true
-        payload.mode = 'logged-in'
         payload.name = this.project.graduate
+        this.$store.dispatch('socket/send', ['chat-message', payload])
+        payload.loggedIn = true
         await this.insertChatMessage({ id: this.id, payload: payload })
       } else {
+        this.$store.dispatch('socket/send', ['chat-message', payload])
         await this.insertChatMessage({ id: this.id, payload: payload })
       }
 
-      this.$store.dispatch('socket/send', ['chat-message', payload])
       this.message = ''
       this.scroll()
     },
