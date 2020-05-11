@@ -18,28 +18,38 @@
       class="content"
       v-html="project.content"
     ></div>
-    <aside>
-      <p>META</p>
-      <br />
-      <br />
-      <small>Type of project</small>
-      <p>{{ project.type }}</p>
-      <br />
-      <br />
-      <small>Supervision by</small>
-      <p>{{ project.supervision }}</p>
-      <br />
-      <br />
-      <small>Areas of Expertise</small>
-      <p>{{ project.expertise }}</p>
-      <br />
-      <br />
-      <small>Tags</small>
-      <p>{{ project.tags }}</p>
-      <br />
-      <br />
-      <img :src="project.thumbnail">
-    </aside>
+    <footer>
+      <div class="meta">
+        <div>
+          <small>Type of project</small>
+          <p>{{ project.type }}</p>
+          <br />
+          <small>Supervision by</small>
+          <p>{{ project.supervision }}</p>
+        </div>
+        <div>
+          <small>Areas of Expertise</small>
+          <p>{{ project.expertise }}</p>
+          <br />
+          <small>Tags</small>
+          <p>{{ project.tags }}</p>
+        </div>
+      </div>
+      <div class="contact">
+        <div>
+          <small>Email</small>
+          <p>finn.steffens@gmail.com</p>
+          <small>Instagram</small>
+          <p>@finnste</p>
+        </div>
+        <div>
+          <small>Twitter</small>
+          <p>@finnste</p>
+          <small>LinkedIn</small>
+          <p>Finn Steffens</p>
+        </div>
+      </div>
+    </footer>
   </main>
   </div>
 </template>
@@ -110,11 +120,13 @@ img {
 
 main {
   display: flex;
+  flex-flow: column nowrap;
   margin: 4em 0 1.5em 0;
 }
 
-.content {
-  margin: 0 2em 0 0;
+.content /deep/ img {
+  width: 100%;
+  margin: 0 0 2em 0;
 }
 
 .content /deep/ h2 {
@@ -123,7 +135,7 @@ main {
 }
 
 .content /deep/ p {
-  margin: 0 0 2em 0;
+  margin: 0 0 1em 0;
   font-size: 1.5em;
   line-height: 1.2;
 }
@@ -132,13 +144,55 @@ main {
   margin: 0;
 }
 
-aside {
-  min-width: 33.333%;
-  margin: 0 0 0 2em;
+footer {
+  display: flex;
+  justify-content: space-between;
+  margin: 4em 0 0 0;
 }
 
-aside small {
+.meta {
+  display: flex;
+  margin: 0 2em 0 0;
+}
+
+.meta div:first-of-type {
+  margin: 0 1em 0 0;
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  /* width: 100%; */
+  /* padding: 0.5em; */
+  font-size: 2em;
+  border-radius: 15px;
+  /* border: 1px solid black; */
+  transition: all 300ms ease-in-out;
+}
+
+.contact p {
+  cursor: pointer;
+  max-width: 7em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.contact p:hover {
+  max-width: fit-content;
+}
+
+.contact div:first-of-type {
+  margin: 0 1em 0 0;
+}
+
+.contact > div p:first-of-type {
+  margin: 0 0 0.24em 0;
+}
+
+.contact small {
   display: block;
-  margin: 0 0 0.5em 0;
+  font-size: 0.41667em;
+  line-height: 1;
 }
 </style>
