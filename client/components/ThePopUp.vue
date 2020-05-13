@@ -99,6 +99,11 @@ export default {
 }
 
 @media (max-width: 800px) {
+  .pop-up-container {
+    flex-direction: column;
+    height: auto;
+  }
+
   .pop-up {
     padding: 0.67em 0.67em 0 0.67em;
     font-size: 12px;
