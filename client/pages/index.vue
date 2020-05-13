@@ -85,6 +85,57 @@ export default {
   },
   mounted () {
     const app = this
+
+    this.$store.dispatch('socket/init')
+
+    window.onunload = () => {
+      app.$store.dispatch('socket/send', ['close', {}])
+    }
+
+    this.socket.addEventListener('message', (message) => {
+      const msg = JSON.parse(message.data)
+
+      switch (msg.type) {
+        case 'move':
+          app.updateCursor(msg)
+          break
+        case 'close':
+          app.removeCursor(msg.id)
+          break
+        case 'chat-message':
+          app.insertChatMessage(msg)
+          if (msg.payload.location === 'global') {
+            setTimeout(() => {
+              app.removeChatMessage()
+            }, 15 * 1000)
+          }
+          break
+        case 'login-success':
+          app.setChatStatus(msg.payload.location)
+          break
+        case 'login-error':
+          app.setChatStatus('error')
+          setTimeout(() => {
+              app.setChatStatus(null)
+            }, 3 * 1000)
+          break
+      }
+    })
+
+    document.addEventListener('mousemove', (event) => {
+      const top = event.srcElement.id === 'projects' ? event.srcElement.scrollTop : event.srcElement.parentNode.scrollTop
+      const left = event.srcElement.id === 'projects' ? event.srcElement.scrollLeft : event.srcElement.parentNode.scrollLeft
+
+      const payload = {
+        x: this.location === 'global' ? event.pageX + left : 'static',
+        y: this.location === 'global' ? event.pageY + top : 'static',
+        platform: app.platform(),
+        location: app.location
+      }
+
+      this.$store.dispatch('socket/send', ['move', payload])
+    })
+
     this.$nextTick(() => {
       app.$refs.artworks.addEventListener('scroll', (event) => {
         app.scrollTop = app.$refs.artworks.scrollTop
@@ -99,6 +150,9 @@ export default {
   },
   computed: {
     ...mapGetters({
+      socket: 'socket/socket',
+      id: 'socket/id',
+      location: 'ui/location',
       cursors: 'cursors/all',
       isPopUpOpen: 'ui/isPopUpOpen'
     }),
@@ -115,8 +169,25 @@ export default {
   },
   methods: {
     ...mapMutations({
-      insertChatMessage: 'chat/insert'
+      updateCursor: 'cursors/update',
+      removeCursor: 'cursors/remove',
+      insertChatMessage: 'chat/insert',
+      removeChatMessage: 'chat/remove',
+      setChatStatus: 'chat/setStatus'
     }),
+    platform () {
+      if (navigator.platform) {
+        if (navigator.platform === 'MacIntel') {
+          return 'mac'
+        } else if (navigator.platform === 'Win32') {
+          return 'win'
+        } else {
+          return 'mac'
+        }
+      } else {
+        return 'platform'
+      }
+    },
     random(min, max) {
       return Math.floor(Math.random() * (max - min + 1) + min)
     }
