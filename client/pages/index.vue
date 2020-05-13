@@ -124,7 +124,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+body {
+  overflow: hidden;
+}
+
 .artworks {
   position: relative;
   width: 100vw;

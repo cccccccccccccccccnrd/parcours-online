@@ -195,4 +195,26 @@ footer {
   font-size: 0.41667em;
   line-height: 1;
 }
+
+@media (max-width: 800px) {
+  h1 {
+    font-size: 2.5em;
+  }
+
+  header {
+    margin: 4em 0 0 0;
+  }
+
+  main {
+    margin: 2em 0 1.5em 0;
+  }
+
+  footer {
+    flex-flow: column nowrap;
+  }
+
+  .contact {
+    margin: 1em 0 0 0;
+  }
+}
 </style>

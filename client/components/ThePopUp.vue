@@ -97,4 +97,22 @@ export default {
   top: 2em;
   right: 2em;
 }
+
+@media (max-width: 800px) {
+  .pop-up {
+    padding: 0.67em 0.67em 0 0.67em;
+    font-size: 12px;
+    min-width: 100%;
+  }
+
+  .arrow {
+    top: 0.67em;
+    left: 0.67em;
+  }
+
+  .close {
+    top: 0.67em;
+    right: 0.67em;
+  }
+}
 </style>

@@ -125,10 +125,6 @@ html {
   box-sizing: border-box;
 }
 
-body {
-  overflow: hidden;
-}
-
 p {
   line-height: 1;
 }
