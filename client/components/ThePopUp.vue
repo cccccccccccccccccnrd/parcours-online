@@ -105,9 +105,10 @@ export default {
   }
 
   .pop-up {
+    min-width: 100%;
+    height: auto;
     padding: 0.67em 0.67em 0 0.67em;
     font-size: 12px;
-    min-width: 100%;
   }
 
   .arrow {
