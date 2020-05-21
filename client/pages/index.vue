@@ -76,7 +76,7 @@ export default {
     }
   },
   async asyncData() {
-    const url = /* 'https://parcours.kisd.de/api/projects' */ 'http://localhost:2628/projects'
+    const url = 'https://parcours.kisd.de/api/projects' /* 'http://localhost:2628/projects' */
     const response = await axios.get(url)
 
     return {
