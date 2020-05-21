@@ -59,7 +59,7 @@ export default {
 }
 
 img {
-  max-height: 30em;
+  /* max-height: 30em; */
   box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2);
 }
 

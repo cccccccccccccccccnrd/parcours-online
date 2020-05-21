@@ -1,4 +1,5 @@
 const fs = require('fs')
+const probe = require('probe-image-size')
 const { google } = require('googleapis')
 
 const state = {
@@ -77,11 +78,26 @@ function getGraduates () {
   })
 }
 
+async function distribute(values) {
+  return new Promise(async (resolve, reject) => {
+    const offset = 100
+    let tracker = offset
+
+    for (const graduate of values) {
+      const dimensions = await probe(graduate.thumbnail)
+      graduate.x = tracker
+      tracker = tracker + dimensions.width + offset
+    }
+    return resolve(values)
+  })
+}
+
 async function getProjects () {
   const graduates = await getGraduates()
-  return await Promise.all(graduates.map(async (graduate) => {
+  const values = await Promise.all(graduates.map(async (graduate) => {
     return await getValues(graduate)
   }))
+  return await distribute(values)
 }
 
 function getMessages (name) {
