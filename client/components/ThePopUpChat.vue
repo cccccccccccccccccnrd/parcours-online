@@ -182,7 +182,7 @@ export default {
 textarea {
   width: 100%;
   padding: 0;
-  font-family: 'ManifontGrotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: 'ArnoldGrotesk', 'ManifontGrotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 1em;
   border: 0;
   resize: none;

@@ -2,6 +2,13 @@
   <div>
     <no-ssr>
       <div>
+        <div class="logo">
+          <logo
+            v-if="!isPopUpOpen"
+            primary="transparent"
+            secondary="black"
+          />
+        </div>
         <!-- <chat /> -->
         <chat-input />
         <the-pop-up
@@ -54,6 +61,7 @@ import Artwork from '~/components/Artwork.vue'
 import CurrentVisitors from '~/components/CurrentVisitors.vue'
 import ThePopUp from '~/components/ThePopUp.vue'
 import TheMap from '~/components/TheMap.vue'
+import Logo from '~/components/Logo.vue'
 import { mapGetters, mapMutations } from 'vuex'
 import axios from 'axios'
 
@@ -66,7 +74,8 @@ export default {
     Artwork,
     CurrentVisitors,
     ThePopUp,
-    TheMap
+    TheMap,
+    Logo
   },
   data () {
     return {
@@ -197,6 +206,20 @@ export default {
 <style>
 body {
   overflow: hidden;
+}
+
+.logo {
+  display: flex;
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  width: 100%;
+  justify-content: center;
+  z-index: 99;
+}
+
+.logo svg {
+  max-width: 10em;
 }
 
 .artworks {

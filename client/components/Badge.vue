@@ -25,7 +25,7 @@ export default {
     display: inline-block;
     min-width: 1em;
     min-height: 1em;
-    padding: 0.5em 0.5em 0.2em 0.5em;
+    padding: 0.4em 0.5em 0.4em 0.5em;
     font-size: 0.8em;
     color: white;
     background: red;

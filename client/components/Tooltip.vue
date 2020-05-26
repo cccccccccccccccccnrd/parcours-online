@@ -17,7 +17,7 @@ export default {
 
 <style scoped>
 .tooltip {
-  padding: 0.5em 1em;
+  padding: 0.35em 1em 0.5em 1em;
   font-size: 0.8em;
   border-radius: 100px;
   color: white;

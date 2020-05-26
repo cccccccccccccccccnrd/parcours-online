@@ -67,7 +67,7 @@ export default {
 .message {
   position: relative;
   width: 100%;
-  padding: 0.8em 1.5em 0.5em 1.5em;
+  padding: 0.5em 1.5em 0.5em 1.5em;
   font-size: 1.2em;
   color: black;
   background: white;
@@ -79,7 +79,7 @@ export default {
   display: flex;
   align-items: center;
   width: fit-content;
-  padding: 0.5em 0.75em 0.3em 0.75em;
+  padding: 0.3em 0.75em 0.3em 0.75em;
   font-size: 1em;
 }
 

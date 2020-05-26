@@ -21,9 +21,16 @@ export default {
   background: black;
 }
 
-@font-face {
+/* @font-face {
   font-family: 'ManifontGrotesk';
   src: url('/fonts/ManifontGroteskBook-webfont.woff') format('woff');
+  font-display: swap;
+  font-weight: 400;
+} */
+
+@font-face {
+  font-family: 'ArnoldGrotesk';
+  src: url('/fonts/Arnold-Grotesk.otf') format('opentype');
   font-display: swap;
   font-weight: 300;
 }
@@ -34,7 +41,7 @@ export default {
 }
 
 html {
-  font-family: 'ManifontGrotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: 'ArnoldGrotesk', 'ManifontGrotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;

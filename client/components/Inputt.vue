@@ -22,7 +22,7 @@ export default {
 <style scoped>
   input {
     padding: 0.8em 1.5em 0.5em 1.5em;
-    font-family: 'ManifontGrotesk';
+    font-family: 'ArnoldGrotesk', 'ManifontGrotesk';
     font-size: 1.2em;
     color: black;
     background: white;
