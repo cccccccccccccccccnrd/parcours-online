@@ -80,15 +80,66 @@ function getGraduates () {
 
 async function distribute(values) {
   return new Promise(async (resolve, reject) => {
-    const offset = 100
-    let tracker = offset
+    const width = 2500
+    const height = 2500
+    const thresh = 10
+    let thumbs = []
 
-    for (const graduate of values) {
-      const dimensions = await probe(graduate.thumbnail)
-      graduate.x = tracker
-      tracker = tracker + dimensions.width + offset
+    const artworks = await Promise.all(values.map(async (value) => {
+      return {
+        dimensions: await probe(value.thumbnail),
+        id: value.id
+      }
+    }))
+    
+    while (thumbs.length !== artworks.length) {
+      /* console.log('placing artworks', thumbs.length, artworks.length) */
+      for (const artwork of artworks) {
+        const thumb = {
+          id: artwork.id,
+          x: random(0, width),
+          y: random(0, height),
+          w: artwork.dimensions.width,
+          h: artwork.dimensions.height,
+        }
+        
+        let overlapping = false
+
+        for (let j = 0; j < thumbs.length; j++) {
+          const other = thumbs[j]
+
+          const cx = thumb.x + thumb.w / 2
+          const cy = thumb.y + thumb.h / 2
+    
+          const cotherx = other.x + other.w / 2
+          const cothery = other.y + other.h / 2
+    
+          const dx = Math.abs(cx - cotherx)
+          const dy = Math.abs(cy - cothery)
+    
+          if (thumb.w / 2 + other.w / 2 + thresh > dx && thumb.h / 2 + other.h / 2 + thresh > dy) {
+            overlapping = true
+            break
+          }
+        }
+
+        const exists = thumbs.find((existing) => existing.id === thumb.id)
+
+        if (!overlapping && !exists) {
+          thumbs.push(thumb)
+        }
+      }
     }
-    return resolve(values)
+
+    const distributed = values.map((value) => {
+      const yes = thumbs.find((thumb) => thumb.id === value.id)
+      value.x = yes.x
+      value.y = yes.y
+      return value
+    })
+
+    console.log('placed all artworks')
+    return resolve(distributed)
   })
 }
 
@@ -156,6 +207,10 @@ function checkSecret(name, content) {
       }  
     })
   })
+}
+
+function random(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 exports.init = init
