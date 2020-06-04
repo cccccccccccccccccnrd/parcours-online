@@ -13,12 +13,14 @@
       <small>Currently viewing</small>
     </div>
   </header>
-  <main>
-    <div
-      class="content"
-      v-html="project.content"
-    ></div>
-    <footer>
+  <main class="content">
+    <the-pop-up-slot
+      v-for="(content, index) in project.content"
+      :key="`pop-up-slot-${ index }`"
+      :content="content"
+    />
+  </main>
+  <footer>
       <div class="meta">
         <div>
           <small>Type of project</small>
@@ -50,19 +52,20 @@
         </div>
       </div>
     </footer>
-  </main>
   </div>
 </template>
 
 <script>
 import Badge from '~/components/Badge.vue'
 import Arrow from '~/components/Arrow.vue'
+import ThePopUpSlot from '~/components/ThePopUpSlot.vue'
 import { mapGetters } from 'vuex'
 
 export default {
   components: {
     Badge,
-    Arrow
+    Arrow,
+    ThePopUpSlot
   },
   data () {
     return {}
@@ -96,6 +99,7 @@ header {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  padding: 2em 0 0 0;
 }
 
 img {
@@ -119,14 +123,12 @@ img {
 }
 
 main {
-  display: flex;
-  flex-flow: column nowrap;
-  margin: 4em 0 1.5em 0;
+  margin: 4em 0 2em 0;
 }
 
 .content /deep/ img {
   width: 100%;
-  margin: 0 0 2em 0;
+  margin: 0;
 }
 
 .content /deep/ h2 {
@@ -135,19 +137,16 @@ main {
 }
 
 .content /deep/ p {
-  margin: 0 0 1em 0;
+  margin: 3em;
   font-size: 1.5em;
   line-height: 1.2;
-}
-
-.content /deep/ p:last-of-type {
-  margin: 0;
 }
 
 footer {
   display: flex;
   justify-content: space-between;
-  margin: 4em 0 0 0;
+  margin: 4em 0 2em 0;
+  padding: 0 2em;
 }
 
 .meta {

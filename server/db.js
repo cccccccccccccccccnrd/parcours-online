@@ -48,9 +48,16 @@ function getValues(graduate) {
           supervision: column[3],
           expertise: column[4],
           tags: column[5],
-          content: column[6],
-          thumbnail: column[7],
-          chat: column[8] ? JSON.parse(column[8]) : []
+          content: [
+            column[7],
+            column[8],
+            column[9],
+            column[10],
+            column[11],
+            column[12]
+          ],
+          thumbnail: column[13],
+          chat: column[14] ? JSON.parse(column[14]) : []
         })
       } catch(error) {
         return reject('Error while getting values')
@@ -93,7 +100,6 @@ async function distribute(values) {
     }))
     
     while (thumbs.length !== artworks.length) {
-      /* console.log('placing artworks', thumbs.length, artworks.length) */
       for (const artwork of artworks) {
         const thumb = {
           id: artwork.id,

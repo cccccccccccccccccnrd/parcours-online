@@ -80,7 +80,7 @@ export default {
   min-width: 800px;
   max-width: 1100px;
   height: 100vh;
-  padding: 2em 2em 0 2em;
+  /* padding: 2em 2em 0 2em; */
   background: white;
   box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
   overflow-y: scroll;
