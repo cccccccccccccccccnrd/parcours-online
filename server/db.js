@@ -4,7 +4,8 @@ const { google } = require('googleapis')
 
 const state = {
   spreadsheet: '14TnnmZb8hbHHzmuqGwrdWe8abgMrDXeQb0NiKi92VwE',
-  auth: null
+  auth: null,
+  projects: null
 }
 
 function init () {
@@ -139,8 +140,10 @@ async function distribute(values) {
 
     const distributed = values.map((value) => {
       const yes = thumbs.find((thumb) => thumb.id === value.id)
-      value.x = yes.x
-      value.y = yes.y
+      value.position = {
+        x: yes.x,
+        y: yes.y
+      }
       return value
     })
 
@@ -149,12 +152,23 @@ async function distribute(values) {
   })
 }
 
-async function getProjects () {
+async function getProjects (randomize) {
   const graduates = await getGraduates()
   const values = await Promise.all(graduates.map(async (graduate) => {
     return await getValues(graduate)
   }))
-  return await distribute(values)
+
+  if (randomize) {
+    const distributed = await distribute(values)
+    state.projects = distributed
+    return distributed
+  } else {
+    return await Promise.all(values.map((value) => {
+      const yes = state.projects.find((project) => project.id === value.id)
+      value.position = yes.position
+      return value
+    }))
+  }
 }
 
 function getMessages (name) {

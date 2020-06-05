@@ -11,9 +11,13 @@ const state = {
   logins: {}
 }
 
+setInterval(async () => {
+  state.projects = await db.getProjects(true)
+}, 1 * 60 * 60 * 1000)
+
 async function init () {
   await db.init()
-  state.projects = await db.getProjects()
+  state.projects = await db.getProjects(true)
 }
 
 init()

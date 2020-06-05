@@ -79,13 +79,13 @@ export default {
   },
   data () {
     return {
-      width: 2000,
+      width: 2500, /* Sync w/ db.js:91 */
       scrollTop: null,
       scrollLeft: null
     }
   },
   async asyncData() {
-    const url = /* 'https://parcours.kisd.de/api/projects' */ 'http://localhost:2628/projects'
+    const url = 'https://parcours.kisd.de/api/projects' /* 'http://localhost:2628/projects' */
     const response = await axios.get(url)
 
     return {
@@ -168,8 +168,8 @@ export default {
       const app = this
       return this.projects.map((project) => {
         return {
-          top: project.y,
-          left: project.x,
+          top: project.position.y,
+          left: project.position.x,
           project: project
         }
       })
