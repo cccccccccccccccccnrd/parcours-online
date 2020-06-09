@@ -17,7 +17,7 @@ function init () {
       const { client_secret, client_id, redirect_uris } = credentials.installed
       const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0])
 
-      fs.readFile('token.json', (err, token) => {
+      fs.readFile(path.join(__dirname, 'token.json'), (err, token) => {
         if (err) return reject('Error loading token')
         const tokens = JSON.parse(token)
         oAuth2Client.setCredentials({
