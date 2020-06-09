@@ -1,3 +1,4 @@
+const path = require('path')
 const fs = require('fs')
 const probe = require('probe-image-size')
 const { google } = require('googleapis')
@@ -10,7 +11,7 @@ const state = {
 
 function init () {
   return new Promise((resolve, reject) => {
-    fs.readFile('credentials.json', (err, content) => {
+    fs.readFile(path.join(__dirname, 'credentials.json'), (err, content) => {
       if (err) return reject('Error loading client secret file')
       const credentials = JSON.parse(content)
       const { client_secret, client_id, redirect_uris } = credentials.installed
