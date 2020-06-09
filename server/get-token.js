@@ -1,11 +1,11 @@
+const path = require('path')
 const fs = require('fs')
 const readline = require('readline')
 const { google } = require('googleapis')
 
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-const TOKEN_PATH = 'token.json'
 
-fs.readFile('credentials.json', (err, content) => {
+fs.readFile(path.join(__dirname, 'credentials.json'), (err, content) => {
   if (err) return console.log('Error loading client secret file:', err)
   authorize(JSON.parse(content))
 })
@@ -34,9 +34,9 @@ function getNewToken (oAuth2Client) {
       if (err) return console.error('Error while trying to retrieve access token', err)
       oAuth2Client.setCredentials(token)
 
-      fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
+      fs.writeFile(path.join(__dirname, 'token.json'), JSON.stringify(token), (err) => {
         if (err) return console.error(err)
-        console.log('Token stored to', TOKEN_PATH)
+        console.log('Token stored')
       })
     })
   })
