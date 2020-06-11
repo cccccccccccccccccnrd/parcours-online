@@ -209,7 +209,7 @@ async function storeMessage (name, message) {
     const sheets = google.sheets({ version: 'v4', auth: state.auth })
     return sheets.spreadsheets.values.update({
       spreadsheetId: state.spreadsheet,
-      range: `\'${ name }\'!B20`,
+      range: `\'${ name }\'!B50`,
       valueInputOption: 'RAW',
       resource: { values: [[JSON.stringify(messages)]] },
     }, (err, res) => {
@@ -224,7 +224,7 @@ function checkSecret(name, content) {
     const sheets = google.sheets({ version: 'v4', auth: state.auth })
     return sheets.spreadsheets.values.get({
       spreadsheetId: state.spreadsheet,
-      range: `\'${ name }\'!B21`,
+      range: `\'${ name }\'!B22`,
     }, (err, res) => {
       if (err) return reject('Error while checking secret')
       try {
