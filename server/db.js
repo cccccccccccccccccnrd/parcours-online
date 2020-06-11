@@ -188,7 +188,7 @@ function getMessages (name) {
     const sheets = google.sheets({ version: 'v4', auth: state.auth })
     return sheets.spreadsheets.values.get({
       spreadsheetId: state.spreadsheet,
-      range: `\'${ name }\'!B20`,
+      range: `\'${ name }\'!B50`,
     }, (err, res) => {
       if (err) return reject('Error while getting values')
       if (res.data.values) {
