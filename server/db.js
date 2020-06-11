@@ -36,11 +36,12 @@ function getValues(graduate) {
     const sheets = google.sheets({ version: 'v4', auth: state.auth })
     return sheets.spreadsheets.values.get({
       spreadsheetId: state.spreadsheet,
-      range: `\'${ graduate.name }\'!B1:B20`,
+      range: `\'${ graduate.name }\'!B1:B100`,
     }, (err, res) => {
       if (err) return reject('Error while getting values')
       try {
         const column = res.data.values.flat()
+
         return resolve({
           id: `${ graduate.name.toLowerCase().split(' ').join('-') }-${ graduate.id }`,
           graduate: graduate.name,
@@ -51,15 +52,24 @@ function getValues(graduate) {
           expertise: column[4],
           tags: column[5],
           content: [
+            column[6],
             column[7],
             column[8],
             column[9],
             column[10],
-            column[11],
-            column[12]
+            column[11]
           ],
-          thumbnail: column[13],
-          chat: column[14] ? JSON.parse(column[14]) : []
+          mail: column[12],
+          link: column[13],
+          externals: [{
+            title: column[14].split(',')[0].trim(),
+            url: column[14].split(',')[1].trim()
+          }, {
+            title: column[15].split(',')[0].trim(),
+            url: column[15].split(',')[1].trim()
+          }],
+          thumbnail: column[16],
+          chat: column[18] ? JSON.parse(column[18]) : []
         })
       } catch(error) {
         return reject('Error while getting values')

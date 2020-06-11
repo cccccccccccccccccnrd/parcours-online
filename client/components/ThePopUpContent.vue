@@ -3,15 +3,16 @@
     class="pop-up-content"
   >
   <header>
-    <p>{{ project.sub }}</p>
+    <p class="chip">{{ project.graduate }}</p>
     <h1>{{ project.title }}</h1>
-    <div class="info">
+    <p>{{ project.sub }}</p>
+    <!-- <div class="info">
       <badge
         :number="viewers"
         class="badge"
       />
       <small>Currently viewing</small>
-    </div>
+    </div> -->
   </header>
   <main class="content">
     <the-pop-up-slot
@@ -21,6 +22,34 @@
     />
   </main>
   <footer>
+    <div class="profile">
+      <div
+        class="picture"
+        :style="`background-image: url(${ project.thumbnail });`"
+      ></div>
+      <div>
+        <h1>{{ project.graduate }}</h1>
+        <a
+          :href="`mailto:${ project.mail }`"
+          target="_blank"
+        >{{ project.mail }}</a>
+        <a
+          :href="project.link.startsWith('http') ? project.link : `http://${ project.link }`"
+          target="_blank"
+        >{{ project.link }}</a>
+      </div>
+    </div>
+    <div class="externals">
+      <a
+        v-for="(link, index) in project.externals"
+        :key="`pop-up-external-${ index }`"
+        class="chip"
+        :href="link.url.startsWith('http') ? link.url : `http://${ link.url }`"
+        target="_blank"
+      >{{ link.title }}</a>
+    </div>
+  </footer>
+  <!-- <footer>
       <div class="meta">
         <div>
           <small>Type of project</small>
@@ -51,7 +80,7 @@
           <p>Finn Steffens</p>
         </div>
       </div>
-    </footer>
+    </footer> -->
   </div>
 </template>
 
@@ -92,7 +121,7 @@ h1 {
   font-size: 5em;
   font-weight: 300;
   line-height: 1;
-  margin: 0.25em 0 0.1em 0;
+  margin: 0.2em 0;
 }
 
 header {
@@ -102,9 +131,19 @@ header {
   padding: 2em 0 0 0;
 }
 
+header p {
+  font-size: 1.5em;
+}
+
 img {
   max-width: 100%;
   box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2);
+}
+
+.chip {
+  padding: 0.3em 0.6em;
+  border-radius: 100px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .arrow {
@@ -145,8 +184,47 @@ main {
 footer {
   display: flex;
   justify-content: space-between;
-  margin: 4em 0 2em 0;
-  padding: 0 2em;
+  margin: 3em 0 2em 0;
+  padding: 0 3em;
+  font-size: 1.5em;
+}
+
+footer a {
+  display: block;
+  text-decoration: none;
+  color: initial;
+}
+
+.profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 2;
+}
+
+.profile h1 {
+  font-size: 2em;
+}
+
+.profile .picture {
+  width: 8em;
+  height: 8em;
+  margin: 0 1em 0 0;
+  background-size: cover;
+  background-position: center center;
+  border-radius: 10000px;
+}
+
+.externals {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.externals a {
+  margin: 0 0 0.5em 0;
 }
 
 .meta {
