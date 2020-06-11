@@ -59,17 +59,18 @@ function getValues(graduate) {
             column[10],
             column[11]
           ],
-          mail: column[12],
-          link: column[13],
+          picture: column[12],
+          mail: column[13],
+          link: column[14],
           externals: [{
-            title: column[14].split(',')[0].trim(),
-            url: column[14].split(',')[1].trim()
-          }, {
             title: column[15].split(',')[0].trim(),
             url: column[15].split(',')[1].trim()
+          }, {
+            title: column[16].split(',')[0].trim(),
+            url: column[16].split(',')[1].trim()
           }],
-          thumbnail: column[16],
-          chat: column[18] ? JSON.parse(column[18]) : []
+          thumbnail: column[17],
+          chat: column[19] ? JSON.parse(column[19]) : []
         })
       } catch(error) {
         return reject('Error while getting values')

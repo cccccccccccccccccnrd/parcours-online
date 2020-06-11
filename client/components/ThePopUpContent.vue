@@ -25,7 +25,7 @@
     <div class="profile">
       <div
         class="picture"
-        :style="`background-image: url(${ project.thumbnail });`"
+        :style="`background-image: url(${ project.picture });`"
       ></div>
       <div>
         <h1>{{ project.graduate }}</h1>
