@@ -148,6 +148,8 @@ async function distribute(values) {
           thumbs.push(thumb)
         }
       }
+
+      console.log('tryin', Date.now())
     }
 
     const distributed = values.map((value) => {
