@@ -2,13 +2,13 @@
   <div>
     <no-ssr>
       <div>
-        <div class="logo">
+        <!-- <div class="logo">
           <logo
             v-if="!isPopUpOpen"
             primary="transparent"
             secondary="black"
           />
-        </div>
+        </div> -->
         <!-- <chat /> -->
         <chat-input />
         <the-pop-up
