@@ -38,7 +38,7 @@ export default {
   props: ['artworks', 'width', 'scroll'],
   data () {
     return {
-      scale: 10,
+      scale: 30,
       viewerWidth: 0,
       viewerHeight: 0,
       current: null
@@ -74,8 +74,8 @@ export default {
   }
 
   .square {
-    width: 0.5em;
-    height: 0.5em;
+    width: 0.4em;
+    height: 0.4em;
     background: black;
     border-radius: 100px;
   }
@@ -88,7 +88,7 @@ export default {
     position: absolute;
     width: 5em;
     height: 4em;
-    border-radius: 1em;
+    border-radius: 0.5em;
     border: 1px dotted black;
   }
 

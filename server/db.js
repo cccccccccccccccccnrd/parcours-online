@@ -100,8 +100,8 @@ function getGraduates () {
 
 async function distribute(values) {
   return new Promise(async (resolve, reject) => {
-    const width = 7500
-    const height = 7500
+    const width = 6000
+    const height = 6000
     const thresh = 10
     let thumbs = []
 
