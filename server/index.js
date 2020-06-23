@@ -32,7 +32,7 @@ app.get('/connected', (req, res) => {
 })
 
 app.get('/projects', async (req, res) => {
-  state.projects = await db.getProjects()
+  /* state.projects = await db.getProjects() */
   res.json(state.projects)
 })
 
