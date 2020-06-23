@@ -72,8 +72,8 @@ img {
 
 .title {
   position: absolute;
-  color: white;
-  font-size: 3em;
+  color: black;
+  font-size: 2.5em;
   text-align: center;
 }
 </style>
