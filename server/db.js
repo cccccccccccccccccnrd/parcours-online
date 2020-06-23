@@ -4,7 +4,7 @@ const probe = require('probe-image-size')
 const { google } = require('googleapis')
 
 const state = {
-  spreadsheet: '14TnnmZb8hbHHzmuqGwrdWe8abgMrDXeQb0NiKi92VwE',
+  spreadsheet: '1WN2STbr8gGTS2NKCFWG6p6u2_rHF5jG9SLx4v_5V3gY',
   auth: null,
   projects: null
 }

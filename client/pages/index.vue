@@ -167,7 +167,6 @@ export default {
     artworks() {
       const app = this
       return this.projects.map((project) => {
-        console.log(project)
         return {
           top: project.position.y,
           left: project.position.x,
