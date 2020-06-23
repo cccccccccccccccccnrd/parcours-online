@@ -6,7 +6,7 @@ const { google } = require('googleapis')
 const state = {
   spreadsheet: '1WN2STbr8gGTS2NKCFWG6p6u2_rHF5jG9SLx4v_5V3gY',
   auth: null,
-  projects: null
+  projects: []
 }
 
 function init () {
@@ -100,8 +100,8 @@ function getGraduates () {
 
 async function distribute(values) {
   return new Promise(async (resolve, reject) => {
-    const width = 10000
-    const height = 10000
+    const width = 7500
+    const height = 7500
     const thresh = 10
     let thumbs = []
 
