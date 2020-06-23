@@ -38,7 +38,10 @@ function getValues(graduate) {
       spreadsheetId: state.spreadsheet,
       range: `\'${ graduate.name }\'!B1:B100`,
     }, (err, res) => {
-      if (err) return reject('Error while getting values')
+      if (err) {
+        console.log(err)
+        return reject('Error while getting values')
+      }
       try {
         const column = res.data.values.flat()
 
@@ -85,7 +88,10 @@ function getGraduates () {
     return sheets.spreadsheets.get({
       spreadsheetId: state.spreadsheet,
     }, (err, res) => {
-      if (err) return reject('Error while getting graduates')
+      if (err) {
+        console.log(err)
+        return reject('Error while getting graduates')
+      }
       const graduates = res.data.sheets.map((sheet) => {
         return {
           id: sheet.properties.sheetId,
