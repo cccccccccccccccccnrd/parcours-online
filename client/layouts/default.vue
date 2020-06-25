@@ -30,7 +30,7 @@ export default {
 
 @font-face {
   font-family: 'ArnoldGrotesk';
-  src: url('/fonts/Arnold-Grotesk.otf') format('opentype');
+  src: url('fonts/Arnold-Grotesk.otf') format('opentype');
   font-display: swap;
   font-weight: 300;
 }
