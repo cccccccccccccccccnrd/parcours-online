@@ -30,6 +30,7 @@
             class="artworks dragscroll"
             ref="artworks"
           >
+            <the-courtyard />
             <cursor-other
               v-for="cursor in cursors"
               :key="cursor.id"
@@ -62,6 +63,7 @@ import CurrentVisitors from '~/components/CurrentVisitors.vue'
 import ThePopUp from '~/components/ThePopUp.vue'
 import TheMap from '~/components/TheMap.vue'
 import Logo from '~/components/Logo.vue'
+import TheCourtyard from '~/components/TheCourtyard.vue'
 import { mapGetters, mapMutations } from 'vuex'
 import axios from 'axios'
 
@@ -75,7 +77,8 @@ export default {
     CurrentVisitors,
     ThePopUp,
     TheMap,
-    Logo
+    Logo,
+    TheCourtyard
   },
   data () {
     return {
