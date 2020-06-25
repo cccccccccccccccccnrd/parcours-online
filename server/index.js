@@ -36,7 +36,7 @@ app.get('/projects', async (req, res) => {
   res.json(state.projects)
 })
 
-app.listen(2628, () => console.log('http://localhost:2628'))
+app.listen(2628, () => console.log('parcours-online-server runnin on: http://localhost:2628'))
 
 const wss = new WebSocket.Server({ port: 2627 })
 
