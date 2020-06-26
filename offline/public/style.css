@@ -27,7 +27,25 @@ body {
 video {
   height: 60vh;
   max-width: 95vw;
-  object-fit: cover;
   border: 2px solid #fff000;
   border-radius: 25px;
+  object-fit: cover;
+}
+
+img {
+  display: none;
+  max-width: 95vw;
+  border: 2px solid #fff000;
+  border-radius: 25px;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 600px) {
+  video {
+    display: none;
+  }
+
+  img {
+    display: block;
+  }
 }
