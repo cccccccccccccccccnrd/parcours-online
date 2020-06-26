@@ -10,7 +10,7 @@
       v-for="(room, index) in rooms"
       :key="`courtyard-rooms-${ index }`"
       :style="`top: ${ room.top }%; left: ${ room.left }%;`"
-      :href="`https://meet.jit.si/KisdParcoursCourtyardTable${ index }`"
+      :href="`https://meet.jit.si/KISDParcoursCourtyardTable${ index }`"
       target="_blank"
     ></a>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 323.55">
