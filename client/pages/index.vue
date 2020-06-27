@@ -82,7 +82,7 @@ export default {
   },
   data () {
     return {
-      width: 6000, /* Sync w/ db.js:91 */
+      width: 3000, /* Sync w/ db.js:91 */
       scrollTop: null,
       scrollLeft: null
     }
