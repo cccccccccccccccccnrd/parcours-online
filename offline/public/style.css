@@ -19,6 +19,7 @@ body {
   height: 100vh;
   font-family: 'Arial';
   font-size: 18px;
+  background: #f4f4f4;
   /* overflow: hidden; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
