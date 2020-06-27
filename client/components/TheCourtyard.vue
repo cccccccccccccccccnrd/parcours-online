@@ -1226,8 +1226,8 @@ export default {
 <style scoped>
 .courtyard {
   position: absolute;
-  top: 50em;
-  left: 100em;
+  top: 1200px; /* 1500 - 300*/
+  left: 980px; /* 1500 - 520*/
   width: 1000px;
   z-index: 5;
   /* filter: grayscale(100); */

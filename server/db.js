@@ -106,8 +106,10 @@ function getGraduates () {
 
 async function distribute(values) {
   return new Promise(async (resolve, reject) => {
-    const width = 6000
-    const height = 6000
+    const width = 3000
+    const height = 3000
+    const courtyardw = 1040
+    const courtyardh = 600
     const thresh = 10
     let thumbs = []
 
@@ -141,7 +143,32 @@ async function distribute(values) {
     
           const dx = Math.abs(cx - cotherx)
           const dy = Math.abs(cy - cothery)
-    
+
+
+          //protection area around the courtyard
+          if (
+          thumb.x >= width/2 - courtyardw/2 - thresh && thumb.x <= width/2 + courtyardw/2 + thresh || 
+          thumb.x + thumb.w >= width/2 - courtyardw/2 - thresh && thumb.x + thumb.w <= width/2 + courtyardw/2 + thresh
+          ){
+            if (
+              thumb.y >= height/2 - courtyardh/2 - thresh && thumb.y <= height/2 + courtyardh/2 + thresh || 
+              thumb.y + thumb.h >= height/2 - courtyardh/2 - thresh && thumb.y + thumb.h <= height/2 + courtyardh/2 + thresh
+              ){
+                console.log(Date.now(), 'overlapping courtyard, retry')
+                overlapping = true;
+                break;
+      } 
+     }
+     
+     //protection area bottom and right
+     if (thumb.w + thumb.x> width  || thumb.h+ thumb.y > height){
+        console.log(Date.now(), 'placement out of window, retry')
+        overlapping = true;
+        break;
+     } 
+
+
+
           if (thumb.w / 2 + other.w / 2 + thresh > dx && thumb.h / 2 + other.h / 2 + thresh > dy) {
             overlapping = true
             break
@@ -155,7 +182,7 @@ async function distribute(values) {
         }
       }
 
-      console.log('tryin', Date.now())
+      console.log(Date.now(), 'overlapping another artwork, retry')
     }
 
     const distributed = values.map((value) => {
