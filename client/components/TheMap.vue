@@ -76,7 +76,7 @@ export default {
   .square {
     width: 0.4em;
     height: 0.4em;
-    background: black;
+    background: #ffed00;
     border-radius: 100px;
   }
 
@@ -89,7 +89,8 @@ export default {
     width: 5em;
     height: 4em;
     border-radius: 0.5em;
-    border: 1px dotted black;
+    border: 1px dotted #3FA535;
+    z-index: 1;
   }
 
   .info {

@@ -9,7 +9,7 @@
       class="badge"
     />
     <img v-if="type === 'image'" :src="project.thumbnail">
-    <video v-if="type === 'video'" :src="url" autoplay loop muted></video>
+    <video v-if="type === 'video'" :src="project.thumbnail" autoplay loop muted></video>
     <!-- <p class="title">{{ project.title }}</p> -->
   </div>
 </template>
@@ -33,7 +33,7 @@ export default {
       location: 'ui/location'
     }),
     type () {
-      return this.url.endsWith('.mp4') ? 'video' : 'image'
+      return this.project.thumbnail.endsWith('.mp4') ? 'video' : 'image'
     },
     viewers () {
       const length = this.cursors.filter((c) => c.payload.location === this.project.id).length
