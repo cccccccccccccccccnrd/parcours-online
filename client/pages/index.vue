@@ -28,6 +28,7 @@
           <current-visitors />
           <div
             class="artworks dragscroll"
+            id="artworks"
             ref="artworks"
           >
             <the-courtyard />
@@ -135,8 +136,8 @@ export default {
     })
 
     document.addEventListener('mousemove', (event) => {
-      const top = event.srcElement.id === 'projects' ? event.srcElement.scrollTop : event.srcElement.parentNode.scrollTop
-      const left = event.srcElement.id === 'projects' ? event.srcElement.scrollLeft : event.srcElement.parentNode.scrollLeft
+      const top = event.srcElement.id === 'artworks' ? event.srcElement.scrollTop : event.srcElement.parentNode.scrollTop
+      const left = event.srcElement.id === 'artworks' ? event.srcElement.scrollLeft : event.srcElement.parentNode.scrollLeft
 
       const payload = {
         x: this.location === 'global' ? event.pageX + left : 'static',
