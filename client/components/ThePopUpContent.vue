@@ -170,6 +170,10 @@ main {
   margin: 0;
 }
 
+.content /deep/ video {
+  width: 100%;
+}
+
 .content /deep/ h2 {
   font-weight: 300;
   font-size: 3em;
