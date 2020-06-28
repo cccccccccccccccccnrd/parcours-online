@@ -8,10 +8,9 @@
       :number="viewers"
       class="badge"
     />
-    <!-- <img v-if="type === 'image'" :src="url">
-    <video v-if="type === 'video'" :src="url" autoplay loop muted></video> -->
-    <img :src="project.thumbnail">
-    <p class="title">{{ project.title }}</p>
+    <img v-if="type === 'image'" :src="project.thumbnail">
+    <video v-if="type === 'video'" :src="url" autoplay loop muted></video>
+    <!-- <p class="title">{{ project.title }}</p> -->
   </div>
 </template>
 

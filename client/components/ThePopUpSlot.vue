@@ -4,6 +4,7 @@
   >
     <p v-if="type === 'text'">{{ content }}</p>
     <img v-if="type === 'image'" :src="content"/>
+    <video v-if="type === 'video'" :src="content" autoplay loop muted></video>
   </div>
 </template>
 
@@ -16,7 +17,13 @@ export default {
   mounted () {},
   computed: {
     type () {
-      return this.content.startsWith('http') ? 'image' : 'text'
+      if (this.content.endsWith('.jpg')) {
+        return 'image'
+      } else if (this.content.endsWith('.mp4')) {
+        return 'video'
+      } else {
+        return 'text'
+      }
     }
   }
 }
