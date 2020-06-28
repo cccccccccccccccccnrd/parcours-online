@@ -136,8 +136,8 @@ export default {
     })
 
     document.addEventListener('mousemove', (event) => {
-      const top = event.srcElement.id === 'artworks' ? event.srcElement.scrollTop : event.srcElement.parentNode.scrollTop
-      const left = event.srcElement.id === 'artworks' ? event.srcElement.scrollLeft : event.srcElement.parentNode.scrollLeft
+      const top = event.srcElement.id === 'artworks' ? event.srcElement.scrollTop : app.$refs.artworks.scrollTop
+      const left = event.srcElement.id === 'artworks' ? event.srcElement.scrollLeft : app.$refs.artworks.scrollLeft
 
       const payload = {
         x: this.location === 'global' ? event.pageX + left : 'static',
