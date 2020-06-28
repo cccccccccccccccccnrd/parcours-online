@@ -15,6 +15,10 @@ setInterval(async () => {
   state.projects = await db.getProjects(true)
 }, 1 * 60 * 60 * 1000)
 
+setInterval(async () => {
+  state.projects = await db.getProjects()
+}, 2 * 60 * 1000)
+
 async function init () {
   await db.init()
   state.projects = await db.getProjects(true)
@@ -32,7 +36,7 @@ app.get('/connected', (req, res) => {
 })
 
 app.get('/projects', async (req, res) => {
-  state.projects = await db.getProjects()
+  /* state.projects = await db.getProjects() */
   res.json(state.projects)
 })
 
