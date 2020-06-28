@@ -56,12 +56,12 @@ export default {
 }
 
 .cursor.mac {
-  background-image: url('/cursors/mac.png');
+  background-image: url('/prototype/cursors/mac.png');
   background-size: 14px;
 }
 
 .cursor.win {
-  background-image: url('/cursors/win.png');
+  background-image: url('/prototype/cursors/win.png');
   background-size: 13px;
 }
 
