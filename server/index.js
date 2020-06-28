@@ -7,6 +7,7 @@ const WebSocket = require('ws')
 const db = require('./db.js')
 
 const state = {
+  last: Date.now(),
   projects: null,
   logins: {}
 }
@@ -14,10 +15,6 @@ const state = {
 setInterval(async () => {
   state.projects = await db.getProjects(true)
 }, 1 * 60 * 60 * 1000)
-
-setInterval(async () => {
-  state.projects = await db.getProjects()
-}, 2 * 60 * 1000)
 
 async function init () {
   await db.init()
@@ -36,7 +33,10 @@ app.get('/connected', (req, res) => {
 })
 
 app.get('/projects', async (req, res) => {
-  /* state.projects = await db.getProjects() */
+  if (state.last <= Date.now() - 100000) {
+    state.projects = await db.getProjects()
+    state.last = Date.now()
+  }
   res.json(state.projects)
 })
 
