@@ -2,6 +2,10 @@ const path = require('path')
 const fs = require('fs')
 const probe = require('probe-image-size')
 const { google } = require('googleapis')
+const db = require('monk')(`${ process.env.DB_USER }:${ process.env.DB_PASS }@localhost/online-parcours`, { authSource: 'admin' })
+const chats = db.get('chats')
+
+db.then(() => console.log('Connected to db'))
 
 const state = {
   spreadsheet: '1WN2STbr8gGTS2NKCFWG6p6u2_rHF5jG9SLx4v_5V3gY',
@@ -203,12 +207,13 @@ async function getProjects (randomize) {
         return reject('Error while getting projects')
       }
       const sheets = res.data.sheets
-      const values = sheets.map((sheet) => {
+      const values = await Promise.all(sheets.map(async (sheet) => {
         const sheetId = sheet.properties.sheetId
         const title = sheet.properties.title
+        const id = `${ title.toLowerCase().split(' ').join('-') }-${ sheetId }`
         const column = sheet.data[0].rowData.map((r) => r.values[1].formattedValue).filter(Boolean)
         return {
-          id: `${ title.toLowerCase().split(' ').join('-') }-${ sheetId }`,
+          id: id,
           graduate: title,
           title: column[0],
           sub: column[1],
@@ -235,9 +240,9 @@ async function getProjects (randomize) {
             url: column[16].split(',')[1].trim()
           }],
           thumbnail: column[17],
-          chat: column[19] ? JSON.parse(column[19]) : []
+          chat: await getMessages(id)
         }
-      })
+      }))
 
       console.log(`Db fetched ${ values.length } projects`)
 
@@ -276,7 +281,34 @@ async function getProjects (randomize) {
   }
 } */
 
-function getMessages (name) {
+async function getMessages (id) {
+  const entry = await chats.findOne({ id: id })
+  if (entry) {
+    return entry.content
+  } else {
+    chats.insert({
+      id: id,
+      content: []
+    })
+    console.log('init chat', id)
+    return []
+  }
+}
+
+async function storeMessage (id, message) {
+  const messages = await getMessages(id)
+  messages.push(message)
+
+  chats.findOneAndUpdate({ id: id }, { $set: { content: messages } })
+    .then((entries) => {
+      console.log('stored', id)
+    })
+    .catch((error) => {
+      console.log('error while storing chats', id, error)
+    })
+}
+
+/* function getMessages (name) {
   return new Promise((resolve, reject) => {
     const sheets = google.sheets({ version: 'v4', auth: state.auth })
     return sheets.spreadsheets.values.get({
@@ -292,9 +324,9 @@ function getMessages (name) {
       }
     })
   })
-}
+} */
 
-async function storeMessage (name, message) {
+/* async function storeMessage (name, message) {
   const messages = await getMessages(name)
   messages.push(message)
 
@@ -310,7 +342,7 @@ async function storeMessage (name, message) {
       return resolve('Stored message')
     })
   })
-}
+} */
 
 function checkSecret(name, content) {
   return new Promise((resolve, reject) => {

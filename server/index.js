@@ -92,7 +92,7 @@ wss.on('connection', (ws) => {
         if (msg.payload.mode === 'login') {
           return login(ws, msg)
         } else if (msg.payload.location !== 'global') {
-          db.storeMessage(msg.payload.graduate, msg)
+          db.storeMessage(msg.payload.location, msg)
         }
         
         if (msg.payload.amIloggedIn) {

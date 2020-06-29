@@ -13,6 +13,7 @@
     "express": "^4.17.1",
     "googleapis": "^39.2.0",
     "helmet": "^3.22.0",
+    "monk": "^7.3.0",
     "probe-image-size": "^5.0.0",
     "ws": "^7.2.3"
   }
