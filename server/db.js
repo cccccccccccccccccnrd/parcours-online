@@ -2,7 +2,7 @@ const path = require('path')
 const fs = require('fs')
 const probe = require('probe-image-size')
 const { google } = require('googleapis')
-const db = require('monk')(`${ process.env.DB_USER }:${ process.env.DB_PASS }@localhost/online-parcours`, { authSource: 'admin' })
+const db = require('monk')(`${ process.env.DB_USER }:${ process.env.DB_PASS }@${ process.env.DB_HOST }/online-parcours`)
 const chats = db.get('chats')
 
 db.then(() => console.log('Connected to db'))
