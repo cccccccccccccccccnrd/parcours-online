@@ -33,10 +33,14 @@ app.get('/connected', (req, res) => {
 })
 
 app.get('/projects', async (req, res) => {
+  /* console.log(state.last)
   if (state.last <= Date.now() - 100000) {
+    console.log('yes, reload')
     state.projects = await db.getProjects()
     state.last = Date.now()
   }
+  console.log('nah') */
+  state.projects = await db.getProjects()
   res.json(state.projects)
 })
 

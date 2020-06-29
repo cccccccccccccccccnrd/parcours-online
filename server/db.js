@@ -146,28 +146,20 @@ async function distribute(values) {
 
 
           //protection area around the courtyard
-          if (
-          thumb.x >= width/2 - courtyardw/2 - thresh && thumb.x <= width/2 + courtyardw/2 + thresh || 
-          thumb.x + thumb.w >= width/2 - courtyardw/2 - thresh && thumb.x + thumb.w <= width/2 + courtyardw/2 + thresh
-          ){
-            if (
-              thumb.y >= height/2 - courtyardh/2 - thresh && thumb.y <= height/2 + courtyardh/2 + thresh || 
-              thumb.y + thumb.h >= height/2 - courtyardh/2 - thresh && thumb.y + thumb.h <= height/2 + courtyardh/2 + thresh
-              ){
-                console.log(Date.now(), 'overlapping courtyard, retry')
-                overlapping = true;
-                break;
-      } 
-     }
+          if (thumb.x >= width / 2 - courtyardw / 2 - thresh && thumb.x <= width / 2 + courtyardw / 2 + thresh || thumb.x + thumb.w >= width / 2 - courtyardw / 2 - thresh && thumb.x + thumb.w <= width / 2 + courtyardw / 2 + thresh) {
+            if (thumb.y >= height / 2 - courtyardh / 2 - thresh && thumb.y <= height / 2 + courtyardh / 2 + thresh || thumb.y + thumb.h >= height / 2 - courtyardh / 2 - thresh && thumb.y + thumb.h <= height / 2 + courtyardh / 2 + thresh) {
+              console.log(Date.now(), 'overlapping courtyard, retry')
+              overlapping = true
+              break
+            } 
+          }
      
-     //protection area bottom and right
-     if (thumb.w + thumb.x> width  || thumb.h+ thumb.y > height){
-        console.log(Date.now(), 'placement out of window, retry')
-        overlapping = true;
-        break;
-     } 
-
-
+          // protection area bottom and right
+          if (thumb.w + thumb.x > width  || thumb.h + thumb.y > height) {
+            console.log(Date.now(), 'placement out of window, retry')
+            overlapping = true
+            break
+          }
 
           if (thumb.w / 2 + other.w / 2 + thresh > dx && thumb.h / 2 + other.h / 2 + thresh > dy) {
             overlapping = true
@@ -200,6 +192,72 @@ async function distribute(values) {
 }
 
 async function getProjects (randomize) {
+  return new Promise((resolve, reject) => {
+    const sheets = google.sheets({ version: 'v4', auth: state.auth })
+    return sheets.spreadsheets.get({
+      spreadsheetId: state.spreadsheet,
+      includeGridData: true
+    }, async (err, res) => {
+      if (err) {
+        console.log(err)
+        return reject('Error while getting projects')
+      }
+      const sheets = res.data.sheets
+      const values = sheets.map((sheet) => {
+        const sheetId = sheet.properties.sheetId
+        const title = sheet.properties.title
+        const column = sheet.data[0].rowData.map((r) => r.values[1].formattedValue).filter(Boolean)
+        return {
+          id: `${ title.toLowerCase().split(' ').join('-') }-${ sheetId }`,
+          graduate: title,
+          title: column[0],
+          sub: column[1],
+          type: column[2],
+          supervision: column[3],
+          expertise: column[4],
+          tags: column[5],
+          content: [
+            column[6],
+            column[7],
+            column[8],
+            column[9],
+            column[10],
+            column[11]
+          ],
+          picture: column[12],
+          mail: column[13],
+          link: column[14],
+          externals: [{
+            title: column[15].split(',')[0].trim(),
+            url: column[15].split(',')[1].trim()
+          }, {
+            title: column[16].split(',')[0].trim(),
+            url: column[16].split(',')[1].trim()
+          }],
+          thumbnail: column[17],
+          chat: column[19] ? JSON.parse(column[19]) : []
+        }
+      })
+
+      console.log(`Db fetched ${ values.length } projects`)
+
+      if (randomize) {
+        const distributed = await distribute(values)
+        state.projects = distributed
+        return resolve(distributed)
+      } else {
+        const projects = await Promise.all(values.map((value) => {
+          const yes = state.projects.find((project) => project.id === value.id)
+          value.position = yes.position
+          return value
+        }))
+        return resolve(projects)
+      }
+    })
+  })
+}
+
+/* async function getProjects (randomize) {
   const graduates = await getGraduates()
   const values = await Promise.all(graduates.map(async (graduate) => {
     return await getValues(graduate)
@@ -216,7 +274,7 @@ async function getProjects (randomize) {
       return value
     }))
   }
-}
+} */
 
 function getMessages (name) {
   return new Promise((resolve, reject) => {
