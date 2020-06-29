@@ -245,7 +245,7 @@ async function getProjects (randomize) {
         }
       }))
 
-      console.log(`Db fetched ${ values.length } projects`)
+      console.log(Date.now(), `Db fetched ${ values.length } projects`)
 
       if (randomize) {
         const distributed = await distribute(values)
