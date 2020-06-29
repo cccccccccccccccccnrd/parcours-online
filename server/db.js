@@ -373,5 +373,6 @@ function random(min, max) {
 
 exports.init = init
 exports.getProjects = getProjects
+exports.getMessages = getMessages
 exports.storeMessage = storeMessage
 exports.checkSecret = checkSecret

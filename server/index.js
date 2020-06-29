@@ -16,6 +16,10 @@ setInterval(async () => {
   state.projects = await db.getProjects(true)
 }, 1 * 60 * 60 * 1000)
 
+setInterval(async () => {
+  state.projects = await db.getProjects()
+}, 1 * 60 * 1000)
+
 async function init () {
   await db.init()
   state.projects = await db.getProjects(true)
@@ -33,15 +37,11 @@ app.get('/connected', (req, res) => {
 })
 
 app.get('/projects', async (req, res) => {
-  /* console.log(state.last)
-  if (state.last <= Date.now() - 100000) {
-    console.log('yes, reload')
-    state.projects = await db.getProjects()
-    state.last = Date.now()
-  }
-  console.log('nah') */
-  state.projects = await db.getProjects()
-  res.json(state.projects)
+  const projects = await Promise.all(state.projects.map(async (project) => {
+    project.chat = await db.getMessages(project.id)
+    return project
+  }))
+  res.json(projects)
 })
 
 app.listen(2628, () => console.log('parcours-online-server runnin on: http://localhost:2628'))
