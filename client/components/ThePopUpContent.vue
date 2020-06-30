@@ -131,6 +131,10 @@ header {
   padding: 2em 0 0 0;
 }
 
+header h1 {
+  text-align: center;
+}
+
 header p {
   font-size: 1.5em;
 }
@@ -203,7 +207,6 @@ footer a {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 2;
 }
 
 .profile h1 {
@@ -223,8 +226,7 @@ footer a {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
-  align-items: center;
-  flex: 1;
+  align-items: flex-end;
 }
 
 .externals a {
@@ -238,43 +240,6 @@ footer a {
 
 .meta div:first-of-type {
   margin: 0 1em 0 0;
-}
-
-.contact {
-  display: flex;
-  align-items: center;
-  /* width: 100%; */
-  /* padding: 0.5em; */
-  font-size: 2em;
-  border-radius: 15px;
-  /* border: 1px solid black; */
-  transition: all 300ms ease-in-out;
-}
-
-.contact p {
-  cursor: pointer;
-  max-width: 7em;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
-.contact p:hover {
-  max-width: fit-content;
-}
-
-.contact div:first-of-type {
-  margin: 0 1em 0 0;
-}
-
-.contact > div p:first-of-type {
-  margin: 0 0 0.24em 0;
-}
-
-.contact small {
-  display: block;
-  font-size: 0.41667em;
-  line-height: 1;
 }
 
 @media (max-width: 800px) {

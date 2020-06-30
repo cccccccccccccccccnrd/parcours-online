@@ -51,14 +51,6 @@ const app = express()
 app.use(cors())
 app.use(helmet())
 
-app.get('/projects', async (req, res) => {
-  const projects = await Promise.all(state.projects.map(async (project) => {
-    project.chat = await db.getMessages(project.id)
-    return project
-  }))
-  res.json(projects)
-})
-
 app.get('/meta', (req, res) => {
   res.json({
     connected: wss.clients.size,
@@ -66,13 +58,20 @@ app.get('/meta', (req, res) => {
     updated: {
       content: state.updated.content,
       distribution: state.updated.distribution
-    },
-    meta: `${ wss.clients.size } users and ${ state.projects.length } projects are online. Content will be updated in ${ Math.trunc((1 * 60 * 1000 - (Date.now() - state.updated.content)) / 1000) } seconds, new distribution in ${ Math.trunc((1 * 60 * 60 * 1000 - (Date.now() - state.updated.distribution)) / 1000) } seconds.`
+    }
   })
 })
 
 app.get('/info', (req, res) => {
   res.send(`<h1 style="font-family: Arial; font-size: 4em; font-weight: normal; text-transform: uppercase;">${ wss.clients.size } users and ${ state.projects.length } projects are online. Content will be updated in ${ Math.trunc((1 * 60 * 1000 - (Date.now() - state.updated.content)) / 1000) } seconds, new distribution in ${ Math.trunc((1 * 60 * 60 * 1000 - (Date.now() - state.updated.distribution)) / 1000) }.</h1>`)
+})
+
+app.get('/projects', async (req, res) => {
+  const projects = await Promise.all(state.projects.map(async (project) => {
+    project.chat = await db.getMessages(project.id)
+    return project
+  }))
+  res.json(projects)
 })
 
 app.listen(2628, () => console.log('parcours-online-server runnin on: http://localhost:2628'))
