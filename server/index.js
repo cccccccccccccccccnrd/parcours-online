@@ -7,22 +7,30 @@ const WebSocket = require('ws')
 const db = require('./db.js')
 
 const state = {
-  last: Date.now(),
+  updated: {
+    content: null,
+    distribution: null,
+  },
   projects: null,
   logins: {}
 }
 
 setInterval(async () => {
   state.projects = await db.getProjects(true)
+  state.updated.content = Date.now()
+  state.updated.distribution = Date.now()
 }, 1 * 60 * 60 * 1000)
 
 setInterval(async () => {
   state.projects = await db.getProjects()
+  state.updated.content = Date.now()
 }, 1 * 60 * 1000)
 
 async function init () {
   await db.init()
   state.projects = await db.getProjects(true)
+  state.updated.content = Date.now()
+  state.updated.distribution = Date.now()
 }
 
 init()
@@ -32,16 +40,24 @@ const app = express()
 app.use(cors())
 app.use(helmet())
 
-app.get('/connected', (req, res) => {
-  res.json({ connected: wss.clients.size })
-})
-
 app.get('/projects', async (req, res) => {
   const projects = await Promise.all(state.projects.map(async (project) => {
     project.chat = await db.getMessages(project.id)
     return project
   }))
   res.json(projects)
+})
+
+app.get('/meta', (req, res) => {
+  res.json({
+    connected: wss.clients.size,
+    projects: state.projects.length,
+    updated: {
+      content: state.updated.content,
+      distribution: state.updated.distribution
+    },
+    meta: `${ wss.clients.size } users and ${ state.projects.length } projects are online. Content will be updated in ${ Math.trunc((1 * 60 * 1000 - (Date.now() - state.updated.content)) / 1000) } seconds, new distribution in ${ Math.trunc((1 * 60 * 60 * 1000 - (Date.now() - state.updated.distribution)) / 1000) } seconds.`
+  })
 })
 
 app.listen(2628, () => console.log('parcours-online-server runnin on: http://localhost:2628'))
