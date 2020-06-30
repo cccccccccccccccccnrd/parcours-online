@@ -159,6 +159,15 @@ export default {
     this.projects.forEach((project) => {
       project.chat.forEach((message) => this.insertChatMessage(message))
     })
+
+    const param = new URLSearchParams(window.location.search).get('project')
+
+    if (param) {
+      const project = this.projects.find((project) => project.id.includes(param))
+      if (project) {
+        this.openProject(project)
+      }
+    }
   },
   computed: {
     ...mapGetters({
@@ -202,6 +211,9 @@ export default {
     },
     random(min, max) {
       return Math.floor(Math.random() * (max - min + 1) + min)
+    },
+    openProject (project) {
+      this.$store.dispatch('ui/openProject', project)
     }
   }
 }
