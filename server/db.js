@@ -234,13 +234,7 @@ async function getProjects (randomize) {
             picture: column[12] ? column[12] : 'https://i.imgur.com/dhEBWaQ.jpg',
             mail: column[13] ? column[13] : 'No mail',
             link: column[14] ? column[14] : 'No link',
-            externals: [{
-              title: column[15] ? column[15].split(',')[0].trim() : 'No external',
-              url: column[15] ? column[15].split(',')[1].trim() : 'www.instagram.com/kisdesign'
-            }, {
-              title: column[16] ? column[16].split(',')[0].trim() : 'No external',
-              url: column[16] ? column[16].split(',')[1].trim() : 'www.facebook.com/KISDonline'
-            }],
+            externals: [column[15], column[16]],
             thumbnail: column[17] ? column[17] : 'https://i.imgur.com/dhEBWaQ.jpg',
             chat: await getMessages(id)
           }

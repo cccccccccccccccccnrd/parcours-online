@@ -41,7 +41,7 @@
     </div>
     <div class="externals">
       <a
-        v-for="(link, index) in project.externals"
+        v-for="(link, index) in externals"
         :key="`pop-up-external-${ index }`"
         class="chip"
         :href="link.url.startsWith('http') ? link.url : `http://${ link.url }`"
@@ -107,6 +107,19 @@ export default {
     }),
     viewers () {
       return this.cursors.filter((c) => c.payload.location === this.project.id).length + 1
+    },
+    externals () {
+      return this.project.externals.map((external) => {
+        console.log(external)
+        if (external.includes(',')) {
+          return {
+            title: external.split(',')[0].trim(),
+            url: external.split(',')[1].trim()
+          }
+        } else {
+          return null
+        }
+      }).filter(Boolean)
     }
   }
 }
