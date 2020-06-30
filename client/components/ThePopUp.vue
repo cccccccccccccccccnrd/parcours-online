@@ -1,5 +1,8 @@
 <template>
-  <div class="pop-up-container">
+  <div
+    class="pop-up-container"
+    ref="popUpContainer"
+  >
     <div
       v-if="chatOpen"
       class="chat"
@@ -42,7 +45,14 @@ export default {
       chatOpen: false
     }
   },
-  mounted () {},
+  mounted () {
+    const app = this
+    this.$refs.popUpContainer.addEventListener('click', (event) => {
+      if (event.srcElement.classList.contains('pop-up-container')) {
+        app.closeProject()
+      }
+    })
+  },
   methods: {
     closeProject () {
       this.$store.dispatch('ui/closeProject')
