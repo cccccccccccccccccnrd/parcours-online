@@ -234,11 +234,11 @@ async function getProjects (randomize) {
           mail: column[13] ? column[13] : 'No mail',
           link: column[14] ? column[14] : 'No link',
           externals: [{
-            title: column[15].split(',')[0].trim() ? column[15].split(',')[0].trim() : 'No external',
-            url: column[15].split(',')[1].trim() ? column[15].split(',')[1].trim() : 'www.instagram.com/kisdesign'
+            title: column[15] ? column[15].split(',')[0].trim() : 'No external',
+            url: column[15] ? column[15].split(',')[1].trim() : 'www.instagram.com/kisdesign'
           }, {
-            title: column[16].split(',')[0].trim() ? column[16].split(',')[0].trim() : 'No external',
-            url: column[16].split(',')[1].trim() ? column[16].split(',')[1].trim() : 'www.facebook.com/KISDonline'
+            title: column[16] ? column[16].split(',')[0].trim() : 'No external',
+            url: column[16] ? column[16].split(',')[1].trim() : 'www.facebook.com/KISDonline'
           }],
           thumbnail: column[17] ? column[17] : 'https://i.imgur.com/dhEBWaQ.jpg',
           chat: await getMessages(id)
