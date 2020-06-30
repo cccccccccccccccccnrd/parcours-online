@@ -16,21 +16,32 @@ const state = {
 }
 
 setInterval(async () => {
-  state.projects = await db.getProjects(true)
-  state.updated.content = Date.now()
-  state.updated.distribution = Date.now()
-}, 1 * 60 * 60 * 1000)
+  state.projects = await getProjects()
+}, 1 * 60 * 1000)
 
 setInterval(async () => {
-  state.projects = await db.getProjects()
-  state.updated.content = Date.now()
-}, 1 * 60 * 1000)
+  state.projects = await getProjects(true)
+}, 1 * 60 * 60 * 1000)
+
+async function getProjects (randomize) {
+  try {
+    const projects = await db.getProjects(randomize)
+    if (randomize) {
+      state.updated.content = Date.now()
+      state.updated.distribution = Date.now()
+    } else {
+      state.updated.content = Date.now()
+    }
+    return projects
+  } catch (error) {
+    console.log('Error while parsing values, using prev projects')
+    return state.projects
+  }
+}
 
 async function init () {
   await db.init()
-  state.projects = await db.getProjects(true)
-  state.updated.content = Date.now()
-  state.updated.distribution = Date.now()
+  state.projects = await getProjects(true)
 }
 
 init()
@@ -58,6 +69,10 @@ app.get('/meta', (req, res) => {
     },
     meta: `${ wss.clients.size } users and ${ state.projects.length } projects are online. Content will be updated in ${ Math.trunc((1 * 60 * 1000 - (Date.now() - state.updated.content)) / 1000) } seconds, new distribution in ${ Math.trunc((1 * 60 * 60 * 1000 - (Date.now() - state.updated.distribution)) / 1000) } seconds.`
   })
+})
+
+app.get('/info', (req, res) => {
+  res.send(`<h1 style="font-family: Arial; font-size: 4em; font-weight: normal; text-transform: uppercase;">${ wss.clients.size } users and ${ state.projects.length } projects are online. Content will be updated in ${ Math.trunc((1 * 60 * 1000 - (Date.now() - state.updated.content)) / 1000) } seconds, new distribution in ${ Math.trunc((1 * 60 * 60 * 1000 - (Date.now() - state.updated.distribution)) / 1000) } seconds.</h1>`)
 })
 
 app.listen(2628, () => console.log('parcours-online-server runnin on: http://localhost:2628'))
