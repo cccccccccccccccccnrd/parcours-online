@@ -210,6 +210,7 @@ export default {
 <style>
 body {
   overflow: hidden;
+  background: #f4f4f4;
 }
 
 .logo {

@@ -11,6 +11,10 @@ export default {
 </script>
 
 <style>
+:root {
+  --yellow: #ffed00;
+}
+
 ::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 5px;

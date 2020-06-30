@@ -1,7 +1,7 @@
 <template>
   <div
     class="map"
-    :style="`width: ${ width / scale + 20 }px; height: ${ width / scale + 20 }px;`"
+    :style="`width: ${ width / scale + 10 }px; height: ${ width / scale + 10 }px;`"
   >
     <tooltip
       class="info"
@@ -10,14 +10,16 @@
     />
     <div
       class="viewer"
-      :style="`width: ${ viewerWidth / scale }px; height: ${ viewerHeight / scale }px; top: ${ scroll[1] / scale }px; left: ${ scroll[0] / scale }px;`"
-    >
-    </div>
+      :style="`width: ${ viewerWidth / scale }px; height: ${ viewerHeight / scale }px; top: ${ (scroll[1] / scale) + 10 }px; left: ${ (scroll[0] / scale) + 10 }px;`"
+    ></div>
+    <div
+      class="courtyard"
+    ></div>
     <div
       class="artwork"
       v-for="(artwork, index) in artworks"
       :key="`map-artwork-${ index }`"
-      :style="`top: ${ artwork.top / scale }px; left: ${ artwork.left / scale }px;`"
+      :style="`top: ${ artwork.top / scale + 10 }px; left: ${ artwork.left / scale + 10 }px;`"
     >
       <div
         class="square"
@@ -65,7 +67,9 @@ export default {
     bottom: 3em;
     right: 1em;
     /* background: white; */
-    /* box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2); */
+    box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2);
+    background: #f4f4f4;
+    border-radius: 5px;
     z-index: 10;
   }
 
@@ -74,10 +78,11 @@ export default {
   }
 
   .square {
-    width: 0.4em;
-    height: 0.4em;
-    background: #ffed00;
-    border-radius: 100px;
+    width: 0.33em;
+    height: 0.33em;
+    background: #3FA535;
+    /* border-radius: 100px; */
+    /* border: 1px solid #ffed00; */
   }
 
   .square:hover {
@@ -89,14 +94,24 @@ export default {
     width: 5em;
     height: 4em;
     border-radius: 0.5em;
-    border: 1px dotted #3FA535;
+    border: 2px dotted #1a1a1a;
     z-index: 1;
   }
 
   .info {
-    margin: -2em 0 0 0;
+    margin: -3em 0 0 0;
     width: fit-content;
     float: right;
     z-index: 10;
+  }
+
+  .courtyard {
+    position: absolute;
+    top: calc(50% - 1em);
+    left: calc(50% - 1.5em);
+    width: 25%;
+    height: 15%;
+    border-radius: 0.4em;
+    background: #3FA535;
   }
 </style>
