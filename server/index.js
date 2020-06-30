@@ -72,7 +72,7 @@ app.get('/meta', (req, res) => {
 })
 
 app.get('/info', (req, res) => {
-  res.send(`<h1 style="font-family: Arial; font-size: 4em; font-weight: normal; text-transform: uppercase;">${ wss.clients.size } users and ${ state.projects.length } projects are online. Content will be updated in ${ Math.trunc((1 * 60 * 1000 - (Date.now() - state.updated.content)) / 1000) } seconds, new distribution in ${ Math.trunc((1 * 60 * 60 * 1000 - (Date.now() - state.updated.distribution)) / 1000) } seconds.</h1>`)
+  res.send(`<h1 style="font-family: Arial; font-size: 4em; font-weight: normal; text-transform: uppercase;">${ wss.clients.size } users and ${ state.projects.length } projects are online. Content will be updated in ${ Math.trunc((1 * 60 * 1000 - (Date.now() - state.updated.content)) / 1000) } seconds, new distribution in ${ Math.trunc((1 * 60 * 60 * 1000 - (Date.now() - state.updated.distribution)) / 1000) }.</h1>`)
 })
 
 app.listen(2628, () => console.log('parcours-online-server runnin on: http://localhost:2628'))
