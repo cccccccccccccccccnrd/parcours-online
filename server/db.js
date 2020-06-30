@@ -216,31 +216,31 @@ async function getProjects (randomize) {
         return {
           id: id,
           graduate: title,
-          title: column[0],
-          sub: column[1],
-          type: column[2],
-          supervision: column[3],
-          expertise: column[4],
-          tags: column[5],
+          title: column[0] ? column[0] : 'No title',
+          sub: column[1] ? column[1] : 'No subtitle',
+          type: column[2] ? column[2] : 'No type',
+          supervision: column[3] ? column[3] : 'No supervisors',
+          expertise: column[4] ? column[4] : 'No expertise',
+          tags: column[5] ? column[5] : 'No tags',
           content: [
-            column[6],
-            column[7],
-            column[8],
-            column[9],
-            column[10],
-            column[11]
+            column[6] ? column[6] : 'No content in slot 1',
+            column[7] ? column[7] : 'No content in slot 2',
+            column[8] ? column[8] : 'No content in slot 3',
+            column[9] ? column[9] : 'No content in slot 4',
+            column[10] ? column[10] : 'No content in slot 5',
+            column[11] ? column[11] : 'No content in slot 6'
           ],
-          picture: column[12],
-          mail: column[13],
-          link: column[14],
+          picture: column[12] ? column[12] : 'https://i.imgur.com/dhEBWaQ.jpg',
+          mail: column[13] ? column[13] : 'No mail',
+          link: column[14] ? column[14] : 'No link',
           externals: [{
-            title: column[15].split(',')[0].trim(),
-            url: column[15].split(',')[1].trim()
+            title: column[15].split(',')[0].trim() ? column[15].split(',')[0].trim() : 'No external',
+            url: column[15].split(',')[1].trim() ? column[15].split(',')[1].trim() : 'www.instagram.com/kisdesign'
           }, {
-            title: column[16].split(',')[0].trim(),
-            url: column[16].split(',')[1].trim()
+            title: column[16].split(',')[0].trim() ? column[16].split(',')[0].trim() : 'No external',
+            url: column[16].split(',')[1].trim() ? column[16].split(',')[1].trim() : 'www.facebook.com/KISDonline'
           }],
-          thumbnail: column[17],
+          thumbnail: column[17] ? column[17] : 'https://i.imgur.com/dhEBWaQ.jpg',
           chat: await getMessages(id)
         }
       }))
