@@ -212,7 +212,7 @@ async function getProjects (randomize) {
         const sheetId = sheet.properties.sheetId
         const title = sheet.properties.title
         const id = `${ title.toLowerCase().split(' ').join('-') }-${ sheetId }`
-        const column = sheet.data[0].rowData.map((r) => r.values[1].formattedValue).filter(Boolean)
+        const column = sheet.data[0].rowData.map((r) => r.values[1].formattedValue).slice(0, 20)
         return {
           id: id,
           graduate: title,
