@@ -7,6 +7,7 @@
     <badge
       :number="viewers"
       class="badge"
+      v-if="viewers > 0"
     />
     <img v-if="type === 'image'" :src="project.thumbnail">
     <video v-if="type === 'video'" :src="project.thumbnail" autoplay loop muted></video>
