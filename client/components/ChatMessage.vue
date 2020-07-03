@@ -25,7 +25,7 @@ export default {
   computed: {
     formatedTimestamp () {
       const date = new Date(this.timestamp)
-      return `${ date.getDate() } ${ date.getMonth() + 1 } — ${ date.getHours() } ${ ('0' + date.getMinutes()).slice(-2) }`
+      return `${ date.getHours() }:${ ('0' + date.getMinutes()).slice(-2) } / ${ date.getDate() }.${ date.getMonth() + 1 }`
     }
   }
 }

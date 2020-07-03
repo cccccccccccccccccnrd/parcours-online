@@ -110,7 +110,6 @@ export default {
     },
     externals () {
       return this.project.externals.map((external) => {
-        console.log(external)
         if (external.includes(',')) {
           return {
             title: external.split(',')[0].trim(),

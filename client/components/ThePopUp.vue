@@ -14,7 +14,8 @@
     >
       <chat-bubble
         @click.native="toggleChat"
-        :color="black"
+        color="black"
+        :flip="this.chatOpen"
         class="chat-bubble"
       />
       <x

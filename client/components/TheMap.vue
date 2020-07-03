@@ -57,7 +57,7 @@ export default {
       app.viewerHeight = document.body.clientHeight
     })
   },
-  computed: {}
+  methods: {}
 }
 </script>
 

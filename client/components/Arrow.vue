@@ -6,7 +6,7 @@
           .cls-2{fill:none;stroke:#000;stroke-width:2px;stroke-linecap:square}
         </style>
       </defs>
-      <g id="Group_7" data-name="Group 7">
+      <g>
         <path fill="none" stroke="#000" stroke-width="2" d="M1.41 13.41h72"/>
         <path class="cls-2" d="M1.41 13.41l12-12"/>
         <path class="cls-2" d="M1.41 13.41l12 12"/>
