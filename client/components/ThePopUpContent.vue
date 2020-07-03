@@ -149,6 +149,7 @@ header h1 {
 
 header p {
   font-size: 1.5em;
+  text-align: center;
 }
 
 img {
