@@ -12,10 +12,10 @@
     <div
       class="pop-up"
     >
-      <arrow
+      <chat-bubble
         @click.native="toggleChat"
-        :right="chatOpen"
-        class="arrow"
+        :color="black"
+        class="chat-bubble"
       />
       <x
         @click.native="closeProject"
@@ -29,7 +29,7 @@
 <script>
 import ThePopUpContent from '~/components/ThePopUpContent.vue'
 import ThePopUpChat from '~/components/ThePopUpChat.vue'
-import Arrow from '~/components/Arrow.vue'
+import ChatBubble from '~/components/ChatBubble.vue'
 import X from '~/components/X.vue'
 import { mapMutations } from 'vuex'
 
@@ -37,7 +37,7 @@ export default {
   components: {
     ThePopUpContent,
     ThePopUpChat,
-    Arrow,
+    ChatBubble,
     X
   },
   data () {
@@ -96,7 +96,7 @@ export default {
   overflow-y: scroll;
 }
 
-.arrow {
+.chat-bubble {
   position: absolute;
   top: 2em;
   left: 2em;
@@ -121,7 +121,7 @@ export default {
     font-size: 12px;
   }
 
-  .arrow {
+  .chat-bubble {
     top: 0.67em;
     left: 0.67em;
   }
