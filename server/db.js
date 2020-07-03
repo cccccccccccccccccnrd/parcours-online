@@ -119,12 +119,16 @@ async function distribute(values) {
     let thumbs = []
 
     const artworks = await Promise.all(values.map(async (value) => {
-      return {
-        dimensions: await probe(value.thumbnail),
-        id: value.id
+      try {
+        return {
+          dimensions: await probe(value.thumbnail),
+          id: value.id
+        }
+      } catch(error) {
+        console.log(value.graduate, error)
       }
     }))
-    
+
     while (thumbs.length !== artworks.length) {
       for (const artwork of artworks) {
         const thumb = {
