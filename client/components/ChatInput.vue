@@ -6,6 +6,7 @@
     v-model="message"
     name="Chat Input"
     rows="1"
+    placeholder="Type to chat..."
   ></textarea>
 </template>
 
@@ -97,5 +98,10 @@ textarea {
 textarea:focus {
   outline: 0;
   /* box-shadow: 0em -0.25em 0.5em rgba(0, 0, 0, 0.2); */
+}
+
+textarea::placeholder {
+  color: #009fe3;
+  opacity: 0.3;
 }
 </style>

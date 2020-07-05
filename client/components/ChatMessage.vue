@@ -7,7 +7,7 @@
       <p>{{ formatedTimestamp }}</p>
     </div>
   <div
-    class="message"
+    class="message ci"
     :class="{ 'logged-in': loggedIn, 'cool': mode === 'cool', 'cursor': !name }"
   >
     <div class="content">{{ content }}</div>
@@ -73,6 +73,13 @@ export default {
   background: white;
   border-radius: 1.5em;
   box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2);
+}
+
+.message.ci {
+  color: #009fe3;
+  background: #ffed00;
+  border: 2px solid #009fe3;
+  box-shadow: none;
 }
 
 .message.cursor {
