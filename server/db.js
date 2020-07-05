@@ -111,8 +111,8 @@ function getGraduates () {
 
 async function distribute(values) {
   return new Promise(async (resolve, reject) => {
-    const width = 4000
-    const height = 4000
+    const width = 5000
+    const height = 5000
     const courtyardw = 1040
     const courtyardh = 600
     const thresh = 10
@@ -128,6 +128,8 @@ async function distribute(values) {
         console.log(value.graduate, error)
       }
     }))
+    
+    console.log(artworks.sort((a, b) => a.dimensions.length - b.dimensions.length))
 
     while (thumbs.length !== artworks.length) {
       for (const artwork of artworks) {
