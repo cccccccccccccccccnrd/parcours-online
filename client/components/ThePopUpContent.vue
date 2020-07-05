@@ -110,13 +110,15 @@ export default {
     },
     externals () {
       return this.project.externals.map((external) => {
-        if (external.includes(',')) {
-          return {
-            title: external.split(',')[0].trim(),
-            url: external.split(',')[1].trim()
+        if (external) {
+          if (external.includes(',')) {
+            return {
+              title: external.split(',')[0].trim(),
+              url: external.split(',')[1].trim()
+            }
+          } else {
+            return null
           }
-        } else {
-          return null
         }
       }).filter(Boolean)
     }
