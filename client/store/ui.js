@@ -6,6 +6,7 @@ export const state = () => ({
 
 export const actions = {
   openProject(context, project) {
+    console.log(project)
     context.commit('setProject', project)
     context.commit('setLocation', project.id)
     context.commit('togglePopUp')
