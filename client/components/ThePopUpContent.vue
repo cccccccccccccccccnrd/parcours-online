@@ -142,7 +142,7 @@ header {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  padding: 2em 0 0 0;
+  padding: 2em 4.5em 0 4.5em;
 }
 
 header h1 {
