@@ -17,9 +17,9 @@ export default {
   mounted () {},
   computed: {
     type () {
-      if (this.content.endsWith('.jpg')) {
+      if (this.content.trim().endsWith('.jpg')) {
         return 'image'
-      } else if (this.content.endsWith('.mp4')) {
+      } else if (this.content.trim().endsWith('.mp4')) {
         return 'video'
       } else {
         return 'text'
