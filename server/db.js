@@ -128,8 +128,6 @@ async function distribute(values) {
         console.log(value.graduate, error)
       }
     }))
-    
-    console.log(artworks.sort((a, b) => a.dimensions.length - b.dimensions.length))
 
     while (thumbs.length !== artworks.length) {
       for (const artwork of artworks) {
@@ -198,6 +196,7 @@ async function distribute(values) {
     })
 
     console.log('placed all artworks')
+    console.log(artworks.sort((a, b) => a.dimensions.length - b.dimensions.length))
     return resolve(distributed)
   })
 }
