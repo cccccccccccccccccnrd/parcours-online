@@ -9,7 +9,11 @@
       class="badge"
       v-if="viewers > 0"
     />
-    <img v-if="type === 'image'" :src="project.thumbnail">
+    <img
+      v-if="type === 'image'"
+      :src="project.thumbnail"
+      draggable="false"
+    >
     <video v-if="type === 'video'" :src="project.thumbnail" autoplay loop muted></video>
     <!-- <p class="title">{{ project.title }}</p> -->
   </div>

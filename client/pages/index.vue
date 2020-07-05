@@ -28,6 +28,7 @@
           <current-visitors />
           <div
             class="artworks dragscroll"
+            nochilddrag="nochilddrag"
             id="artworks"
             ref="artworks"
           >
@@ -213,6 +214,7 @@ export default {
       return Math.floor(Math.random() * (max - min + 1) + min)
     },
     openProject (project) {
+      console.log(this.scrollTop)
       this.$store.dispatch('ui/openProject', project)
     }
   }
