@@ -76,18 +76,22 @@ export default {
 <style scoped>
 textarea {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 0.2em;
+  bottom: 20px;
+  left: 20px;
+  width: 30%;
+  padding: 0.2em 0.6em;
   font-family: 'ArnoldGrotesk', 'ManifontGrotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 10em;
+  font-size: 2em;
   /* text-align: center; */
-  color: black;
-  background: transparent;
-  border: 0;
+  color: #009fe3;
+  background: #ffed00;
+  border: 2px solid #009fe3;
+  border-radius: 99999px;
   resize: none;
   z-index: 10;
+  white-space: nowrap;
+  overflow-y: hidden;
+  /* overflow-x: scroll; */
 }
 
 textarea:focus {

@@ -20,12 +20,12 @@
         <div
           :class="{ blur: isPopUpOpen }"
         >
+          <!-- <current-visitors /> -->
           <the-map
             :artworks="artworks"
             :width="width"
             :scroll="[scrollLeft, scrollTop]"
           />
-          <current-visitors />
           <div
             class="artworks dragscroll"
             nochilddrag="nochilddrag"

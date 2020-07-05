@@ -64,12 +64,13 @@ export default {
 <style scoped>
   .map {
     position: absolute;
-    bottom: 3em;
-    right: 1em;
+    bottom: 20px;
+    right: 20px;
     /* background: white; */
-    box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2);
-    background: #f4f4f4;
-    border-radius: 5px;
+    /* box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2); */
+    background: #ffed00;
+    border: 2px solid #009fe3;
+    border-radius: 15px;
     z-index: 10;
   }
 
@@ -78,11 +79,11 @@ export default {
   }
 
   .square {
-    width: 0.33em;
-    height: 0.33em;
-    background: #3FA535;
-    /* border-radius: 100px; */
-    /* border: 1px solid #ffed00; */
+    width: 0.6em;
+    height: 0.6em;
+    background: white;
+    border-radius: 100px;
+    border: 2px solid #009fe3;
   }
 
   .square:hover {
@@ -93,9 +94,8 @@ export default {
     position: absolute;
     width: 5em;
     height: 4em;
-    border-radius: 0.5em;
-    border: 2px dotted #1a1a1a;
-    z-index: 1;
+    /* border-radius: 0.5em; */
+    border: 2px dashed #009fe3;
   }
 
   .info {
@@ -107,11 +107,12 @@ export default {
 
   .courtyard {
     position: absolute;
-    top: calc(50% - 1em);
-    left: calc(50% - 1.5em);
-    width: 25%;
-    height: 15%;
+    top: calc(50% - 0.75em);
+    left: calc(50% - 1.25em);
+    width: 22.5%;
+    height: 12.5%;
     border-radius: 0.4em;
-    background: #3FA535;
+    background: white;
+    border: 2px solid #009fe3;
   }
 </style>
