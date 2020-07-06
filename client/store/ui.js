@@ -20,6 +20,13 @@ export const actions = {
 
 export const mutations = {
   setProject(state, project) {
+    if (project) {
+      document.title = `KISDparcours — ${ project.title }`
+      window.history.replaceState(null, `KISDparcours — ${ project.title }`, `?project=${ project.id.match(/[^\d]+/g)[0].slice(0, -1) }`)
+    } else {
+      document.title = 'KISDparcours'
+      window.history.replaceState(null, 'KISDparcours', '')
+    }
     state.project = project
   },
   setLocation(state, location) {

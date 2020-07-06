@@ -7,14 +7,14 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'PARCOURS ONLINE',
+    title: 'KISDparcours',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { hid: 'description', name: 'description', content: 'The annual exhibition KISDparcours presents the final theses of this year\'s Bachelor and Master graduates and many other projects developed over the academic year.' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/png', href: 'favicon.png' }
     ]
   },
 
