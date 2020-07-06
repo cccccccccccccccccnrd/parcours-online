@@ -10,7 +10,9 @@
           />
         </div> -->
         <!-- <chat /> -->
-        <chat-input />
+        <chat-input
+          :class="{ blur: isPopUpOpen }"
+        />
         <the-pop-up
           v-if="isPopUpOpen"
         />
@@ -161,7 +163,7 @@ export default {
       project.chat.forEach((message) => this.insertChatMessage(message))
     })
 
-    const param = new URLSearchParams(window.location.search).get('project')
+    const param = new URLSearchParams(window.location.search).get('graduate')
 
     if (param) {
       const project = this.projects.find((project) => project.id.includes(param))
