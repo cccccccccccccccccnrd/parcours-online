@@ -159,10 +159,17 @@ img {
   box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2);
 }
 
+header .chip {
+  font-size: 1.3em;
+}
+
 .chip {
   padding: 0.3em 0.6em;
+  font-size: 0.9em;
+  color: #009fe3;
+  background: #ffed00;
+  border: 2px solid #009fe3;
   border-radius: 100px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .arrow {
