@@ -3,11 +3,15 @@
     class="map"
     :style="`width: ${ width / scale + 10 }px; height: ${ width / scale + 10 }px;`"
   >
-    <tooltip
-      class="info"
-      v-if="current"
-      :content="current.title"
-    />
+    <div
+      class="tooltip-container"
+    >
+      <tooltip
+        class="tooltip"
+        v-if="current"
+        :content="current.title"
+      />
+    </div>
     <div
       class="viewer"
       :style="`width: ${ viewerWidth / scale }px; height: ${ viewerHeight / scale }px; top: ${ (scroll[1] / scale) + 10 }px; left: ${ (scroll[0] / scale) + 10 }px;`"
@@ -63,14 +67,15 @@ export default {
 
 <style scoped>
   .map {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
+    position: fixed;
+    bottom: 3em;
+    right: 0;
     /* background: white; */
     /* box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2); */
-    background: #ffed00;
-    border: 2px solid #009fe3;
-    border-radius: 15px;
+    background: #ffe103;
+    border-top: 2px solid #009fe3;
+    border-left: 2px solid #009fe3;
+    /* border-radius: 15px; */
     z-index: 10;
   }
 
@@ -98,11 +103,18 @@ export default {
     border: 2px dashed #009fe3;
   }
 
-  .info {
-    margin: -3em 0 0 0;
-    width: fit-content;
-    float: right;
+  .tooltip-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: -4em 0 0 0;
+    width: 100%;
     z-index: 10;
+    text-align: center;
+  }
+
+  .tooltip {
+    max-width: 90%;
   }
 
   .courtyard {

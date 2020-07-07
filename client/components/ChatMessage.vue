@@ -77,7 +77,7 @@ export default {
 
 .message.ci {
   color: #009fe3;
-  background: #ffed00;
+  background: #ffe103;
   border: 2px solid #009fe3;
   box-shadow: none;
 }

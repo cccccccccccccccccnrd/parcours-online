@@ -113,8 +113,8 @@ async function distribute(values) {
   return new Promise(async (resolve, reject) => {
     const width = 5000
     const height = 5000
-    const courtyardw = 1040
-    const courtyardh = 600
+    const courtyardw = 1100
+    const courtyardh = 650
     const thresh = 10
     let thumbs = []
 

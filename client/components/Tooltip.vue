@@ -18,10 +18,11 @@ export default {
 <style scoped>
 .tooltip {
   padding: 0.35em 1em 0.5em 1em;
-  font-size: 0.8em;
+  font-size: 1em;
   border-radius: 100px;
-  color: black;
-  background: #f4f4f4;
-  box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2);
+  color: #009fe3;
+  background: #ffe103;
+  border: 2px solid #009fe3;
+  /* box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2); */
 }
 </style>

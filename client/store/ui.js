@@ -1,5 +1,6 @@
 export const state = () => ({
   isPopUpOpen: false,
+  isMapOpen: true,
   location: 'global',
   project: null
 })
@@ -34,12 +35,18 @@ export const mutations = {
   },
   togglePopUp(state) {
     state.isPopUpOpen = !state.isPopUpOpen
+  },
+  toggleMap(state) {
+    state.isMapOpen = !state.isMapOpen
   }
 }
 
 export const getters = {
   isPopUpOpen (state) {
     return state.isPopUpOpen
+  },
+  isMapOpen (state) {
+    return state.isMapOpen
   },
   project (state) {
     return state.project

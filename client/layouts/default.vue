@@ -11,10 +11,6 @@ export default {
 </script>
 
 <style>
-:root {
-  --yellow: #ffed00;
-}
-
 ::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 5px;
@@ -22,7 +18,7 @@ export default {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: black;
+  background: #ffe103;
 }
 
 /* @font-face {

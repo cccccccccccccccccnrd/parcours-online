@@ -10,9 +10,10 @@
           />
         </div> -->
         <!-- <chat /> -->
-        <chat-input
+        <!-- <chat-input
           :class="{ blur: isPopUpOpen }"
-        />
+        /> -->
+        <the-bar/>
         <the-pop-up
           v-if="isPopUpOpen"
         />
@@ -24,6 +25,7 @@
         >
           <!-- <current-visitors /> -->
           <the-map
+            v-if="isMapOpen"
             :artworks="artworks"
             :width="width"
             :scroll="[scrollLeft, scrollTop]"
@@ -34,7 +36,7 @@
             id="artworks"
             ref="artworks"
           >
-            <the-courtyard />
+            <the-new-courtyard />
             <cursor-other
               v-for="cursor in cursors"
               :key="cursor.id"
@@ -67,7 +69,8 @@ import CurrentVisitors from '~/components/CurrentVisitors.vue'
 import ThePopUp from '~/components/ThePopUp.vue'
 import TheMap from '~/components/TheMap.vue'
 import Logo from '~/components/Logo.vue'
-import TheCourtyard from '~/components/TheCourtyard.vue'
+import TheNewCourtyard from '~/components/TheNewCourtyard.vue'
+import TheBar from '~/components/TheBar.vue'
 import { mapGetters, mapMutations } from 'vuex'
 import axios from 'axios'
 
@@ -82,7 +85,8 @@ export default {
     ThePopUp,
     TheMap,
     Logo,
-    TheCourtyard
+    TheNewCourtyard,
+    TheBar
   },
   data () {
     return {
@@ -178,7 +182,8 @@ export default {
       id: 'socket/id',
       location: 'ui/location',
       cursors: 'cursors/all',
-      isPopUpOpen: 'ui/isPopUpOpen'
+      isPopUpOpen: 'ui/isPopUpOpen',
+      isMapOpen: 'ui/isMapOpen'
     }),
     artworks() {
       const app = this

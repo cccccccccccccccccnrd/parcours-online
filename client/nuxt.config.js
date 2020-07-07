@@ -14,7 +14,8 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'The annual exhibition KISDparcours presents the final theses of this year\'s Bachelor and Master graduates and many other projects developed over the academic year.' }
     ],
     link: [
-      { rel: 'icon', type: 'image/png', href: 'favicon.png' }
+      { rel: 'icon', type: 'image/png', href: 'favicon.png' },
+      { rel: 'stylesheet', href: 'https://use.typekit.net/szk4njr.css' }
     ]
   },
 
