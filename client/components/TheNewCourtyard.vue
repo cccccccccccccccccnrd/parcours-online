@@ -56,33 +56,33 @@
             >🤯</a>
             <a
               class="room"
-              href="https://meet.jit.si/KISDParcoursCourtyardTable🖥🖥🖥"
+              href="https://meet.jit.si/KISDParcoursCourtyardTable👻👻👻"
               target="_blank"
-            >🖥</a>
+            >👻</a>
           </div>
           <div class="rooms rooms-4">
             <a
               class="room"
-              href="https://meet.jit.si/KISDParcoursCourtyardTable🤞🤞🤞"
+              href="https://meet.jit.si/KISDParcoursCourtyardTable😽😽😽"
               target="_blank"
-            >🤞</a>
+            >😽</a>
             <a
               class="room"
-              href="https://meet.jit.si/KISDParcoursCourtyardTable🤑🤑🤑"
+              href="https://meet.jit.si/KISDParcoursCourtyardTable🧠🧠🧠"
               target="_blank"
-            >🤑</a>
+            >🧠</a>
           </div>
           <div class="rooms rooms-2">
             <a
               class="room"
-              href="https://meet.jit.si/KISDParcoursCourtyardTable🦵🦵🦵"
+              href="https://meet.jit.si/KISDParcoursCourtyardTable🐵🐵🐵"
               target="_blank"
-            >🦵</a>
+            >🐵</a>
             <a
               class="room"
-              href="https://meet.jit.si/KISDParcoursCourtyardTable🥰🥰🥰"
+              href="https://meet.jit.si/KISDParcoursCourtyardTable🍆🍆🍆"
               target="_blank"
-            >🥰</a>
+            >🍆</a>
           </div>
         </div>
         <div class="rooms-group">
@@ -94,23 +94,11 @@
             >🍕</a>
             <a
               class="room"
-              href="https://meet.jit.si/KISDParcoursCourtyardTable🖥🖥🖥"
+              href="https://meet.jit.si/KISDParcoursCourtyardTable🐁🐁🐁"
               target="_blank"
-            >🖥</a>
+            >🐁</a>
           </div>
           <div class="rooms rooms-4">
-            <a
-              class="room"
-              href="https://meet.jit.si/KISDParcoursCourtyardTable🐿🐿🐿"
-              target="_blank"
-            >🐿</a>
-            <a
-              class="room"
-              href="https://meet.jit.si/KISDParcoursCourtyardTable👖👖👖"
-              target="_blank"
-            >👖</a>
-          </div>
-          <div class="rooms rooms-2">
             <a
               class="room"
               href="https://meet.jit.si/KISDParcoursCourtyardTable🦆🦆🦆"
@@ -118,42 +106,54 @@
             >🦆</a>
             <a
               class="room"
-              href="https://meet.jit.si/KISDParcoursCourtyardTable🍞🍞🍞"
+              href="https://meet.jit.si/KISDParcoursCourtyardTable🌚🌚🌚"
               target="_blank"
-            >🍞</a>
+            >🌚</a>
+          </div>
+          <div class="rooms rooms-2">
+            <a
+              class="room"
+              href="https://meet.jit.si/KISDParcoursCourtyardTable🍑🍑🍑"
+              target="_blank"
+            >🍑</a>
+            <a
+              class="room"
+              href="https://meet.jit.si/KISDParcoursCourtyardTable🍓🍓🍓"
+              target="_blank"
+            >🍓</a>
           </div>
         </div>
         <div class="rooms-group">
           <div class="rooms rooms-8">
             <a
               class="room"
-              href="https://meet.jit.si/KISDParcoursCourtyardTable🤡🤡🤡"
+              href="https://meet.jit.si/KISDParcoursCourtyardTable💣💣💣"
               target="_blank"
-            >🤡</a>
+            >💣</a>
             <a
               class="room"
-              href="https://meet.jit.si/KISDParcoursCourtyardTable🖥🖥🖥"
+              href="https://meet.jit.si/KISDParcoursCourtyardTable💸💸💸"
               target="_blank"
-            >🖥</a>
+            >💸</a>
           </div>
           <div class="rooms rooms-4">
             <a
               class="room"
-              href="https://meet.jit.si/KISDParcoursCourtyardTable🎺🎺🎺"
+              href="https://meet.jit.si/KISDParcoursCourtyardTable🍩🍩🍩"
               target="_blank"
-            >🎺</a>
+            >🍩</a>
             <a
               class="room"
-              href="https://meet.jit.si/KISDParcoursCourtyardTable🖥🖥🖥"
+              href="https://meet.jit.si/KISDParcoursCourtyardTable🍔🍔🍔"
               target="_blank"
-            >🖥</a>
+            >🍔</a>
           </div>
           <div class="rooms rooms-2">
             <a
               class="room"
-              href="https://meet.jit.si/KISDParcoursCourtyardTable⛏⛏⛏"
+              href="https://meet.jit.si/KISDParcoursCourtyardTable🍕🍕🍕"
               target="_blank"
-            >⛏</a>
+            >🍕</a>
             <a
               class="room"
               href="https://meet.jit.si/KISDParcoursCourtyardTable💞💞💞"
