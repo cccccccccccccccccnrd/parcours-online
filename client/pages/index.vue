@@ -13,7 +13,9 @@
         <!-- <chat-input
           :class="{ blur: isPopUpOpen }"
         /> -->
-        <the-bar/>
+        <the-bar
+          :class="{ blur: isPopUpOpen }"
+        />
         <the-pop-up
           v-if="isPopUpOpen"
         />

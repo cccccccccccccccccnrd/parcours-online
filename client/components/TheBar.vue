@@ -1,8 +1,6 @@
 <template>
   <div class="the-bar">
-    <chat-input
-      :class="{ blur: isPopUpOpen }"
-    />
+    <chat-input/>
     <div class="slots">
       <div
         class="slot link"

@@ -71,8 +71,8 @@ img {
 .badge {
   position: absolute;
   /* transform: translateY(-4em); */
-  top: -0.7em;
-  right: -0.7em;
+  top: 0.5em;
+  right: 0.5em;
 }
 
 .title {

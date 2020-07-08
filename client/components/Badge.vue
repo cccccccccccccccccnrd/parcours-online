@@ -22,14 +22,16 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    display: inline-block;
-    min-width: 1em;
-    min-height: 1em;
-    padding: 0.4em 0.5em 0.4em 0.5em;
+    width: 100%;
+    height: 100%;
+    min-width: 2em;
+    min-height: 2em;
+    /* padding: 0.4em 0.5em 0.4em 0.5em; */
     font-size: 0.8em;
-    color: white;
-    background: red;
+    color: #009fe3;
+    background: #ffe103;
+    border: 2px solid #009fe3;
     border-radius: 99999px;
-    line-height: 1;
+    /* line-height: 1; */
   }
 </style>
