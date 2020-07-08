@@ -1,13 +1,14 @@
 <template>
-  <textarea
+  <input
     ref="chatInput"
-    class="chat-input"
     v-on:keydown.enter.prevent="sendMessage"
     v-model="message"
+    class="chat-input"
+    type="text"
     name="Chat Input"
-    rows="1"
     placeholder="Type to chat..."
-  ></textarea>
+    maxlength="24"
+  />
 </template>
 
 <script>
@@ -75,7 +76,7 @@ export default {
 </script>
 
 <style scoped>
-textarea {
+input {
   padding: 0 0 0 0.5em;
   font-family: 'ArnoldGrotesk', 'ManifontGrotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 1.5em;
@@ -88,12 +89,12 @@ textarea {
   overflow-y: hidden;
 }
 
-textarea:focus {
+input:focus {
   outline: 0;
   /* box-shadow: 0em -0.25em 0.5em rgba(0, 0, 0, 0.2); */
 }
 
-textarea::placeholder {
+input::placeholder {
   color: #009fe3;
   opacity: 1;
 }

@@ -159,14 +159,14 @@ async function distribute(values) {
 
 
           //protection area around the courtyard
-          if (thumb.x >= width / 2 - courtyardw / 2 - thresh && thumb.x <= width / 2 + courtyardw / 2 + thresh || thumb.x + thumb.w >= width / 2 - courtyardw / 2 - thresh && thumb.x + thumb.w <= width / 2 + courtyardw / 2 + thresh) {
-            if (thumb.y >= height / 2 - courtyardh / 2 - thresh && thumb.y <= height / 2 + courtyardh / 2 + thresh || thumb.y + thumb.h >= height / 2 - courtyardh / 2 - thresh && thumb.y + thumb.h <= height / 2 + courtyardh / 2 + thresh) {
+          if (thumb.x > width / 2 - courtyardw / 2  && thumb.x < width / 2 + courtyardw / 2  || thumb.x + thumb.w > width / 2 - courtyardw / 2 && thumb.x + thumb.w < width / 2 + courtyardw / 2) {
+            if (thumb.y >= height / 2 - courtyardh / 2 && thumb.y < height / 2 + courtyardh / 2  || thumb.y + thumb.h >= height / 2 - courtyardh / 2 && thumb.y + thumb.h < height / 2 + courtyardh / 2 ) {
               console.log(Date.now(), 'overlapping courtyard, retry')
               overlapping = true
               break
             } 
           }
-
+          
           // protection area bottom and right
           if (thumb.w + thumb.x > width - border  || thumb.h + thumb.y > height - border || thumb.x < border || thumb.y < border) {
             console.log(Date.now(), 'placement out of window, retry')
