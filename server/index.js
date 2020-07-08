@@ -12,6 +12,7 @@ const state = {
     distribution: null,
   },
   projects: null,
+  program: null,
   logins: {}
 }
 
@@ -42,6 +43,7 @@ async function getProjects (randomize) {
 async function init () {
   await db.init()
   state.projects = await getProjects(true)
+  state.program = await db.getProgram()
 }
 
 init()
@@ -72,6 +74,10 @@ app.get('/projects', async (req, res) => {
     return project
   }))
   res.json(projects)
+})
+
+app.get('/program', async (req, res) => {
+  res.json(state.program)
 })
 
 app.listen(2628, () => console.log('parcours-online-server runnin on: http://localhost:2628'))

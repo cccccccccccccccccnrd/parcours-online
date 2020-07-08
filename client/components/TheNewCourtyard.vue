@@ -185,7 +185,7 @@ export default {
 <style scoped>
 .courtyard {
   --border: 2px solid #009fe3;
-  --fill: #ffe103;
+  --fill: #ffed00;
 }
 
 .courtyard {

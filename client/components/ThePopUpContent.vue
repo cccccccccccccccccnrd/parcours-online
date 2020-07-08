@@ -167,7 +167,7 @@ header .chip {
   padding: 0.3em 0.6em;
   font-size: 0.9em;
   color: #009fe3;
-  background: #ffe103;
+  background: #ffed00;
   border: 2px solid #009fe3;
   border-radius: 100px;
 }

@@ -57,7 +57,7 @@ export default {
   width: 100%;
   height: 3em;
   color: #009fe3;
-  background: #ffe103;
+  background: #ffed00;
   border-top: 2px solid #009fe3;
   z-index: 10;
 }
@@ -82,7 +82,7 @@ export default {
 }
 
 .slot.link:hover {
-  color: #ffe103;
+  color: #ffed00;
   background: #009fe3;
 }
 

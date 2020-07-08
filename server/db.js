@@ -9,7 +9,10 @@ const chats = db.get('chats')
 db.then(() => console.log('Connected to db'))
 
 const state = {
-  spreadsheet: '1WN2STbr8gGTS2NKCFWG6p6u2_rHF5jG9SLx4v_5V3gY',
+  sheets: {
+    database: '1WN2STbr8gGTS2NKCFWG6p6u2_rHF5jG9SLx4v_5V3gY',
+    program: '1fHFNk5wUfTQEhN_RMK2plde1alI50oZfQ0GZ87JFkjw',
+  },
   auth: null,
   projects: []
 }
@@ -40,7 +43,7 @@ function getValues(graduate) {
   return new Promise((resolve, reject) => {
     const sheets = google.sheets({ version: 'v4', auth: state.auth })
     return sheets.spreadsheets.values.get({
-      spreadsheetId: state.spreadsheet,
+      spreadsheetId: state.sheets.database,
       range: `\'${ graduate.name }\'!B1:B100`,
     }, (err, res) => {
       if (err) {
@@ -91,7 +94,7 @@ function getGraduates () {
   return new Promise((resolve, reject) => {
     const sheets = google.sheets({ version: 'v4', auth: state.auth })
     return sheets.spreadsheets.get({
-      spreadsheetId: state.spreadsheet,
+      spreadsheetId: state.sheets.database,
     }, (err, res) => {
       if (err) {
         console.log(err)
@@ -205,7 +208,7 @@ async function getProjects (randomize) {
   return new Promise((resolve, reject) => {
     const sheets = google.sheets({ version: 'v4', auth: state.auth })
     return sheets.spreadsheets.get({
-      spreadsheetId: state.spreadsheet,
+      spreadsheetId: state.sheets.database,
       includeGridData: true
     }, async (err, res) => {
       if (err) {
@@ -267,6 +270,38 @@ async function getProjects (randomize) {
   })
 }
 
+async function getProgram () {
+  return new Promise((resolve, reject) => {
+    const sheets = google.sheets({ version: 'v4', auth: state.auth })
+    return sheets.spreadsheets.get({
+      spreadsheetId: state.sheets.program,
+      includeGridData: true
+    }, async (err, res) => {
+      if (err) {
+        console.log(err)
+        return reject('Error while getting program')
+      }
+      const sheets = res.data.sheets
+      const values = await Promise.all(sheets.map(async (sheet) => {
+        const description = sheet.data[0].rowData[1].values[2].formattedValue
+        const program = sheet.data[0].rowData.map((r) => {
+          return {
+            time: r.values[0].formattedValue,
+            content: r.values[1].formattedValue
+          }
+        }).slice(1)
+
+        return {
+          program: program,
+          description: description
+        }
+      }))
+      console.log(Date.now(), `Db fetched program`)
+      resolve(values[0])
+    })
+  })
+}
+
 /* async function getProjects (randomize) {
   const graduates = await getGraduates()
   const values = await Promise.all(graduates.map(async (graduate) => {
@@ -317,7 +352,7 @@ async function storeMessage (id, message) {
   return new Promise((resolve, reject) => {
     const sheets = google.sheets({ version: 'v4', auth: state.auth })
     return sheets.spreadsheets.values.get({
-      spreadsheetId: state.spreadsheet,
+      spreadsheetId: state.sheets.database,
       range: `\'${ name }\'!B50`,
     }, (err, res) => {
       if (err) return reject('Error while getting values')
@@ -338,7 +373,7 @@ async function storeMessage (id, message) {
   return new Promise((resolve, reject) => {
     const sheets = google.sheets({ version: 'v4', auth: state.auth })
     return sheets.spreadsheets.values.update({
-      spreadsheetId: state.spreadsheet,
+      spreadsheetId: state.sheets.database,
       range: `\'${ name }\'!B50`,
       valueInputOption: 'RAW',
       resource: { values: [[JSON.stringify(messages)]] },
@@ -353,7 +388,7 @@ function checkSecret(name, content) {
   return new Promise((resolve, reject) => {
     const sheets = google.sheets({ version: 'v4', auth: state.auth })
     return sheets.spreadsheets.values.get({
-      spreadsheetId: state.spreadsheet,
+      spreadsheetId: state.sheets.database,
       range: `\'${ name }\'!B22`,
     }, (err, res) => {
       if (err) return reject('Error while checking secret')
@@ -377,6 +412,7 @@ function random(min, max) {
 
 exports.init = init
 exports.getProjects = getProjects
+exports.getProgram = getProgram
 exports.getMessages = getMessages
 exports.storeMessage = storeMessage
 exports.checkSecret = checkSecret

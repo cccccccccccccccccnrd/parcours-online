@@ -2,7 +2,7 @@
   <div
     class="badge"
   >
-    <p>{{ number + 15 }}</p>
+    <p>{{ number }}</p>
   </div>
 </template>
 
@@ -27,7 +27,7 @@ export default {
     padding: 0 0.5em;
     font-size: 0.8em;
     color: #009fe3;
-    background: #ffe103;
+    background: #ffed00;
     border: 2px solid #009fe3;
     border-radius: 99999px;
     /* line-height: 1; */

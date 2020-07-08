@@ -25,7 +25,7 @@
           }
 
           .cls-3 {
-            fill: #ffe103;
+            fill: #ffed00;
           }
         </style>
       </defs>

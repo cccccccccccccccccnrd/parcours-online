@@ -72,7 +72,7 @@ export default {
     right: 0;
     /* background: white; */
     /* box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2); */
-    background: #ffe103;
+    background: #ffed00;
     border-top: 2px solid #009fe3;
     border-left: 2px solid #009fe3;
     /* border-radius: 15px; */

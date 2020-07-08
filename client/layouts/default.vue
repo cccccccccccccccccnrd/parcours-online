@@ -18,7 +18,7 @@ export default {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ffe103;
+  background: #ffed00;
 }
 
 /* @font-face {
