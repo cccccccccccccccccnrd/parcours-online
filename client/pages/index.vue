@@ -13,6 +13,17 @@
         <!-- <chat-input
           :class="{ blur: isPopUpOpen }"
         /> -->
+        <div
+          class="intro"
+          v-if="intro"
+        >
+          <video
+            ref="intro"
+            src="https://unknown.gruppe5.org/intro-no-staring-text.mp4"
+            autoplay
+            muted
+          ></video>
+        </div>
         <the-bar
           :class="{ blur: isPopUpOpen }"
         />
@@ -92,6 +103,7 @@ export default {
   },
   data () {
     return {
+      intro: true,
       width: 3500, /* Sync w/ db.js:91 */
       scrollTop: null,
       scrollLeft: null
@@ -107,6 +119,12 @@ export default {
   },
   mounted () {
     const app = this
+
+    const intro = localStorage.getItem('parcours-online-intro')
+
+    if (intro) {
+      this.intro = false
+    }
 
     this.$store.dispatch('socket/init')
 
@@ -163,6 +181,13 @@ export default {
         app.scrollTop = app.$refs.artworks.scrollTop
         app.scrollLeft = app.$refs.artworks.scrollLeft
       })
+
+      if (app.$refs.intro) {
+        app.$refs.intro.addEventListener('ended', (event) => {
+          app.intro = false
+          localStorage.setItem('parcours-online-intro', 'yes')
+        })
+      }
     })
 
     this.projects.forEach((project) => {
@@ -233,6 +258,23 @@ export default {
 body {
   background: #f4f4f4;
   overflow: hidden;
+}
+
+.intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 99999;
+  background: #ffe502; /*#009eeb;*/
+}
+
+.intro video {
+  width: 70%;
 }
 
 .logo {

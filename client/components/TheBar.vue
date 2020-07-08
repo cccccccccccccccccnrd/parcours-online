@@ -1,18 +1,17 @@
 <template>
   <div class="the-bar">
-    <chat-input/>
+    <chat-input
+      class="chat-input"
+    />
     <div class="slots">
+      <div class="slot">
+        currently online <span class="bold">{{ count }}</span>
+      </div>
       <div
         class="slot link"
         @click="toggleMap"
       >
         🗺️
-      </div>
-      <!-- <div class="slot">
-        ?
-      </div> -->
-      <div class="slot">
-        {{ count }}
       </div>
     </div>
   </div>
@@ -62,6 +61,10 @@ export default {
   z-index: 10;
 }
 
+.chat-input {
+  width: 40%;
+}
+
 .slots {
   display: flex;
 }
@@ -73,6 +76,7 @@ export default {
   min-width: 3em;
   height: 3em;
   padding: 0 1em;
+  text-transform: uppercase;
   border-left: 2px solid #009fe3;
 }
 
@@ -88,5 +92,10 @@ export default {
 
 .slot:last-of-type {
   border-right: 0;
+}
+
+.bold {
+  margin: 0 0 0 0.6em;
+  font-weight: 800;
 }
 </style>
