@@ -114,11 +114,11 @@ function getGraduates () {
 
 async function distribute(values) {
   return new Promise(async (resolve, reject) => {
-    const width = 3000
-    const height = 3000
-    const courtyardw = 1400   //1100 + 300px safespace
-    const courtyardh = 950    //650 + 300px safespace
-    const border = 500
+    const width = 4000
+    const height = 4000
+    const courtyardw = 1200   //1100 + 100px safespace
+    const courtyardh = 750    //650 + 100px safespace
+    const border = 100
     const thresh = 10
     let thumbs = []
 
