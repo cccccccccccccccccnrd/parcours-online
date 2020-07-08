@@ -2,10 +2,13 @@
 <div
   class="chat-message"
 >
-  <div v-if="name" class="info">
-      <p>{{ name }}</p>
-      <p>{{ formatedTimestamp }}</p>
-    </div>
+  <div
+    v-if="name"
+    class="info"
+  >
+    <p>{{ name }}</p>
+    <p>{{ formatedTimestamp }}</p>
+  </div>
   <div
     class="message ci"
     :class="{ 'logged-in': loggedIn, 'cool': mode === 'cool', 'cursor': !name }"

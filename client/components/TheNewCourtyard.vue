@@ -9,21 +9,24 @@
       <div class="program">
         <div class="title">
           <p class="blue-bold">program</p>
-          <br />
-          <p>Opening Friday, 10.7 6:00PM, Presentations on Satuday 11.7 from 11:00AM</p>
+          <p>{{ this.description }}</p>
         </div>
         <div class="schedule">
-          <p>Friday 10.7</p>
-          <p>06:00PM Opening Gais</p>
-          <p>07:00PM Presentation </p>
-          <p>08:00AM Design-Papst</p>
-          <p>01:00AM DJ flex2.0</p>
-          <br />
-          <p>Saturday 10.7</p>
-          <p>06:00PM Opening Gais</p>
-          <p>07:00PM Presentation </p>
-          <p>01:00AM DJ flex2.0</p>
-          <p>01:00AM DJ flex2.0</p>
+          <div
+            v-for="(day, index) in program"
+            :key="`schedule-day-${ index }`"
+            class="schedule-day"
+          >
+            <p
+              class="schedule-heading"
+            >{{ day.heading }}</p>
+            <p
+              v-for="(slot, index) in day.slots"
+              :key="`schedule-slot-${ index }`"
+            >
+              {{ slot }}
+            </p>
+          </div>
         </div>
       </div>
       <div class="lower">
@@ -167,18 +170,42 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data () {
     return {
-      upcoming: 'Wow cool this is upcoming next'
+      upcoming: 'Wow cool this is upcoming next',
+      description: '',
+      program: []
     }
   },
-  mounted () {
-    setTimeout(() => {
-      this.upcoming = 'But this is even cooler'
-    }, 10000)
+  async mounted () {
+    const url = 'https://parcours.kisd.de/api/program'
+    const response = await axios.get(url)
+    const program = response.data
+    const formatted = program.program.map((entry) => {
+      const date = entry.time.split(' ')[0]
+      const time = entry.time.split(' ')[1]
+      return {
+        date: date,
+        content: `${ time.substring(0, time.length - 3) } ${ entry.content }`
+      }
+    })
+    const dates = [...new Set(formatted.map((entry) => entry.date))]
+    this.program = dates.map((date) => {
+      return {
+        heading: new Date(date).toLocaleDateString('en-US', { weekday: 'long' }),
+        slots: formatted.filter((entry) => entry.date === date).map((entry) => entry.content)
+      }
+    })
+    this.description = program.description
   },
-  computed: {}
+  computed: {
+    time () {
+      return 'time'
+    }
+  }
 }
 </script>
 
@@ -264,6 +291,10 @@ export default {
   border-right: var(--border);
 }
 
+.first .program .title p:first-of-type {
+  margin: 0 0 5% 0;
+}
+
 .first .program .schedule {
   width: 100%;
   padding: 2% 0 2% 2%;
@@ -271,6 +302,18 @@ export default {
   text-transform: uppercase;
   overflow: hidden;
   overflow-y: scroll;
+}
+
+.first .program .schedule .schedule-heading {
+  font-size: 1.25em;
+}
+
+.first .program .schedule .schedule-day {
+  margin: 0 0 2% 0;
+}
+
+.first .program .schedule .schedule-day:last-of-type {
+  margin: 0;
 }
 
 .lower {
@@ -347,9 +390,7 @@ export default {
   flex: 1;
   font-size: 1em;
   text-decoration: none;
-  /* background: var(--fill); */
   border-bottom: var(--border);
-  /* border-radius: 9999px; */
   cursor: pointer;
 }
 
