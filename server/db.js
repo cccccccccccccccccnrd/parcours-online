@@ -114,8 +114,8 @@ function getGraduates () {
 
 async function distribute(values) {
   return new Promise(async (resolve, reject) => {
-    const width = 4000
-    const height = 4000
+    const width = 3000
+    const height = 3000
     const courtyardw = 1200   //1100 + 100px safespace
     const courtyardh = 750    //650 + 100px safespace
     const border = 100
@@ -168,7 +168,9 @@ async function distribute(values) {
           }
 
           // protection area bottom and right
-          if (thumb.w + thumb.x > width - border  || thumb.h + thumb.y > height - border || thumb.x < border || thumb.y < border) {
+          // wenn thumbx = 3900, thumbw = 200 -> 4100 > 3900
+
+          if (thumb.w + thumb.x > width - border || thumb.h + thumb.y > height - border || thumb.x < border || thumb.y < border) {
             console.log(Date.now(), 'placement out of window, retry')
             overlapping = true
             break

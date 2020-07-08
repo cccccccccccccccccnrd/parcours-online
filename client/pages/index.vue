@@ -92,7 +92,7 @@ export default {
   },
   data () {
     return {
-      width: 4000, /* Sync w/ db.js:91 */
+      width: 3000, /* Sync w/ db.js:91 */
       scrollTop: null,
       scrollLeft: null
     }
@@ -231,8 +231,8 @@ export default {
 
 <style>
 body {
-  overflow: hidden;
   background: #f4f4f4;
+  overflow: hidden;
 }
 
 .logo {
@@ -254,6 +254,7 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: scroll;
+  user-select: none;
 }
 
 .dragscroll {

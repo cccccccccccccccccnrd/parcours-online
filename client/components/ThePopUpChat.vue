@@ -19,14 +19,16 @@
         @click.native="removeUsername"
         class="close"
       />
-      <textarea
+      <input
         ref="popUpChatInput"
         v-on:keydown.enter.prevent="sendMessage"
         v-model="message"
+        :placeholder="placeholder"
+        type="text"
         name="Chat Textarea"
         rows="1"
-        :placeholder="placeholder"
-      ></textarea>
+        maxlength="24"
+      />
     </div>
   </div>
 </template>
@@ -179,7 +181,7 @@ export default {
   cursor: pointer;
 }
 
-textarea {
+input {
   width: 100%;
   padding: 0;
   font-family: 'ArnoldGrotesk', 'ManifontGrotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -188,7 +190,7 @@ textarea {
   resize: none;
 }
 
-textarea:focus {
+input:focus {
   outline: 0;
 }
 
