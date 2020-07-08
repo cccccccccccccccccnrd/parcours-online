@@ -94,8 +94,8 @@ export default {
 }
 
 .message.logged-in {
-  color: white;
-  background: black;
+  color: #ffed00;
+  background: #009fe3;
   box-shadow: none;
 }
 
