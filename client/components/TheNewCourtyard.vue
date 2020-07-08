@@ -218,8 +218,8 @@ export default {
 .courtyard {
   display: flex;
   position: absolute;
-  top: 2175px; /* 5000 / 2 - 325 */
-  left: 1950px; /* 5000 / 2 - 550 */
+  top: 1675px; /* 4000 / 2 - 325(courtyardh/2) */
+  left: 1450px; /* 4000 / 2 - 550(courtyardw/2) */
   width: 1100px;
   height: 650px;
   z-index: 5;

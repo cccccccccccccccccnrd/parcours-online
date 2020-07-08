@@ -166,7 +166,7 @@ async function distribute(values) {
               break
             } 
           }
-          
+
           // protection area bottom and right
           if (thumb.w + thumb.x > width - border  || thumb.h + thumb.y > height - border || thumb.x < border || thumb.y < border) {
             console.log(Date.now(), 'placement out of window, retry')
