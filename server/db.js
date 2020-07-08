@@ -118,7 +118,7 @@ async function distribute(values) {
     const height = 3000
     const courtyardw = 1400   //1100 + 300px safespace
     const courtyardh = 950    //650 + 300px safespace
-    const savespaceborder = 500
+    const border = 500
     const thresh = 10
     let thumbs = []
 
@@ -166,9 +166,9 @@ async function distribute(values) {
               break
             } 
           }
-     
+
           // protection area bottom and right
-          if (thumb.w + thumb.x > width - safespaceborder  || thumb.h + thumb.y > height - safespaceborder || thumb.x < safespaceborder || thumb.y < safespaceborder) {
+          if (thumb.w + thumb.x > width - border  || thumb.h + thumb.y > height - border || thumb.x < border || thumb.y < border) {
             console.log(Date.now(), 'placement out of window, retry')
             overlapping = true
             break
