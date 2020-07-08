@@ -392,7 +392,7 @@ function checkSecret(name, content) {
     const sheets = google.sheets({ version: 'v4', auth: state.auth })
     return sheets.spreadsheets.values.get({
       spreadsheetId: state.sheets.database,
-      range: `\'${ name }\'!B22`,
+      range: `\'${ name }\'!B19`,
     }, (err, res) => {
       if (err) return reject('Error while checking secret')
       try {
