@@ -22,8 +22,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
     min-width: 2em;
     min-height: 2em;
     /* padding: 0.4em 0.5em 0.4em 0.5em; */
