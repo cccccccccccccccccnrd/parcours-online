@@ -65,6 +65,10 @@ export default {
     this.projects.forEach((project) => {
       project.chat.forEach((message) => this.insertChatMessage(message))
     })
+
+    if (document.documentElement.clientWidth > 1000) {
+      window.location.replace('https://parcours.kisd.de/prototype');
+    }
   },
   computed: {
     ...mapGetters({
