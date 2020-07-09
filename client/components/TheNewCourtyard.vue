@@ -3,7 +3,7 @@
     <div class="first">
       <div class="stage">
         <div class="video-container">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/9tCq5vN9Jfk?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe width="560" height="315" :src="`https://www.youtube.com/embed/${ id }?controls=0&modestbranding=1`" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
       <div class="program">
@@ -175,6 +175,7 @@ import axios from 'axios'
 export default {
   data () {
     return {
+      id: '1M8_uhaGWDQ',
       upcoming: 'Wow cool this is upcoming next',
       description: '',
       program: []
