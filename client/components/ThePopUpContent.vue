@@ -13,6 +13,10 @@
       />
       <small>Currently viewing</small>
     </div> -->
+    <div class="meta">
+      <p class="chip simple">{{ project.supervision }}</p>
+      <p class="chip simple">{{ project.expertise }}</p>
+    </div>
   </header>
   <main class="content">
     <the-pop-up-slot
@@ -172,6 +176,13 @@ header .chip {
   border-radius: 100px;
 }
 
+.chip.simple {
+  font-size: 0.9em;
+  color: black;
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 .arrow {
   position: absolute;
   top: 0;
@@ -258,11 +269,11 @@ footer a {
 
 .meta {
   display: flex;
-  margin: 0 2em 0 0;
+  margin: 1.5em 0 0 0;
 }
 
-.meta div:first-of-type {
-  margin: 0 1em 0 0;
+.meta .chip:first-of-type {
+  margin: 0 0.5em 0 0;
 }
 
 @media (max-width: 800px) {

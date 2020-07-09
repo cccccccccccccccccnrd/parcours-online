@@ -144,6 +144,7 @@ export default {
           break
         case 'login-success':
           app.setChatStatus(msg.payload.location)
+          app.setChatUsername(msg.payload.graduate)
           break
         case 'login-error':
           app.setChatStatus('error')
@@ -221,7 +222,8 @@ export default {
       removeCursor: 'cursors/remove',
       insertChatMessage: 'chat/insert',
       removeChatMessage: 'chat/remove',
-      setChatStatus: 'chat/setStatus'
+      setChatStatus: 'chat/setStatus',
+      setChatUsername: 'chat/setUsername'
     }),
     platform () {
       if (navigator.platform) {

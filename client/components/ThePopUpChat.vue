@@ -70,9 +70,9 @@ export default {
       if (this.status === 'error') {
         return 'Wrong secret'
       } else if (this.status === this.project.id) {
-        return `U r logged in as ${ this.project.graduate }`
+        return `You are logged in as ${ this.username }`
       } else if (this.username) {
-        return `U write as ${ this.username }`
+        return `You write as ${ this.username }`
       } else {
         return 'What is your name?'
       }
@@ -192,6 +192,10 @@ input {
 
 input:focus {
   outline: 0;
+}
+
+input::placeholder {
+  opacity: 1;
 }
 
 .chat-message {

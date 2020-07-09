@@ -104,7 +104,8 @@ async function login (ws, msg) {
 
   const reply = {
     payload: {
-      location: msg.payload.location
+      location: msg.payload.location,
+      graduate: msg.payload.graduate
     }
   }
 
