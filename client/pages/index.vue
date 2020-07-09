@@ -204,6 +204,10 @@ export default {
         this.openProject(project)
       }
     }
+
+    if (document.documentElement.clientWidth < 1000) {
+      window.location.replace('https://parcours.kisd.de/prototype/mobile');
+    }
   },
   computed: {
     ...mapGetters({

@@ -7,21 +7,22 @@
     <img :src="project.thumbnail" :alt="project.title">
     <p> {{ project.graduate }} </p>
     <img :src="project.thumbnail" :alt="project.title">
-    <p> {{ project.sub }} </p>
+    <p> {{ project.title }} </p>
   </div>
   <div
     class="mobile-artwork"
-    @click="openProject(project)"
     :style="`transform: translateX(-${ translateX + offset }px);`"
   >
     <img :src="project.thumbnail" :alt="project.title">
     <p> {{ project.graduate }} </p>
     <img :src="project.thumbnail" :alt="project.title">
-    <p> {{ project.sub }} </p>
+    <p> {{ project.title }} </p>
     <img :src="project.thumbnail" :alt="project.title">
     <p> {{ project.graduate }} </p>
     <img :src="project.thumbnail" :alt="project.title">
-    <p> {{ project.sub }} </p>
+    <p> {{ project.title }} </p>
+    <img :src="project.thumbnail" :alt="project.title">
+    <p> {{ project.title }} </p>
   </div>
 </div>
 </template>
@@ -75,7 +76,8 @@ export default {
     width: fit-content;
     display: flex;
     align-items: center;
-    border-bottom: 2px solid black;
+    color: #009fe3;
+    border-bottom: 2px solid #009fe3;
   }
 
   img {

@@ -6,11 +6,12 @@
     />
     <header>
       <h2>KISD PARCOURS <br />ONLINE</h2>
-      <inputt
+      <p>Make sure to check out the online exhibition on a desktop computer to explore the projects of our graduates. See you over there.</p>
+      <!-- <inputt
         class="input"
         v-model="search"
         placeholder="Search..."
-      />
+      /> -->
     </header>
     <main>
       <mobile-artwork
@@ -18,7 +19,7 @@
         v-for="(artwork, index) in filteredArtworks"
         :key="`artwork-${ index }`"
         :project="artwork.project"
-        :offset="artwork.offset"
+        :offset="0"
       />
     </main>
   </div>
@@ -85,18 +86,26 @@ export default {
 h2 {
   font-size: 2.6em;
   font-weight: 300;
+  line-height: 1;
 }
 
 header {
   padding: 0.5em;
 }
 
+header p {
+  margin: 0.5em 0;
+  font-size: 1em;
+}
+
 main {
   overflow: hidden;
+  background: #ffe502;
 }
 
 .parcours-mobile {
-  max-width: 400px;
+  /* max-width: 400px; */
+  background: #f4f4f4;
 }
 
 .the-pop-up-mobile {
@@ -110,11 +119,11 @@ main {
 
 .mobile-artwork-list-item {
   white-space: nowrap;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .mobile-artwork-list-item:first-of-type {
-  border-top: 2px solid black;
+  border-top: 2px solid #009fe3;
 }
 
 .blur {
