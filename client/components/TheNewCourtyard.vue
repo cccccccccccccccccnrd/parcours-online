@@ -31,7 +31,7 @@
       </div>
       <div class="lower">
         <div class="links">
-          <a href="program.pdf">full program</a>
+          <a href="program.pdf" target="_blank">full program</a>
           <a class="disabled" href="#">catalogue (soon)</a>
         </div>
         <div class="upcoming">
