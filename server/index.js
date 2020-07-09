@@ -1,8 +1,9 @@
-const path = require('path')
+require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const helmet = require('helmet')
 const WebSocket = require('ws')
+const Discord = require('discord.js')
 
 const db = require('./db.js')
 
@@ -13,6 +14,7 @@ const state = {
   },
   projects: null,
   program: null,
+  upcoming: null,
   logins: {}
 }
 
@@ -121,6 +123,13 @@ async function login (ws, msg) {
 }
 
 wss.on('connection', (ws) => {
+  const msg = {
+    type: 'upcoming',
+    payload: state.upcoming
+  }
+
+  ws.send(JSON.stringify(msg))
+
   ws.on('message', async (data) => {
     const msg = JSON.parse(data)
 
@@ -151,3 +160,28 @@ wss.on('connection', (ws) => {
     broadcast(ws, data)
   })
 })
+
+const client = new Discord.Client()
+
+client.once('ready', async () => {
+  console.log('Prof. Gais connected')
+  const channel = await client.channels.fetch('730847882801840129')
+  const messages = await channel.messages.fetch({ limit: 1 })
+  const message = messages.entries().next().value[1]
+  state.upcoming = message.content
+})
+
+client.on('message', async (message) => {
+  if (message.member.user.id === '730845679626354837') return
+  if (message.member.guild.id !== '697791097652510771' || message.channel.id !== '730847882801840129') return
+
+  state.upcoming = message.content.toString()
+  const msg = {
+    type: 'upcoming',
+    payload: state.upcoming
+  }
+
+  broadcast('all', JSON.stringify(msg))
+})
+
+client.login(process.env.BOT_TOKEN)

@@ -152,6 +152,9 @@ export default {
               app.setChatStatus(null)
             }, 3 * 1000)
           break
+        case 'upcoming':
+          app.setUpcoming(msg.payload)
+          break
       }
     })
 
@@ -170,8 +173,8 @@ export default {
     })
 
     this.$nextTick(() => {
-      app.$refs.artworks.scrollTop = app.width / 2 - 1100 / 2
-      app.$refs.artworks.scrollLeft = app.width / 2 - 650 - 100 / 2 /* Include viewport */
+      app.$refs.artworks.scrollTop = app.width / 2 - document.body.clientHeight / 2
+      app.$refs.artworks.scrollLeft = app.width / 2 - document.body.clientWidth / 2
 
       app.$refs.artworks.addEventListener('scroll', (event) => {
         app.scrollTop = app.$refs.artworks.scrollTop
@@ -226,7 +229,8 @@ export default {
       insertChatMessage: 'chat/insert',
       removeChatMessage: 'chat/remove',
       setChatStatus: 'chat/setStatus',
-      setChatUsername: 'chat/setUsername'
+      setChatUsername: 'chat/setUsername',
+      setUpcoming: 'ui/setUpcoming'
     }),
     platform () {
       if (navigator.platform) {

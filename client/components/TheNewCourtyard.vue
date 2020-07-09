@@ -31,7 +31,7 @@
       </div>
       <div class="lower">
         <div class="links">
-          <a href="#">pdf catalogue</a>
+          <a class="disabled" href="#">catalogue (soon)</a>
           <a href="#">buy merch</a>
         </div>
         <div class="upcoming">
@@ -170,13 +170,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import axios from 'axios'
 
 export default {
   data () {
     return {
       id: 'frBO8PkEQPA',
-      upcoming: 'Wow cool this is upcoming next',
       description: '',
       program: []
     }
@@ -203,9 +203,9 @@ export default {
     this.description = program.description
   },
   computed: {
-    time () {
-      return 'time'
-    }
+    ...mapGetters({
+      upcoming: 'ui/upcoming'
+    })
   }
 }
 </script>
@@ -338,6 +338,10 @@ export default {
   text-transform: uppercase;
   text-decoration: none;
   border-bottom: var(--border);
+}
+
+.links a.disabled {
+  cursor: wait;
 }
 
 .upcoming {

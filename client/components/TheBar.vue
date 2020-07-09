@@ -4,6 +4,15 @@
       class="chat-input"
     />
     <div class="slots">
+      <div class="slot upcoming">
+        <marquee
+          direction="alternate"
+        >
+          <span>{{ upcoming }}</span>
+          <span>{{ upcoming }}</span>
+          <span>{{ upcoming }}</span>
+        </marquee>
+      </div>
       <div class="slot">
         currently online <span class="bold">{{ count }}</span>
       </div>
@@ -31,7 +40,8 @@ export default {
   mounted () {},
     computed: {
     ...mapGetters({
-      cursors: 'cursors/all'
+      cursors: 'cursors/all',
+      upcoming: 'ui/upcoming'
     }),
     count () {
       return this.cursors.length + 1
@@ -62,11 +72,13 @@ export default {
 }
 
 .chat-input {
-  width: 40%;
+  flex: 1;
 }
 
 .slots {
   display: flex;
+  justify-content: flex-end;
+  flex: 1;
 }
 
 .slot {
@@ -80,6 +92,10 @@ export default {
   border-left: 2px solid #009fe3;
 }
 
+.slot:last-of-type {
+  border-right: 0;
+}
+
 .slot.link {
   cursor: pointer;
   user-select: none;
@@ -90,8 +106,13 @@ export default {
   background: #009fe3;
 }
 
-.slot:last-of-type {
-  border-right: 0;
+.slot.upcoming {
+  padding: 0;
+  flex: 1;
+}
+
+.slot.upcoming span {
+  margin: 0 1em;
 }
 
 .bold {

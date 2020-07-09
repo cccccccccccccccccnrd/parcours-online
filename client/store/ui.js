@@ -2,7 +2,8 @@ export const state = () => ({
   isPopUpOpen: false,
   isMapOpen: true,
   location: 'global',
-  project: null
+  project: null,
+  upcoming: ''
 })
 
 export const actions = {
@@ -37,7 +38,10 @@ export const mutations = {
   },
   toggleMap(state) {
     state.isMapOpen = !state.isMapOpen
-  }
+  },
+  setUpcoming(state, upcoming) {
+    state.upcoming = upcoming
+  },
 }
 
 export const getters = {
@@ -52,5 +56,8 @@ export const getters = {
   },
   location (state) {
     return state.location
+  },
+  upcoming (state) {
+    return state.upcoming
   }
 }
