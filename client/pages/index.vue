@@ -2,17 +2,6 @@
   <div>
     <no-ssr>
       <div>
-        <!-- <div class="logo">
-          <logo
-            v-if="!isPopUpOpen"
-            primary="transparent"
-            secondary="black"
-          />
-        </div> -->
-        <!-- <chat /> -->
-        <!-- <chat-input
-          :class="{ blur: isPopUpOpen }"
-        /> -->
         <div
           class="intro"
           v-if="intro"
@@ -36,7 +25,6 @@
         <div
           :class="{ blur: isPopUpOpen }"
         >
-          <!-- <current-visitors /> -->
           <the-map
             v-if="isMapOpen"
             :artworks="artworks"
@@ -65,6 +53,10 @@
               :left="artwork.left"
               :project="artwork.project"
             />
+            <div
+              class="spacer"
+              :style="`top: ${ width }px; left: ${ width }px;`"
+            >space</div>
           </div>
         </div>
       </div>
@@ -289,6 +281,11 @@ body {
 
 .logo svg {
   max-width: 10em;
+}
+
+.spacer {
+  position: absolute;
+  opacity: 0;
 }
 
 .artworks {

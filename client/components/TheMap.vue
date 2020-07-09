@@ -1,7 +1,7 @@
 <template>
   <div
     class="map"
-    :style="`width: ${ width / scale + 10 }px; height: ${ width / scale + 10 }px;`"
+    :style="`width: ${ width / scale + 20 }px; height: ${ width / scale + 20 }px;`"
   >
     <div
       class="tooltip-container"

@@ -94,7 +94,7 @@ export default {
         return
       }
 
-      if (!this.username) {
+      if (!this.username && !this.message.startsWith('/')) {
         this.setChatUsername(this.message)
         this.message = ''
         return
