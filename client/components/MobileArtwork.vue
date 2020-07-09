@@ -23,6 +23,10 @@
     <p> {{ project.title }} </p>
     <img :src="project.thumbnail" :alt="project.title">
     <p> {{ project.title }} </p>
+    <img :src="project.thumbnail" :alt="project.title">
+    <p> {{ project.title }} </p>
+    <img :src="project.thumbnail" :alt="project.title">
+    <p> {{ project.title }} </p>
   </div>
 </div>
 </template>
