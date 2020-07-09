@@ -155,6 +155,9 @@ export default {
         case 'upcoming':
           app.setUpcoming(msg.payload)
           break
+        case 'logins':
+          app.setChatLogins(msg.payload)
+          break
       }
     })
 
@@ -230,7 +233,8 @@ export default {
       removeChatMessage: 'chat/remove',
       setChatStatus: 'chat/setStatus',
       setChatUsername: 'chat/setUsername',
-      setUpcoming: 'ui/setUpcoming'
+      setChatLogins: 'chat/setLogins',
+      setUpcoming: 'ui/setUpcoming',
     }),
     platform () {
       if (navigator.platform) {

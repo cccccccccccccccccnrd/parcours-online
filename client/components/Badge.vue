@@ -2,13 +2,13 @@
   <div
     class="badge"
   >
-    <p>{{ number }}</p>
+    <p>{{ content }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['number'],
+  props: ['content'],
   data () {
     return {}
   },

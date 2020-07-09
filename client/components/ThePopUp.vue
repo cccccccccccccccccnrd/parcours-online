@@ -16,6 +16,7 @@
         @click.native="toggleChat"
         color="black"
         :flip="this.chatOpen"
+        :live="live"
         class="chat-bubble"
       />
       <x
@@ -32,7 +33,7 @@ import ThePopUpContent from '~/components/ThePopUpContent.vue'
 import ThePopUpChat from '~/components/ThePopUpChat.vue'
 import ChatBubble from '~/components/ChatBubble.vue'
 import X from '~/components/X.vue'
-import { mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   components: {
@@ -53,6 +54,16 @@ export default {
         app.closeProject()
       }
     })
+  },
+  computed: {
+    ...mapGetters({
+      project: 'ui/project',
+      chatLogins: 'chat/logins',
+    }),
+    live () {
+      return true
+      return this.chatLogins.find((login) => login === this.project.id)
+    }
   },
   methods: {
     closeProject () {

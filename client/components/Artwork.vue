@@ -4,18 +4,25 @@
     @click="openProject(project)"
     :style="`top: ${ top }px; left: ${ left }px;`"
   >
-    <badge
-      :number="viewers"
-      class="badge"
-      v-if="viewers > 0"
-    />
+    <div
+      class="badges"
+    >
+      <badge
+        :content="viewers"
+        v-if="viewers > 0"
+        class="badge"
+      />
+      <badge
+        content="Live"
+        v-if="live"
+        class="badge"
+      />
+    </div>
     <img
       v-if="type === 'image'"
       :src="project.thumbnail"
       draggable="false"
     >
-    <!-- <video v-if="type === 'video'" :src="project.thumbnail" autoplay loop muted></video> -->
-    <!-- <p class="title">{{ project.title }}</p> -->
   </div>
 </template>
 
@@ -35,15 +42,18 @@ export default {
   computed: {
     ...mapGetters({
       cursors: 'cursors/all',
-      location: 'ui/location'
+      location: 'ui/location',
+      chatLogins: 'chat/logins',
     }),
     type () {
       return 'image'
-      /* return this.project.thumbnail.endsWith('.mp4') ? 'video' : 'image' */
     },
     viewers () {
       const length = this.cursors.filter((c) => c.payload.location === this.project.id).length
       return this.location === this.project.id ? length + 1 : length
+    },
+    live () {
+      return this.chatLogins.find((login) => login === this.project.id)
     }
   },
   methods: {
@@ -64,15 +74,18 @@ export default {
 }
 
 img {
-  /* max-height: 30em; */
   box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2);
 }
 
-.badge {
+.badges {
+  display: flex;
   position: absolute;
-  /* transform: translateY(-4em); */
   top: 0.5em;
   right: 0.5em;
+}
+
+.badge {
+  margin: 0 0 0 0.5em;
 }
 
 .title {

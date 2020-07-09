@@ -1,7 +1,8 @@
 export const state = () => ({
   messages: [],
   name: '',
-  status: null
+  status: null,
+  logins: {}
 })
 
 export const actions = {
@@ -37,6 +38,9 @@ export const mutations = {
   setStatus(state, status) {
     state.status = status
   },
+  setLogins(state, logins) {
+    state.logins = logins
+  },
 }
 
 export const getters = {
@@ -51,5 +55,8 @@ export const getters = {
   },
   status(state) {
     return state.status
+  },
+  logins(state) {
+    return Object.values(state.logins)
   },
 }

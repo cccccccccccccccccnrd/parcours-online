@@ -98,6 +98,10 @@ function logout (id) {
   if (id in state.logins) {
     console.log(`${ id } logged out of ${ state.logins[id] }`)
     delete state.logins[id]
+    broadcast('all', JSON.stringify({
+      type: 'logins',
+      payload: state.logins
+    }))
   }
 }
 
@@ -120,15 +124,22 @@ async function login (ws, msg) {
   }
 
   ws.send(JSON.stringify(reply))
+  broadcast('all', JSON.stringify({
+    type: 'logins',
+    payload: state.logins
+  }))
 }
 
 wss.on('connection', (ws) => {
-  const msg = {
+  ws.send(JSON.stringify({
     type: 'upcoming',
     payload: state.upcoming
-  }
+  }))
 
-  ws.send(JSON.stringify(msg))
+  ws.send(JSON.stringify({
+    type: 'logins',
+    payload: state.logins
+  }))
 
   ws.on('message', async (data) => {
     const msg = JSON.parse(data)

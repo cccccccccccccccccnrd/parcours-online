@@ -31,8 +31,8 @@
       </div>
       <div class="lower">
         <div class="links">
+          <a href="#">full program</a>
           <a class="disabled" href="#">catalogue (soon)</a>
-          <a href="#">buy merch</a>
         </div>
         <div class="upcoming">
           <marquee
