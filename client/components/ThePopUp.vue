@@ -16,7 +16,7 @@
         @click.native="toggleChat"
         color="black"
         :flip="this.chatOpen"
-        :live="live"
+        :live="live && !this.chatOpen"
         class="chat-bubble"
       />
       <x
@@ -61,7 +61,6 @@ export default {
       chatLogins: 'chat/logins',
     }),
     live () {
-      return true
       return this.chatLogins.find((login) => login === this.project.id)
     }
   },

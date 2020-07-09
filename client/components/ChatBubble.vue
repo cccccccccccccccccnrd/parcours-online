@@ -1,17 +1,23 @@
 <template>
   <div
     class="chat-bubble"
-    :class="{ live: live }"
   >
-    <svg :class="{ flip: flip }" xmlns="http://www.w3.org/2000/svg" viewBox="-1.5 -1.5 105 87.09">
-      <path
-        d="M101 33.2a32.21 32.21 0 01-32.2 32.21H45.26L21.07 85V63A32.2 32.2 0 0133.2 1h35.6A32.2 32.2 0 01101 33.2z"
-        fill="none"
-        :stroke="color"
-        stroke-miterlimit="10"
-        stroke-width="4.5"
-      />
-    </svg>
+    <div
+      :class="{ live: live }"
+    >
+      <svg :class="{ flip: flip }" xmlns="http://www.w3.org/2000/svg" viewBox="-1.5 -1.5 105 87.09">
+        <path
+          d="M101 33.2a32.21 32.21 0 01-32.2 32.21H45.26L21.07 85V63A32.2 32.2 0 0133.2 1h35.6A32.2 32.2 0 01101 33.2z"
+          fill="none"
+          :stroke="color"
+          stroke-miterlimit="10"
+          stroke-width="4.5"
+        />
+      </svg>
+    </div>
+    <p
+      v-if="live"
+    >Ask a question!</p>
   </div>
 </template>
 
