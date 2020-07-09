@@ -170,6 +170,9 @@ export default {
     })
 
     this.$nextTick(() => {
+      app.$refs.artworks.scrollTop = app.width / 2 - 1100 / 2
+      app.$refs.artworks.scrollLeft = app.width / 2 - 650 - 100 / 2
+
       app.$refs.artworks.addEventListener('scroll', (event) => {
         app.scrollTop = app.$refs.artworks.scrollTop
         app.scrollLeft = app.$refs.artworks.scrollLeft
