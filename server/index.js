@@ -183,7 +183,6 @@ client.once('ready', async () => {
 })
 
 client.on('message', async (message) => {
-  if (message.member.user.id === '730845679626354837') return
   if (message.member.guild.id !== '697791097652510771' || message.channel.id !== '730847882801840129') return
 
   state.upcoming = message.content.toString()
