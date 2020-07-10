@@ -150,13 +150,12 @@ async function distribute(values) {
 
           const cx = thumb.x + thumb.w / 2
           const cy = thumb.y + thumb.h / 2
-    
+
           const cotherx = other.x + other.w / 2
           const cothery = other.y + other.h / 2
-    
+
           const dx = Math.abs(cx - cotherx)
           const dy = Math.abs(cy - cothery)
-
 
           //protection area around the courtyard
           if (thumb.x > width / 2 - courtyardw / 2  && thumb.x < width / 2 + courtyardw / 2  || thumb.x + thumb.w > width / 2 - courtyardw / 2 && thumb.x + thumb.w < width / 2 + courtyardw / 2) {
@@ -164,12 +163,10 @@ async function distribute(values) {
               console.log(Date.now(), 'overlapping courtyard, retry')
               overlapping = true
               break
-            } 
+            }
           }
 
           // protection area bottom and right
-          // wenn thumbx = 3900, thumbw = 200 -> 4100 > 3900
-
           if (thumb.w + thumb.x > width - border || thumb.h + thumb.y > height - border || thumb.x < border || thumb.y < border) {
             console.log(Date.now(), 'placement out of window, retry')
             overlapping = true

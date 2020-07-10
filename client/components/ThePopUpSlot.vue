@@ -22,6 +22,8 @@ export default {
     type () {
       if (this.content.trim().endsWith('.jpg')) {
         return 'image'
+      } else if (this.content.trim().endsWith('.png')) {
+        return 'image'
       } else if (this.content.trim().endsWith('.mp4')) {
         return 'video'
       } else if (this.content.trim().includes('//vimeo.com/')) {
