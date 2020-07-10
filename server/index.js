@@ -24,7 +24,7 @@ setInterval(async () => {
 
 setInterval(async () => {
   state.projects = await getProjects(true)
-}, 1 * 60 * 60 * 1000)
+}, 6 * 60 * 60 * 1000)
 
 async function getProjects (randomize) {
   try {
