@@ -206,7 +206,7 @@ export default {
     }
 
     if (document.documentElement.clientWidth < 1000) {
-      window.location.replace('https://parcours.kisd.de/prototype/mobile');
+      window.location.replace('https://parcours.kisd.de/mobile');
     }
   },
   computed: {

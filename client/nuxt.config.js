@@ -44,10 +44,6 @@ module.exports = {
     '@nuxtjs/axios'
   ],
 
-  router: {
-    base: '/prototype/'
-  },
-
   /*
   ** Build configuration
   */
