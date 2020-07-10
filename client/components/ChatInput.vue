@@ -3,10 +3,11 @@
     ref="chatInput"
     v-on:keydown.enter.prevent="sendMessage"
     v-model="message"
+    :placeholder="placeholder"
+    :disabled="placeholder !== 'Type to chat...'"
     class="chat-input"
     type="text"
     name="Chat Input"
-    placeholder="Type to chat..."
     maxlength="24"
   />
 </template>
@@ -18,6 +19,9 @@ export default {
   data () {
     return {
       message: '',
+      placeholder: 'Type to chat...',
+      timeout: 3,
+      timer: 3,
     }
   },
   mounted () {
@@ -70,6 +74,23 @@ export default {
 
       this.$store.dispatch('socket/send', ['chat-message', payload])
       this.message = ''
+      this.limit()
+    },
+    limit () {
+      this.check()
+      this.interval = setInterval(() => {
+        this.check()
+      }, 1000)
+    },
+    check () {
+      if (this.timer <= 1) {
+        clearInterval(this.interval)
+        this.placeholder = 'Type to chat...'
+        this.timer = this.timeout
+      } else {
+        this.timer = this.timer - 1
+        this.placeholder = `${ this.timer }`
+      }
     }
   }
 }

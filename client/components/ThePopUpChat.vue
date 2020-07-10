@@ -13,7 +13,10 @@
         :loggedIn="msg.payload.loggedIn"
       />
     </div>
-    <div class="input">
+    <div
+      class="input"
+      :class="{ disabled: disabled }"
+    >
       <x
         v-if="this.username && status !== project.id"
         @click.native="removeUsername"
@@ -24,6 +27,7 @@
         v-on:keydown.enter.prevent="sendMessage"
         v-model="message"
         :placeholder="placeholder"
+        :disabled="disabled"
         type="text"
         name="Chat Textarea"
         rows="1"
@@ -46,6 +50,7 @@ export default {
   data () {
     return {
       message: '',
+      disabled: false
     }
   },
   mounted () {
@@ -142,9 +147,16 @@ export default {
 
       this.message = ''
       this.scroll()
+      this.limit()
     },
     scroll () {
       this.$refs.popUpChatMessages.scrollTop = this.$refs.popUpChatMessages.scrollHeight
+    },
+    limit () {
+      this.disabled = true
+      setTimeout(() => {
+        this.disabled = false
+      }, 2000)
     }
   }
 }
@@ -196,6 +208,10 @@ input:focus {
 
 input::placeholder {
   opacity: 1;
+}
+
+.disabled {
+  opacity: 0.3;
 }
 
 .chat-message {

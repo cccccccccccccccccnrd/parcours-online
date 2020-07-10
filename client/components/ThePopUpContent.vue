@@ -5,7 +5,9 @@
   <header>
     <p class="chip">{{ project.graduate }}</p>
     <h1>{{ project.title }}</h1>
-    <p>{{ project.sub }}</p>
+    <p
+      v-if="project.sub !== 'No subtitle'"
+    >{{ project.sub }}</p>
     <!-- <div class="info">
       <badge
         :number="viewers"
