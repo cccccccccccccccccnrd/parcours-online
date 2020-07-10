@@ -186,7 +186,7 @@ client.on('message', async (message) => {
   if (message.member.guild.id !== '697791097652510771' || message.channel.id !== '730847882801840129') return
   if (message.member.user.id === '730845679626354837') return
 
-  message.channel.send(`Nice message ${message.author}, you are my favorite student. I will post the message as soon as possible.`)
+  message.channel.send(`Nice message ${ message.author }, you are my favorite student. I will post the message as soon as possible.`)
 
   state.upcoming = message.content.toString()
   const msg = {
