@@ -8,7 +8,7 @@
     class="chat-input"
     type="text"
     name="Chat Input"
-    maxlength="24"
+    maxlength="50"
   />
 </template>
 

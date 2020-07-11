@@ -31,7 +31,7 @@
         type="text"
         name="Chat Textarea"
         rows="1"
-        maxlength="24"
+        maxlength="50"
       />
     </div>
   </div>
