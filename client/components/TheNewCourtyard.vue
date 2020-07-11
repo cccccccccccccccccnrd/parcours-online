@@ -6,6 +6,12 @@
           <iframe width="560" height="315" :src="`https://www.youtube.com/embed/${ id }?controls=0&modestbranding=1`" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
+      <div class="yt-link">
+        <a
+          :href="`https://www.youtube.com/watch?v=${ id }`"
+          target="_blank"
+        >livestream</a>
+      </div>
       <div class="program">
         <div class="title">
           <p class="blue-bold">program</p>
@@ -176,7 +182,7 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      id: 'rRmpSjYfAc0',
+      id: 'BqVinzsx3-Q',
       description: '',
       program: []
     }
@@ -279,6 +285,14 @@ export default {
   border-left: var(--border);
 }
 
+.first .yt-link {
+  padding: 0.25em 0;
+  text-align: center;
+  background: var(--fill);
+  border-top: var(--border);
+  border-left: var(--border);
+}
+
 .first .program {
   display: flex;
   border-top: var(--border);
@@ -331,8 +345,8 @@ export default {
   background: var(--fill);
 }
 
-.links a {
-  padding: 0.5em 0;
+a {
+  padding: 0.25em 0;
   text-align: center;
   color: #009fe3;
   text-transform: uppercase;
@@ -340,7 +354,7 @@ export default {
   border-bottom: var(--border);
 }
 
-.links a.disabled {
+a.disabled {
   cursor: wait;
 }
 
