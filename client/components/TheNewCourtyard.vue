@@ -10,7 +10,7 @@
         <a
           :href="`https://www.youtube.com/watch?v=${ id }`"
           target="_blank"
-        >livestream</a>
+        >click here to join the livestream</a>
       </div>
       <div class="program">
         <div class="title">
