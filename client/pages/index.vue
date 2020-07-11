@@ -155,6 +155,9 @@ export default {
         case 'upcoming':
           app.setUpcoming(msg.payload)
           break
+        case 'livestream':
+          app.setLivestream(msg.payload)
+          break
         case 'logins':
           app.setChatLogins(msg.payload)
           break
@@ -239,6 +242,7 @@ export default {
       setChatUsername: 'chat/setUsername',
       setChatLogins: 'chat/setLogins',
       setUpcoming: 'ui/setUpcoming',
+      setLivestream: 'ui/setLivestream',
     }),
     platform () {
       if (navigator.platform) {

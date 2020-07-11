@@ -15,6 +15,7 @@ const state = {
   projects: null,
   program: null,
   upcoming: null,
+  livestream: null,
   logins: {}
 }
 
@@ -137,6 +138,11 @@ wss.on('connection', (ws) => {
   }))
 
   ws.send(JSON.stringify({
+    type: 'livestream',
+    payload: state.livestream
+  }))
+
+  ws.send(JSON.stringify({
     type: 'logins',
     payload: state.logins
   }))
@@ -176,25 +182,38 @@ const client = new Discord.Client()
 
 client.once('ready', async () => {
   console.log('Prof. Gais connected')
-  const channel = await client.channels.fetch('730847882801840129')
-  const messages = await channel.messages.fetch({ limit: 1 })
-  const message = messages.entries().next().value[1]
-  state.upcoming = message.content
+  const channelUpcoming = await client.channels.fetch('730847882801840129')
+  const messagesUpcoming = await channelUpcoming.messages.fetch({ limit: 1 })
+  const messageUpcoming = messagesUpcoming.entries().next().value[1]
+  state.upcoming = messageUpcoming.content
+
+  const channelLivestream = await client.channels.fetch('731443443762593845')
+  const messagesLivestream = await channelLivestream.messages.fetch({ limit: 1 })
+  const messageLivestream = messagesLivestream.entries().next().value[1]
+  state.livestream = messageLivestream.content
 })
 
 client.on('message', async (message) => {
-  if (message.member.guild.id !== '697791097652510771' || message.channel.id !== '730847882801840129') return
+  if (message.member.guild.id !== '697791097652510771') return
   if (message.member.user.id === '730845679626354837') return
 
-  /* message.channel.send(`Nice message ${ message.author }, you are my favorite student. I will post the message as soon as possible.`) */
-
-  state.upcoming = message.content.toString()
-  const msg = {
-    type: 'upcoming',
-    payload: state.upcoming
+  if (message.channel.id === '730847882801840129') {
+    state.upcoming = message.content.toString()
+    const msg = {
+      type: 'upcoming',
+      payload: state.upcoming
+    }
+    broadcast('all', JSON.stringify(msg))
+  } else if (message.channel.id === '731443443762593845') {
+    state.livestream = message.content.toString()
+    const msg = {
+      type: 'livestream',
+      payload: state.livestream
+    }
+    broadcast('all', JSON.stringify(msg))
   }
 
-  broadcast('all', JSON.stringify(msg))
+  /* message.channel.send(`Nice message ${ message.author }, you are my favorite student. I will post the message as soon as possible.`) */
 })
 
 client.login(process.env.BOT_TOKEN)

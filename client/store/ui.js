@@ -3,7 +3,8 @@ export const state = () => ({
   isMapOpen: true,
   location: 'global',
   project: null,
-  upcoming: ''
+  upcoming: '',
+  livestream: ''
 })
 
 export const actions = {
@@ -43,6 +44,9 @@ export const mutations = {
   setUpcoming(state, upcoming) {
     state.upcoming = upcoming
   },
+  setLivestream(state, livestream) {
+    state.livestream = livestream
+  },
 }
 
 export const getters = {
@@ -60,5 +64,8 @@ export const getters = {
   },
   upcoming (state) {
     return state.upcoming
+  },
+  livestream (state) {
+    return state.livestream
   }
 }

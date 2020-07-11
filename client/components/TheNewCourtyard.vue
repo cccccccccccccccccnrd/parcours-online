@@ -3,12 +3,12 @@
     <div class="first">
       <div class="stage">
         <div class="video-container">
-          <iframe width="560" height="315" :src="`https://www.youtube.com/embed/${ id }?controls=0&modestbranding=1`" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe width="560" height="315" :src="`https://www.youtube.com/embed/${ livestreamId }?controls=0&modestbranding=1`" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
       <div class="yt-link">
         <a
-          :href="`https://www.youtube.com/watch?v=${ id }`"
+          :href="`https://www.youtube.com/watch?v=${ livestreamId }`"
           target="_blank"
         >click here to join the livestream</a>
       </div>
@@ -182,7 +182,6 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      id: 'BqVinzsx3-Q',
       description: '',
       program: []
     }
@@ -210,7 +209,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      upcoming: 'ui/upcoming'
+      upcoming: 'ui/upcoming',
+      livestreamId: 'ui/livestream'
     })
   }
 }
