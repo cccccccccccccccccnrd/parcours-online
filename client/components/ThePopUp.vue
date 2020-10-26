@@ -12,13 +12,13 @@
     <div
       class="pop-up"
     >
-      <chat-bubble
+      <!-- <chat-bubble
         @click.native="toggleChat"
         color="black"
         :flip="this.chatOpen"
         :live="live && !this.chatOpen"
         class="chat-bubble"
-      />
+      /> -->
       <x
         @click.native="closeProject"
         class="close"
