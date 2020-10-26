@@ -6,12 +6,12 @@
           <iframe width="560" height="315" :src="`https://www.youtube.com/embed/${ livestreamId }?modestbranding=1`" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
-      <div class="yt-link">
+      <!-- <div class="yt-link">
         <a
           :href="`https://www.youtube.com/watch?v=${ livestreamId }`"
           target="_blank"
         >click here to join the livestream</a>
-      </div>
+      </div> -->
       <div class="program">
         <div class="title">
           <p class="blue-bold">program</p>
@@ -352,6 +352,7 @@ a {
   text-transform: uppercase;
   text-decoration: none;
   border-bottom: var(--border);
+  flex: 1;
 }
 
 a.disabled {
