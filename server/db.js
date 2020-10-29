@@ -52,7 +52,6 @@ function getValues(graduate) {
       }
       try {
         const column = res.data.values.flat()
-
         return resolve({
           id: `${ graduate.name.toLowerCase().split(' ').join('-') }-${ graduate.id }`,
           graduate: graduate.name,
@@ -114,10 +113,10 @@ function getGraduates () {
 
 async function distribute(values) {
   return new Promise(async (resolve, reject) => {
-    const width = 5000
-    const height = 5000
-    const courtyardw = 1200   //1100 + 100px safespace
-    const courtyardh = 750    //650 + 100px safespace
+    const width = 15000
+    const height = 15000
+    const courtyardw = 1200   // 1100 + 100px safespace
+    const courtyardh = 750    // 650 + 100px safespace
     const border = 100
     const thresh = 10
     let thumbs = []
@@ -244,7 +243,8 @@ async function getProjects (randomize) {
             link: column[14] ? column[14] : 'No link',
             externals: [column[15], column[16]],
             thumbnail: column[17] ? column[17] : 'https://i.imgur.com/dhEBWaQ.jpg',
-            chat: await getMessages(id)
+            audio: column[19]
+            /* chat: await getMessages(id) */
           }
         } catch(error) {
           console.log(title, error)
