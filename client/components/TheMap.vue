@@ -119,8 +119,8 @@ export default {
 
   .courtyard {
     position: absolute;
-    top: calc(50% - 0.75em);
-    left: calc(50% - 1.25em);
+    top: calc(50% - 1.2em);
+    left: calc(50% - 2.1em);
     width: 22.5%;
     height: 12.5%;
     border-radius: 0.4em;
