@@ -235,12 +235,12 @@ async function getProjects (randomize) {
             expertise: column[4] ? column[4] : 'No expertise',
             tags: column[5] ? column[5] : 'No tags',
             content: [
-              column[6] ? column[6] : 'No content in slot 1',
-              column[7] ? column[7] : 'No content in slot 2',
-              column[8] ? column[8] : 'No content in slot 3',
-              column[9] ? column[9] : 'No content in slot 4',
-              column[10] ? column[10] : 'No content in slot 5',
-              column[11] ? column[11] : 'No content in slot 6'
+              column[6] ? column[6] : 'No content',
+              column[7] ? column[7] : 'No content',
+              column[8] ? column[8] : 'No content',
+              column[9] ? column[9] : 'No content',
+              column[10] ? column[10] : 'No content',
+              column[11] ? column[11] : 'No content'
             ],
             picture: column[12] ? column[12] : 'https://i.imgur.com/dhEBWaQ.jpg',
             mail: column[13] ? column[13] : 'No mail',
