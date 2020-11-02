@@ -22,7 +22,7 @@
   </header>
   <main class="content">
     <the-pop-up-slot
-      v-for="(content, index) in project.content"
+      v-for="(content, index) in content"
       :key="`pop-up-slot-${ index }`"
       :content="content"
     />
@@ -111,6 +111,9 @@ export default {
       project: 'ui/project',
       cursors: 'cursors/all'
     }),
+    content () {
+      return this.project.content.filter((content) => content !== 'No content')
+    },
     viewers () {
       return this.cursors.filter((c) => c.payload.location === this.project.id).length + 1
     },
