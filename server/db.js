@@ -132,6 +132,11 @@ async function distribute(values) {
       }
     }))
 
+    const cmon = artworks.filter((artwork) => artwork.dimensions.width * artwork.dimensions.height > 120000).sort((a, b) => a.dimensions.length - b.dimensions.length)
+    cmon.map((artwork) => {
+      console.log(artwork.dimensions.length, artwork.dimensions.width * artwork.dimensions.height, artwork.id)
+    })
+
     while (thumbs.length !== artworks.length) {
       for (const artwork of artworks) {
         const thumb = {
@@ -159,7 +164,7 @@ async function distribute(values) {
           //protection area around the courtyard
           if (thumb.x > width / 2 - courtyardw / 2  && thumb.x < width / 2 + courtyardw / 2  || thumb.x + thumb.w > width / 2 - courtyardw / 2 && thumb.x + thumb.w < width / 2 + courtyardw / 2) {
             if (thumb.y >= height / 2 - courtyardh / 2 && thumb.y < height / 2 + courtyardh / 2  || thumb.y + thumb.h >= height / 2 - courtyardh / 2 && thumb.y + thumb.h < height / 2 + courtyardh / 2 ) {
-              console.log(Date.now(), 'overlapping courtyard, retry')
+              /* console.log(Date.now(), 'overlapping courtyard, retry') */
               overlapping = true
               break
             }
@@ -167,7 +172,7 @@ async function distribute(values) {
 
           // protection area bottom and right
           if (thumb.w + thumb.x > width - border || thumb.h + thumb.y > height - border || thumb.x < border || thumb.y < border) {
-            console.log(Date.now(), 'placement out of window, retry')
+            /* console.log(Date.now(), 'placement out of window, retry') */
             overlapping = true
             break
           }
@@ -185,7 +190,7 @@ async function distribute(values) {
         }
       }
 
-      console.log(Date.now(), 'overlapping another artwork, retry')
+      /* console.log(Date.now(), 'overlapping another artwork, retry') */
     }
 
     const distributed = values.map((value) => {
@@ -197,8 +202,7 @@ async function distribute(values) {
       return value
     })
 
-    console.log('placed all artworks')
-    console.log(artworks.sort((a, b) => a.dimensions.length - b.dimensions.length))
+    console.log(Date.now(), `Kjell placed all artworks`)
     return resolve(distributed)
   })
 }
