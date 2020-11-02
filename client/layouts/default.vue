@@ -1,7 +1,6 @@
 <template>
   <div
     class="parcours"
-    style="filter: grayscale(100%);"
   >
     <nuxt/>
   </div>
