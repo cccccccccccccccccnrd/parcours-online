@@ -36,10 +36,10 @@
         </div>
       </div>
       <div class="lower">
-        <div class="links">
+        <!-- <div class="links">
           <a href="program.pdf" target="_blank">full program</a>
           <a class="disabled" href="#">catalogue (soon)</a>
-        </div>
+        </div> -->
         <div class="upcoming">
           <marquee
             direction="alternate"
