@@ -8,6 +8,11 @@
       class="badges"
     >
       <badge
+        content="Kölner Design Preis Nominee"
+        v-if="marked"
+        class="badge"
+      />
+      <badge
         :content="viewers"
         v-if="viewers > 0"
         class="badge"
@@ -15,11 +20,6 @@
       <badge
         content="Live"
         v-if="live"
-        class="badge"
-      />
-      <badge
-        content="Kölner Design Preis Nominee"
-        v-if="marked"
         class="badge"
       />
     </div>
