@@ -42,9 +42,10 @@
         </div> -->
         <div class="upcoming">
           <marquee
+            v-html="upcoming"
             direction="alternate"
             class="blue-bold"
-          >{{ upcoming }}</marquee>
+          ></marquee>
         </div>
       </div>
     </div>
@@ -368,6 +369,10 @@ a.disabled {
   border-bottom: var(--border);
   overflow: hidden;
   white-space: nowrap;
+}
+
+.upcoming a {
+  color: #009fe3;
 }
 
 .third .title {

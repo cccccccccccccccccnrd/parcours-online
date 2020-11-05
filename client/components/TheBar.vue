@@ -6,12 +6,9 @@
     <div class="slots">
       <div class="slot upcoming">
         <marquee
+          v-html="upcoming"
           direction="alternate"
-        >
-          <span>{{ upcoming }}</span>
-          <span>{{ upcoming }}</span>
-          <span>{{ upcoming }}</span>
-        </marquee>
+        ></marquee>
       </div>
       <div class="slot">
         currently online <span class="bold">{{ count }}</span>
