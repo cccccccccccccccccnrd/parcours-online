@@ -158,6 +158,9 @@ export default {
         case 'livestream':
           app.setLivestream(msg.payload)
           break
+        case 'selected':
+          app.setSelected(msg.payload)
+          break
         case 'logins':
           app.setChatLogins(msg.payload)
           break
@@ -243,6 +246,7 @@ export default {
       setChatLogins: 'chat/setLogins',
       setUpcoming: 'ui/setUpcoming',
       setLivestream: 'ui/setLivestream',
+      setSelected: 'ui/setSelected'
     }),
     platform () {
       if (navigator.platform) {

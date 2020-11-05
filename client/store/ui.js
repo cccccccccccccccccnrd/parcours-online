@@ -4,7 +4,8 @@ export const state = () => ({
   location: 'global',
   project: null,
   upcoming: '',
-  livestream: ''
+  livestream: '',
+  selected: []
 })
 
 export const actions = {
@@ -47,6 +48,9 @@ export const mutations = {
   setLivestream(state, livestream) {
     state.livestream = livestream
   },
+  setSelected(state, selected) {
+    state.selected = selected
+  }
 }
 
 export const getters = {
@@ -67,5 +71,8 @@ export const getters = {
   },
   livestream (state) {
     return state.livestream
+  },
+  selected (state) {
+    return state.selected
   }
 }

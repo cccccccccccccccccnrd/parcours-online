@@ -16,6 +16,7 @@ const state = {
   program: null,
   upcoming: null,
   livestream: null,
+  selected: null,
   logins: {}
 }
 
@@ -143,6 +144,11 @@ wss.on('connection', (ws) => {
   }))
 
   ws.send(JSON.stringify({
+    type: 'selected',
+    payload: state.selected
+  }))
+
+  ws.send(JSON.stringify({
     type: 'logins',
     payload: state.logins
   }))
@@ -191,6 +197,11 @@ client.once('ready', async () => {
   const messagesLivestream = await channelLivestream.messages.fetch({ limit: 1 })
   const messageLivestream = messagesLivestream.entries().next().value[1]
   state.livestream = messageLivestream.content
+
+  const channelSelected = await client.channels.fetch('773865243796439050')
+  const messagesSelected = await channelSelected.messages.fetch({ limit: 1 })
+  const messageSelected = messagesSelected.entries().next().value[1]
+  state.selected = messageSelected.content.split(', ')
 })
 
 client.on('message', async (message) => {
@@ -209,6 +220,13 @@ client.on('message', async (message) => {
     const msg = {
       type: 'livestream',
       payload: state.livestream
+    }
+    broadcast('all', JSON.stringify(msg))
+  } else if (message.channel.id === '773865243796439050') {
+    state.selected = message.content.toString().split(', ')
+    const msg = {
+      type: 'selected',
+      payload: state.selected
     }
     broadcast('all', JSON.stringify(msg))
   }

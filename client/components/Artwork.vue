@@ -17,6 +17,11 @@
         v-if="live"
         class="badge"
       />
+      <badge
+        content="Kölner Design Preis Nominee"
+        v-if="marked"
+        class="badge"
+      />
     </div>
     <img
       v-if="type === 'image'"
@@ -43,6 +48,7 @@ export default {
     ...mapGetters({
       cursors: 'cursors/all',
       location: 'ui/location',
+      selected: 'ui/selected',
       chatLogins: 'chat/logins',
     }),
     type () {
@@ -54,6 +60,9 @@ export default {
     },
     live () {
       return this.chatLogins.find((login) => login === this.project.id)
+    },
+    marked () {
+      return this.selected.includes(this.project.graduate)
     }
   },
   methods: {
