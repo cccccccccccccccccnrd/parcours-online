@@ -26,7 +26,7 @@ setInterval(async () => {
 
 setInterval(async () => {
   state.projects = await getProjects(true)
-}, 6 * 60 * 60 * 1000)
+}, 12 * 60 * 60 * 1000)
 
 async function getProjects (randomize) {
   try {
@@ -69,7 +69,7 @@ app.get('/meta', (req, res) => {
 })
 
 app.get('/info', (req, res) => {
-  res.send(`<h1 style="font-family: Arial; font-size: 4em; font-weight: normal; text-transform: uppercase;">${ wss.clients.size } users and ${ state.projects.length } projects are online. Content will be updated in ${ Math.trunc((1 * 60 * 1000 - (Date.now() - state.updated.content)) / 1000) } seconds, new distribution in ${ Math.trunc((1 * 60 * 60 * 1000 - (Date.now() - state.updated.distribution)) / 1000) }.</h1>`)
+  res.send(`<h1 style="font-family: Arial; font-size: 4em; font-weight: normal; text-transform: uppercase;">${ wss.clients.size } users and ${ state.projects.length } projects are online. Content will be updated in ${ Math.trunc((1 * 60 * 1000 - (Date.now() - state.updated.content)) / 1000) } seconds, new distribution in ${ Math.trunc((12 * 60 * 60 * 1000 - (Date.now() - state.updated.distribution)) / 1000) }.</h1>`)
 })
 
 app.get('/projects', async (req, res) => {
